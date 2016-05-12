@@ -1,0 +1,31 @@
+  <!DOCTYPE html>
+  <html>
+      <head>
+          <title>My First D3 Chart</title>
+          <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.6/d3.min.js" charset="utf-8"></script>
+      </head>
+      <body>
+          <div id='content'></div>
+          <script>
+                  var vis = d3.select("#content")
+                                     .append("svg:svg")
+                                     .attr("width", "100%")
+                                     .attr("height", "100%");
+                                 
+                  var pi = Math.PI;
+ 
+                  var arcDef = d3.svg.arc()
+                                                  .innerRadius(0)
+                                                  .outerRadius(70)
+                                                  .startAngle(45 * (pi/180)) //converting from degs to radians
+                                                  .endAngle(3) //just radians
+ 
+                  var guageArc = vis
+                                          .attr("width", "400").attr("height", "400") // Added height and width so arc is visible
+                                          .append("path")
+                                          .style("fill", "red")
+                                          .attr("transform", "translate(200,200)")
+                                          .attr("d", arcDef);
+          </script>
+      </body>
+  </html>

@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sdkExtension
+	id="com.sap.sample.scngauge"
+	title="Cubis Gauge"
+	version="15.0"
+	vendor="Cubis"  
+	xmlns="http://www.sap.com/bi/zen/sdk"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://www.sap.com/bi/zen/sdk http://www.sap.com/bi/zen/sdk ">
+	  <license>license</license>
+  
+    	  <group
+  id="GaugeLineSettings"
+  title="Guide Lines"
+  tooltip="Guide Line Ring and Line Settings" />
+  
+  
+  <component
+      databound="false"
+      group=""
+      handlerType="div"
+      icon="res/gauge.png"
+      id="gauge"
+      propertySheetPath="res/additional_properties_sheet/additional_properties_sheet.html"
+      title="Gauge"
+      tooltip="Cubis Gauge"
+      visible="true">
+      
+    <stdInclude kind="d3"/>
+    <jsInclude>res/js/component.js</jsInclude>
+    <cssInclude>res/css/component.css</cssInclude>
+    
+    <property
+		id="startAngleDeg"
+		title="Start Angle"
+		type="float"/>
+  <property
+        id="endAngleDeg"
+        title="End Angle"
+        type="float"/>
+    <property
+        id="innerRad"
+        title="Inner Radius"
+        type="float"/>
+    <property
+        id="outerRad"
+        title="Outer Radius"
+        type="float"
+        visible="false"/>
+    <property
+        id="offsetLeft"
+        title="Centerpoint Offset X-Axis"
+        type="int"
+        visible="false"/>
+    <property
+        id="offsetDown"
+        title="Centerpoint Offset Y-Axis"
+        type="int"
+        visible="false"/>
+    <property
+        id="paddingTop"
+        title="Top Padding"
+        type="int"/>
+    <property
+        id="paddingBottom"
+        title="Bottom Padding"
+        type="int"/>
+    <property
+        id="paddingLeft"
+        title="Left Padding"
+        type="int"/>
+    <property
+        id="paddingRight"
+        title="Right Padding"
+        type="int"/>
+    <property
+        id="colorCode"
+        title="Color"
+        type="Color"/>
+    
+    <initialization>
+		<defaultValue property="WIDTH">100</defaultValue>
+		<defaultValue property="HEIGHT">100</defaultValue>
+		<defaultValue property="startAngleDeg">-120.0</defaultValue>
+		<defaultValue property="endAngleDeg">90.0</defaultValue>
+		<defaultValue property="colorCode">green</defaultValue>
+		<defaultValue property="innerRad">0.0</defaultValue>
+    </initialization>
+  </component>
+</sdkExtension>
