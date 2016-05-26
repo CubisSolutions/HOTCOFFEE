@@ -2,8 +2,8 @@
 <sdkExtension
 	id="com.sap.sample.scngauge"
 	title="Cubis Gauge"
-	version="15.0"
-	vendor="Cubis"  
+	version="16.1"
+	vendor="Cubis Solutions"  
 	xmlns="http://www.sap.com/bi/zen/sdk"
   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
   xsi:schemaLocation="http://www.sap.com/bi/zen/sdk http://www.sap.com/bi/zen/sdk ">
