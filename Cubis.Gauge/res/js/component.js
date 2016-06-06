@@ -237,12 +237,7 @@ sap.designstudio.sdk.Component.subclass("com.sap.sample.scngauge.textFiller", fu
 		var svgText = d3.select(my2Div)
 		  .append("svg:svg")
 		  .attr("width", "100%")
-		  .attr("height", "100%");
-		
-		
-		svgText.append("mask")
-		.attr
-		
+		  .attr("height", "100%");		
 		
 		// append text to svg
 		svgText.append("text")

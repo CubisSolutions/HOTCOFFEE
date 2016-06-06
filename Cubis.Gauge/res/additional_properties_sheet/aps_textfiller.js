@@ -10,12 +10,11 @@ function()
 	{
 		$("#form").submit(function()
 		{
-			me._text = $("aps_text").val();
-			me._width = $("aps_width").val();
+			me._text = $("#aps_text").val();
+			me._width = $("#aps_width").val();
 			
 			me.firePropertiesChanged(["text", "width"]);
 			
-			me.redraw();
 			return false;
 		});
 		me.redraw();
@@ -51,8 +50,8 @@ function()
 	
 	me.redraw = function()
 	{
-		$("aps_text").val(me._text);
-		$("aps_width").val(me._width);
+		$("#aps_text").val(me._text);
+		$("#aps_width").val(me._width);
 	}
 });
 
