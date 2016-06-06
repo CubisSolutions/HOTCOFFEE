@@ -20,11 +20,14 @@
       propertySheetPath="res/additional_properties_sheet/additional_properties_sheet.html"
       title="Gauge"
       tooltip="Cubis Gauge"
-      visible="true">
+      visible="true"
+      >
       
-    <stdInclude kind="d3"/>
-    <jsInclude>res/js/component.js</jsInclude>
-    <cssInclude>res/css/component.css</cssInclude>
+      <stdInclude kind="d3"/>
+		<jsInclude>res/js/component.js</jsInclude>
+		<cssInclude>res/css/component.css</cssInclude>
+      
+<!-- 	<requireJs modes="commons m">res/js/component</requireJs> -->
     
     <property
 		id="startAngleDeg"
@@ -93,11 +96,13 @@
       propertySheetPath="res/additional_properties_sheet/aps_textfiller.html"
       title="Text filler"
       tooltip="Cubis Text filler"
-      visible="true">
+      visible="true"
+      >
       
-    <stdInclude kind="d3"/>
-    <jsInclude>res/js/component.js</jsInclude>
-    <cssInclude>res/css/component.css</cssInclude>
+      <stdInclude kind="d3"/>
+<jsInclude>res/js/component.js</jsInclude>
+<cssInclude>res/css/component.css</cssInclude>
+<!-- 	<requireJs modes="commons m">res/js/component</requireJs> -->
     
     <property
 		id="text"
@@ -119,6 +124,10 @@
 		id="score"
 		title="Score %"
 		type="int"/>
+	<property
+		id="percent"
+		title="Percentage"
+		type="int"/>
 	
 	<initialization>
 		<defaultValue property="WIDTH">100</defaultValue>
@@ -126,6 +135,7 @@
 		<defaultValue property="Text">Type your text</defaultValue>
 		<defaultValue property="textcolorCode">black</defaultValue>
 		<defaultValue property="score">25</defaultValue>
+		<defaultValue property="percent">50</defaultValue>
 	</initialization>
 </component>
 
