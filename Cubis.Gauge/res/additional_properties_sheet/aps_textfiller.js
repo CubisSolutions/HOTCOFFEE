@@ -2,56 +2,46 @@ sap.designstudio.sdk.PropertyPage.subclass("com.sap.sample.scngauge.SCNGaugeProp
 function() 
 {
 	var me = this;
-	
-	me._text = '';
-	me._width = 0;
+	var strlen = 0;
+	me._width = 20;
 	
 	me.init = function()
 	{
 		$("#form").submit(function()
 		{
-			me._text = $("#aps_text").val();
-			me._width = $("#aps_width").val();
-			
-			me.firePropertiesChanged(["text", "width"]);
-			
+			//me._width = $("#aps_text").length() * 10;
+			strlen = $("#aps_text").val().length;
+			me._width = (strlen * 26);
+			me.firePropertiesChanged(["text","WIDTH"]);
 			return false;
 		});
-		me.redraw();
 	};
 	
 	me.text = function(textvalue)
 	{
 		 if (textvalue === undefined) 
 		  {
-			 return me._text
+			 return $("#aps_text").val();			 
 		  }
 		  else
 		  {
-			  me._text = textvalue;
-			  me.redraw();
+			  $("#aps_text").val(text(textvalue));
 			  return me;
 		  }
 	};
 	
-	me.width = function(widthvalue)
+	// setter width
+	me.WIDTH = function(widthvalue)
 	{
 		if(widthvalue === undefined)
 			{
-			return me._width
+			return me._width;//$("#aps_width").val();
 			}
 		else
 			{
-				me._width = widthvalue;
-				me.redraw();
-				return me;
-			}
+			$("#aps_width").val(widthvalue);
+			return me;
+			};
 	};
-	
-	me.redraw = function()
-	{
-		$("#aps_text").val(me._text);
-		$("#aps_width").val(me._width);
-	}
 });
 

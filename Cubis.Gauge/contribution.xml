@@ -109,12 +109,23 @@
         id="textcolorCode"
         title="Color"
         type="Color"/>
+    
+    <property
+		id="WIDTH"
+		title="Width"
+		type="int"/>
+	
+	<property
+		id="score"
+		title="Score %"
+		type="int"/>
 	
 	<initialization>
 		<defaultValue property="WIDTH">100</defaultValue>
-		<defaultValue property="HEIGHT">100</defaultValue>
+		<defaultValue property="HEIGHT">80</defaultValue>
 		<defaultValue property="Text">Type your text</defaultValue>
 		<defaultValue property="textcolorCode">black</defaultValue>
+		<defaultValue property="score">25</defaultValue>
 	</initialization>
 </component>
 
@@ -124,7 +135,7 @@
       handlerType="div"
       icon="res/gauge.png"
       id="logoFiller"
-      propertySheetPath="res/additional_properties_sheet/additional_properties_sheet.html"
+      propertySheetPath="res/additional_properties_sheet/aps_logofiller.html"
       title="Logo filler"
       tooltip="Cubis Logo filler"
       visible="true">
@@ -133,6 +144,15 @@
     <jsInclude>res/js/component.js</jsInclude>
     <cssInclude>res/css/component.css</cssInclude>
 	
+	<property
+		id="WIDTH"
+		title="Width"
+		type="int"/>
+	<property
+		id="HEIGHT"
+		title="Height"
+		type="int"/>
+		
 	<initialization>
 		<defaultValue property="WIDTH">100</defaultValue>
 		<defaultValue property="HEIGHT">100</defaultValue>

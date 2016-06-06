@@ -221,6 +221,7 @@ sap.designstudio.sdk.Component.subclass("com.sap.sample.scngauge.textFiller", fu
 	//Properties
 	me._text = "Type your text";
 	me._textcolorCode = "black";
+	me._score = 25;
 	
 	me.init = function() 
 	{
@@ -239,14 +240,36 @@ sap.designstudio.sdk.Component.subclass("com.sap.sample.scngauge.textFiller", fu
 		  .attr("width", "100%")
 		  .attr("height", "100%");		
 		
-		// append text to svg
 		svgText.append("text")
-		.style("font-size", "55px")
-		.style("fill", me._textcolorCode)
-		.style("font-family", "Verdana")
+		.style("font-size", "60px")
+		.style("fill", "black")
+		.style("stroke-width", 4)
+		.style("stroke", "black")
 		.attr("x", 10)
-		.attr("y", 10)
+		.attr("y", 70)
 		.text(me._text);
+		
+		
+		// masking block
+		svgText.append("clipPath")
+		.attr("id","text-clip")
+		.append("text")
+		.style("font-size", "60px")
+		.style("fill", "black")
+		.attr("x", 10)
+		.attr("y", 70)
+		.text(me._text);
+			
+		
+		// append text to svg
+		svgText.append("rect")
+		.attr("x",0)
+		.attr("y",0)
+		.attr("height", 80)
+		.attr("width", ( me._score + "%") )
+		.attr("fill", "orange")
+		.attr("clip-path", "url(#text-clip)");		
+		
 	};
 	
 	me.text = function(value)
@@ -270,6 +293,19 @@ sap.designstudio.sdk.Component.subclass("com.sap.sample.scngauge.textFiller", fu
 		  return me;
 	  }
 	};
+	me.score = function(value)
+	{
+		if(value === undefined)
+			{
+			return me._score;
+			}
+		else
+			{
+			me._score = value;
+			me.redraw();
+			return me;
+			}
+	}
 	
 });
 
@@ -305,14 +341,15 @@ sap.designstudio.sdk.Component.subclass("com.sap.sample.scngauge.logoFiller", fu
 		.attr("y", 10)
 		.attr("xlink:href","http://www.cubis.be/images/logo.gif");
 		*/
-		svgLogo.append("clipPath")
-		.attr("id","block-clip")
-		.append("rect")
-		.attr("fill", "black")
-		.attr("x", 0)
-		.attr("y", 300)
-		.attr("height", 400)
-		.attr("width", 800);
+		
+//		svgLogo.append("clipPath")
+//		.attr("id","block-clip")
+//		.append("rect")
+//		.attr("fill", "black")
+//		.attr("x", 0)
+//		.attr("y", 0)
+//		.attr("height", 400)
+//		.attr("width", 400);
 		
 		
 		svgLogo.append("path")
@@ -320,15 +357,8 @@ sap.designstudio.sdk.Component.subclass("com.sap.sample.scngauge.logoFiller", fu
 		.style("stroke", "black")
 		.style("fill", "white")
 		.style("stroke-linejoin", "round")
-		.attr("clip-path", "url(#block-clip)")
-		.attr("d", "M356.5 402.3C356.5 402.3 381.1 406.2 381.5 430.4 381.5 431.1 437.7 446.6 459.6 445.4 481.5 444.1 509 424.8 516.5 418.5 524 412.3 536.5 402.3 540.2 389.2 544 376 545.8 361 545.8 361L578.3 366C578.3 366 579.6 369.2 577.1 380.4 574.6 391.7 569.6 406.7 562.1 420.4 554.6 434.2 543.3 456.9 530.2 466 515.8 476 494 484.8 482.7 486.6 463.5 489.8 434 487.3 434 487.3 434 487.3 436.5 518.5 434 544.1 431.5 569.7 427.1 602.9 424 616 420.9 629.1 417.1 641.6 417.1 641.6L410.2 657.2 298.4 662.2 302.1 639.1C302.1 639.1 300.9 559.7 299.6 542.2 298.4 524.8 301.5 502.9 301.5 502.9 301.5 502.9 261.5 530.4 227.8 526.6 185.3 521.9 142.2 494.8 142.2 494.8L171.5 462.3C171.5 462.3 201.5 486.6 227.2 486 252.8 485.4 267.1 479.1 279 471.6 290.9 464.1 308.4 452.9 310.9 447.9 313.4 442.9 314.6 434.2 314.6 434.2");
-		
-		svgLogo.append("path")
-		.style("fill", "#72caba")
-		.style("stroke", "black")
-		.style("stroke-linejoin","round")
-		.attr("clip-path", "url(#block-clip)")
-		.attr("d", "M45.6 283.9L45.6 225.5C45.6 225.5 37.4 215.3 38.4 211.7 39.4 208.1 38.9 197.9 56.3 195.3 73.7 192.7 90.6 187.6 100.4 193.8 110.1 199.9 110.1 204.5 108 209.6 106 214.7 99.3 219.4 99.3 219.4L95.7 281.3 89.1 386.3 79.4 421.6 57.3 420.6 48.6 402.7 45.6 283.9z");
+		//.attr("clip-path", "url(#block-clip)")
+		.attr("d", "M56 44 L42 18 L0 0 L22 26 L6 34 L28 56")		
 	};
 });
 		

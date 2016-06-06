@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  <title>Gauge Padding Visualizer</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.6/d3.min.js" charset="utf-8"></script>
+  <script src="/aad/zen.rt.components.sdk/resources/js/sdk_propertysheets_handler.js"></script>
+  <script src="aps_logofiller.js"></script>
+</head>
+
+<body class='sapUiBody'>
+	
+	<script>
+		new com.sap.sample.scngauge.SCNGaugePropertyPage();
+	</script>
+	
+	<div>
+		
+		<form id="form">
+		<fieldset>
+		<legend>Path Properties</legend>
+		<table>
+		<tr>
+			<td>Width</td>	<td>	<input id="aps_width"  type="number" name="width" size="6" maxlength="3"></input></td>
+		</tr>
+		<tr>
+			<td>Height</td>	<td>	<input id="aps_height"  type="number" name="height" size="6" maxlength="3"></input></td>
+		</tr>
+		<tr>
+			<td>Path</td>		<td><input id="aps_path" type="text" name="path" size="40" maxlength="100"></input></td>
+		</tr>
+		</table>
+		<input name="submit"  type="submit" value="Update"/>
+		
+		</fieldset>
+		</form>
+	</div>
+	
+	<div>
+		<a href="http://www.cubis.be">Get help from Cubis team</a><br/>
+	</div>
+
+
+</body>
+
+</html>
