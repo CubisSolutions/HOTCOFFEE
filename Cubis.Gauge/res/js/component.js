@@ -59,36 +59,14 @@ sap.designstudio.sdk.Component.subclass("com.sap.sample.scngauge.gauge", functio
 				}
 
 	};
-		
-	//Getters and Setters
-	// Colorcode
-	me.textcolorCode = function(value) 
-	{
-	  if (value === undefined)
-	  {
-		  return me._colorCode;
-	  } 
-	  else
-	  {
-		  me._colorCode = value;
-		  me.redraw();
-		  return me;
-	  }
-	};
 	
-	me.textcolorCodeFill = function(value) 
-	{
-	  if (value === undefined)
-	  {
-		  return me._colorCodeFill;
-	  } 
-	  else
-	  {
-		  me._colorCodeFill = value;
-		  me.redraw();
-		  return me;
-	  }
-	};
+	me.afterUpdate = function(){
+		var tuple = percentage.tuples[i];
+		alert(meta_data.dimensions[1].members[tuple[0]].text);
+		me._text = meta_data.dimensions[1].members[tuple[0]].text
+		alert(me._text);
+		me.redraw();
+	}
 	
 	me.percentage = function(value) {
 	    if (value === undefined) {
@@ -96,7 +74,6 @@ sap.designstudio.sdk.Component.subclass("com.sap.sample.scngauge.gauge", functio
 	    } else {
 	    me._percentage = value;
 	    percentage = value;
-	    me.redraw();
 	    return me;
 	    }
 	  };
