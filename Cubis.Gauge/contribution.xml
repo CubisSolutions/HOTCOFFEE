@@ -9,15 +9,11 @@
   xsi:schemaLocation="http://www.sap.com/bi/zen/sdk http://www.sap.com/bi/zen/sdk ">
 	  <license>license</license>
   
-    	  <group
-  id="GaugeLineSettings"
-  title="Guide Lines"
-  tooltip="Guide Line Ring and Line Settings" />
-  
+  <group id="CubisComponents" title="Cubis Custom Components" />
   
   <component
       databound="false"
-      group=""
+      group="CubisComponents"
       handlerType="div"
       icon="res/gauge.png"
       id="gauge"
@@ -87,4 +83,61 @@
 		<defaultValue property="innerRad">0.0</defaultValue>
     </initialization>
   </component>
+
+<component
+      databound="false"
+      group="CubisComponents"
+      handlerType="div"
+      icon="res/gauge.png"
+      id="textFiller"
+      propertySheetPath="res/additional_properties_sheet/aps_textfiller.html"
+      title="Text filler"
+      tooltip="Cubis Text filler"
+      visible="true">
+      
+    <stdInclude kind="d3"/>
+    <jsInclude>res/js/component.js</jsInclude>
+    <cssInclude>res/css/component.css</cssInclude>
+    
+    <property
+		id="text"
+		title="Text"
+		type="Text"
+		visible="false"/>
+	
+	<property
+        id="textcolorCode"
+        title="Color"
+        type="Color"/>
+	
+	<initialization>
+		<defaultValue property="WIDTH">100</defaultValue>
+		<defaultValue property="HEIGHT">100</defaultValue>
+		<defaultValue property="Text">Type your text</defaultValue>
+		<defaultValue property="textcolorCode">black</defaultValue>
+	</initialization>
+</component>
+
+<component
+      databound="false"
+      group="CubisComponents"
+      handlerType="div"
+      icon="res/gauge.png"
+      id="logoFiller"
+      propertySheetPath="res/additional_properties_sheet/additional_properties_sheet.html"
+      title="Logo filler"
+      tooltip="Cubis Logo filler"
+      visible="true">
+      
+    <stdInclude kind="d3"/>
+    <jsInclude>res/js/component.js</jsInclude>
+    <cssInclude>res/css/component.css</cssInclude>
+	
+	<initialization>
+		<defaultValue property="WIDTH">100</defaultValue>
+		<defaultValue property="HEIGHT">100</defaultValue>
+	</initialization>
+</component>
+
+
 </sdkExtension>
