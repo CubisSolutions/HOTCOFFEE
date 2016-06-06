@@ -16,7 +16,7 @@
   
   
   <component
-      databound="false"
+      databound="true"
       group=""
       handlerType="div"
       icon="res/gauge.png"
@@ -51,16 +51,15 @@
     	id="percentage"
     	title = "percentage"
     	type="ResultCell"
-    	bindable="true">
-    	<option name="includeData" value="true" /></property>
+    	group="DataBinding">
+    	<option name="includeFormattedData" value="true"/>
+		<option name="includeData" value="true"/></property>
 	
-    
     <initialization>
 		<defaultValue property="WIDTH">100</defaultValue>
 		<defaultValue property="HEIGHT">100</defaultValue>
 		<defaultValue property="textcolorCode">orange</defaultValue>
 		<defaultValue property="textcolorCodeFill">black</defaultValue>
-		<defaultValue property="percentage">10</defaultValue>
     </initialization>
     
   </component>
