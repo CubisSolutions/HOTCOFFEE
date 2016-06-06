@@ -4,81 +4,55 @@ sap.designstudio.sdk.Component.subclass("com.sap.sample.scngauge.gauge", functio
 	var me = this;
 
 	//Properties
-	me._textcolorCode = 'orange';
-	me._text = 'test';
-	me._textcolorCodeFill = 'black';
-	me._percentage = null;
-	
-	var percentage = null;
-	
-	me.init = function() 
+	this._text = null;
+	this._percentage = null;
+		
+	this.init = function() 
 	{
-	    me.redraw();
+	    this.redraw();
 	};
 	
-	me.redraw = function() 
+	this.redraw = function() 
 	{
-		var my2Div = me.$()[0];
+		var my2Div = this.$()[0];
 		
 		// Clear any existing gauges.  We'll redraw from scratch
 		d3.select(my2Div).selectAll("*").remove();
 		
-		if(percentage === null)
+		if(this._percentage != null)
 			{
-				alert("tis null");
+			var svgText = d3.select(my2Div)
+			.append("svg:svg")
+			.attr("width", "100%")
+			.attr("height", "100%");
+			
+			// append text to svg
+			svgText.append("text")
+			.style("font-size", this._percentage.formattedData[0] + "px")
+			.style("fill", this.textcolorCode)
+			.style("font-family", "Verdana")
+			.attr("x", 10)
+			.attr("y", 10)
+			.text(this._text);
 			}
-		else{
-				alert("tis niet null");
-				
-				var svgText = d3.select(my2Div)
-				.append("svg:svg")
-				.attr("width", "100%")
-				.attr("height", "100%");
-				
-				var svgText2 = d3.select(my2Div)
-				.append("svg:svg")
-				.attr("width", "100%")
-				.attr("height", "100%");
-				
-				// append text to svg
-				svgText.append("text")
-				.style("font-size", percentage.formattedData[0] + "px")
-				.style("fill", me.textcolorCode)
-				.style("font-family", "Verdana")
-				.attr("x", 10)
-				.attr("y", 10)
-				.text(me._text);
-				
-				svgText2.append("text")
-				.style("font-size", me._percentage + "px")
-				.style("fill", me.textcolorCodeFill)
-				.style("font-family", "Verdana")
-				.attr("x", 10)
-				.attr("y", 10)
-				.text(me._text);
-				}
-
 	};
-	
-	me.afterUpdate = function(){
-		var tuple = percentage.tuples[i];
-		alert(meta_data.dimensions[1].members[tuple[0]].text);
-		me._text = meta_data.dimensions[1].members[tuple[0]].text
-		alert(me._text);
-		me.redraw();
+		
+	this.afterUpdate = function(){
+		var tuple = this._percentage.tuples[0];
+		this._text = meta_data.dimensions[1].members[tuple[0]].text
+		this.redraw();
 	}
 	
-	me.percentage = function(value) {
+	this.percentage = function(value) {
 	    if (value === undefined) {
-	    return me._percentage;
+	    return this._percentage;
 	    } else {
-	    me._percentage = value;
-	    percentage = value;
+	    this._percentage = value;
 	    return me;
 	    }
 	  };
 	  
-	me.metadata = function(value) {
+	this.metadata = function(value) {
 			if (value === undefined) {
 				return meta_data;
 			} else {
@@ -86,5 +60,4 @@ sap.designstudio.sdk.Component.subclass("com.sap.sample.scngauge.gauge", functio
 				return this;
 			}
 		};
-
 });

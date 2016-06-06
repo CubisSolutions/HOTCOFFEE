@@ -29,24 +29,14 @@
     <stdInclude kind="d3"/>
     <jsInclude>res/js/component.js</jsInclude>
     <cssInclude>res/css/component.css</cssInclude>
-    
-    <property
-        id="textcolorCode"
-        title="Color"
-        type="Color"/>
-        
+            
     <property
 		id="text"
 		title="Text"
 		type="Text"
 		bindable="true"
-		visible="true"/>
-	
-	<property
-        id="textcolorCodeFill"
-        title="Color"
-        type="Color"/>
-     
+		visible="false"/>
+	  
     <property
     	id="percentage"
     	title = "percentage"
