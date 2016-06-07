@@ -1,26 +1,42 @@
 sap.designstudio.sdk.Component.subclass("com.sap.sample.scngauge.gauge", function() 
 {
- 
+	
+	console.log("initialization of function class");
+	
 	var me = this;
 
 	//Properties
-	this._text = null;
-	this._percentage = null;
-		
-	this.init = function() 
+	me._text = null;
+	me._percentage = null;
+	me._meta_data = null;
+	me._tuple = null;
+	
+	//Methods
+	me.init = function() 
 	{
-	    this.redraw();
+		console.log("init method");
+		me.redraw();
 	};
 	
-	this.redraw = function() 
+	me.redraw = function() 
 	{
-		var my2Div = this.$()[0];
+		console.log("redraw method");
+		var my2Div = me.$()[0];
+
+		//logging
+//		  console.log("my2Div = " + my2Div);
+//        eclipse_logJavaScriptMessage("Hello from APS - error","error");
+//        eclipse_logJavaScriptMessage("Hello from APS - warn","warn");
+//        eclipse_logJavaScriptMessage("Hello from APS - info","info");
+//        eclipse_logJavaScriptMessage("Hello from APS - log","log");
+
 		
 		// Clear any existing gauges.  We'll redraw from scratch
 		d3.select(my2Div).selectAll("*").remove();
 		
-		if(this._percentage != null)
-			{
+		if (me._percentage === null || me._percentage === 0) {
+		}
+		else {
 			var svgText = d3.select(my2Div)
 			.append("svg:svg")
 			.attr("width", "100%")
@@ -28,36 +44,54 @@ sap.designstudio.sdk.Component.subclass("com.sap.sample.scngauge.gauge", functio
 			
 			// append text to svg
 			svgText.append("text")
-			.style("font-size", this._percentage.formattedData[0] + "px")
-			.style("fill", this.textcolorCode)
+			.style("font-size", me._percentage.formattedData[0] + "px")
 			.style("font-family", "Verdana")
 			.attr("x", 10)
 			.attr("y", 10)
-			.text(this._text);
-			}
+			.text(me._text);
+		}
 	};
 		
-	this.afterUpdate = function(){
-		var tuple = this._percentage.tuples[0];
-		this._text = meta_data.dimensions[1].members[tuple[0]].text
-		this.redraw();
+	me.afterUpdate = function(){
+		
+		console.log("afterUpdate method");
+		
+		// syntax "== null" is different from "=== null"
+		// "== null" actually checks both for null and undefined
+		if (me._percentage === null || me._percentage === 0) {
+		}
+		else {	
+			console.log("me._percentage = " + me._percentage);
+			
+			me._tuple = me._percentage.tuples[0];
+			me._text = me._meta_data.dimensions[1].members[me._tuple[0]].text;
+			me.redraw();
+		}
 	}
 	
-	this.percentage = function(value) {
+	me.percentage = function(value) {
+		
+		console.log("percentage method");
+		
 	    if (value === undefined) {
-	    return this._percentage;
+	    	return me._percentage;
 	    } else {
-	    this._percentage = value;
-	    return me;
+	    	me._percentage = value;
+	    	//me.redraw();
+	    	return me;
 	    }
 	  };
 	  
-	this.metadata = function(value) {
-			if (value === undefined) {
-				return meta_data;
-			} else {
-				meta_data = value;
-				return this;
-			}
-		};
+	me.metadata = function(value) {
+		
+		console.log("metadata method");
+		
+		if (value === undefined) {
+			return me._meta_data;
+		} else {
+			me._meta_data = value;
+	    	//me.redraw();
+			return me;
+		}
+	};
 });

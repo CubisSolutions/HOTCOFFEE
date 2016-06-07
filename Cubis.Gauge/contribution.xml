@@ -48,8 +48,7 @@
     <initialization>
 		<defaultValue property="WIDTH">100</defaultValue>
 		<defaultValue property="HEIGHT">100</defaultValue>
-		<defaultValue property="textcolorCode">orange</defaultValue>
-		<defaultValue property="textcolorCodeFill">black</defaultValue>
+		<defaultValue property="percentage">{"":""}</defaultValue>
     </initialization>
     
   </component>
