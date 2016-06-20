@@ -48,8 +48,8 @@
     <initialization>
 		<defaultValue property="WIDTH">100</defaultValue>
 		<defaultValue property="HEIGHT">100</defaultValue>
-		<defaultValue property="percentage">{"":""}</defaultValue>
-    </initialization>
+		<defaultValue property="percentage">50</defaultValue>   
+	</initialization>
     
   </component>
 </sdkExtension>

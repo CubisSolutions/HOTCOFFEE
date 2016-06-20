@@ -6,10 +6,11 @@ sap.designstudio.sdk.Component.subclass("com.sap.sample.scngauge.gauge", functio
 	var me = this;
 
 	//Properties
-	me._text = null;
+	me._text = "Cubis";
 	me._percentage = null;
 	me._meta_data = null;
 	me._tuple = null;
+	me._size = "50";
 	
 	//Methods
 	me.init = function() 
@@ -22,34 +23,30 @@ sap.designstudio.sdk.Component.subclass("com.sap.sample.scngauge.gauge", functio
 	{
 		console.log("redraw method");
 		var my2Div = me.$()[0];
-
-		//logging
-//		  console.log("my2Div = " + my2Div);
-//        eclipse_logJavaScriptMessage("Hello from APS - error","error");
-//        eclipse_logJavaScriptMessage("Hello from APS - warn","warn");
-//        eclipse_logJavaScriptMessage("Hello from APS - info","info");
-//        eclipse_logJavaScriptMessage("Hello from APS - log","log");
-
 		
 		// Clear any existing gauges.  We'll redraw from scratch
 		d3.select(my2Div).selectAll("*").remove();
 		
-		if (me._percentage === null || me._percentage === 0) {
+		if (me._percentage === null || me._percentage === "") {
+			me._size = "50";
 		}
 		else {
-			var svgText = d3.select(my2Div)
-			.append("svg:svg")
-			.attr("width", "100%")
-			.attr("height", "100%");
-			
-			// append text to svg
-			svgText.append("text")
-			.style("font-size", me._percentage.formattedData[0] + "px")
-			.style("font-family", "Verdana")
-			.attr("x", 10)
-			.attr("y", 10)
-			.text(me._text);
+			me._size = me._percentage.formattedData[0];
 		}
+		
+		var svgText = d3.select(my2Div)
+		.append("svg:svg")
+		.attr("width", "100%")
+		.attr("height", "100%");
+		
+		// append text to svg
+		svgText.append("text")
+		.style("font-size", me._size + "px")
+		.style("font-family", "Verdana")
+		.attr("x", 10)
+		.attr("y", 10)
+		.text(me._text);
+		
 	};
 		
 	me.afterUpdate = function(){
@@ -58,7 +55,9 @@ sap.designstudio.sdk.Component.subclass("com.sap.sample.scngauge.gauge", functio
 		
 		// syntax "== null" is different from "=== null"
 		// "== null" actually checks both for null and undefined
-		if (me._percentage === null || me._percentage === 0) {
+		if (me._percentage === null || me._percentage === "") {
+			me._text = "Cubis";
+			me.redraw();
 		}
 		else {	
 			console.log("me._percentage = " + me._percentage);
