@@ -32,19 +32,5 @@ function()
 		  }
 		 eclipse_logJavaScriptMessage("aps_text --- exit text","error");
 	};
-	
-	// setter width
-	me.WIDTH = function(widthvalue)
-	{
-		if(widthvalue === undefined)
-			{
-			return me._width;//$("#aps_width").val();
-			}
-		else
-			{
-			$("#aps_width").val(widthvalue);
-			return me;
-			};
-	};
 });
 

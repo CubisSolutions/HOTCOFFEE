@@ -119,11 +119,6 @@
         id="progressColorCode"
         title="Progress Color"
         type="Color"/>
-    
-    <property
-		id="WIDTH"
-		title="Width"
-		type="int"/>
 	
 	<property
     	id="percent"
@@ -135,12 +130,11 @@
 	</property>
 	
 	<initialization>
-		<defaultValue property="WIDTH">100</defaultValue>
-		<defaultValue property="HEIGHT">80</defaultValue>
-		<defaultValue property="Text">Type your text</defaultValue>
+		<defaultValue property="WIDTH">75</defaultValue>
+		<defaultValue property="HEIGHT">55</defaultValue>
+		<defaultValue property="Text">Cubis</defaultValue>
 		<defaultValue property="textcolorCode">black</defaultValue>
 		<defaultValue property="progressColorCode">orange</defaultValue>
-		<defaultValue property="score">25</defaultValue>
 		<defaultValue property="percent">50</defaultValue>
 	</initialization>
 </component>
@@ -175,5 +169,57 @@
 	</initialization>
 </component>
 
+<component
+      databound="true"
+      group="CubisComponents"
+      handlerType="div"
+      icon="res/progressindicator.png"
+      id="textBlockFiller"
+      propertySheetPath="res/additional_properties_sheet/aps_textfiller.html"
+      title="Bloctext filler"
+      tooltip="Cubis Blocktext filler"
+      visible="true"
+      >
+      
+      <stdInclude kind="d3"/>
+<jsInclude>res/js/component.js</jsInclude>
+<cssInclude>res/css/component.css</cssInclude>
+<!-- 	<requireJs modes="commons m">res/js/component</requireJs> -->
+    
+    <property
+		id="text"
+		title="Text"
+		type="Text"
+		visible="true"/>
+	
+	<property
+        id="textcolorCode"
+        title="Text Color"
+        type="Color"/>
+    
+    <property
+        id="progressColorCode"
+        title="Progress Color"
+        type="Color"/>
+	
+	<property
+    	id="percentage"
+    	title = "percentage"
+    	type="ResultCellList"
+    	group="DataBinding">
+    	<option name="includeFormattedData" value="true"/>
+		<option name="includeData" value="true"/>
+	</property>
+	
+	
+	<initialization>
+		<defaultValue property="WIDTH">75</defaultValue>
+		<defaultValue property="HEIGHT">55</defaultValue>
+		<defaultValue property="Text">Cubis</defaultValue>
+		<defaultValue property="textcolorCode">black</defaultValue>
+		<defaultValue property="progressColorCode">orange</defaultValue>
+		<defaultValue property="percentage">50</defaultValue>
+	</initialization>
+</component>
 
 </sdkExtension>
