@@ -40,7 +40,7 @@
     <property
     	id="percentage"
     	title = "percentage"
-    	type="ResultCell"
+    	type="ResultCellList"
     	group="DataBinding">
     	<option name="includeFormattedData" value="true"/>
 		<option name="includeData" value="true"/></property>
@@ -48,7 +48,7 @@
     <initialization>
 		<defaultValue property="WIDTH">100</defaultValue>
 		<defaultValue property="HEIGHT">100</defaultValue>
-		<defaultValue property="percentage">50</defaultValue>   
+		<defaultValue property="percentage">50</defaultValue>
 	</initialization>
     
   </component>
