@@ -1,3 +1,6 @@
+
+var counter = 1;
+
 //define(["sap/designstudio/sdk/component","d3","css!..css/component.css"], function(Component, d3, unusedDummy){
 //	Component.subclass("com.sap.sample.scngauge.gauge", function()
 //	{
@@ -223,12 +226,17 @@ sap.designstudio.sdk.Component.subclass("com.sap.sample.scngauge.textFiller", fu
 	//Properties
 	me._text = "Type your text";
 	me._textcolorCode = "black";
-	me._score = 25;
-	me._percent = 50;
+	me._progressColorCode = "orange";
+	me._percent = null;
+	me._ID = counter;
+	me._size = 50;
+	counter = counter + 1 ;
 	
 	me.init = function() 
 	{
-	    me.redraw();
+		console.log("Start init Text filler", "log");
+		me.redraw();
+	    
 	};
 	
 	me.redraw = function() 
@@ -238,6 +246,15 @@ sap.designstudio.sdk.Component.subclass("com.sap.sample.scngauge.textFiller", fu
 		// Clear any existing gauges.  We'll redraw from scratch
 		d3.select(my2Div).selectAll("*").remove();
 		
+		if (me._percent === null || me._percent === "") 
+		{
+			me._size = "50";
+		}
+		else 
+		{
+			me._size = me._percent.formattedData[0];
+		}
+		
 		var svgText = d3.select(my2Div)
 		  .append("svg:svg")
 		  .attr("width", "100%")
@@ -245,16 +262,16 @@ sap.designstudio.sdk.Component.subclass("com.sap.sample.scngauge.textFiller", fu
 		
 		// Gradient for masking.
 		svgText.append("linearGradient")
-        .attr("id","gradientGradient")
+        .attr("id","gradientGradient" + me._ID)
         .attr("x1",0)
         .attr("y1","50%")
         .attr("x2", "100%")
         .attr("y2", "50%")
         .selectAll("stop")
         .data([
-          {offset: "0%", color: "#f98c1e", opacity:1},
-          {offset: (me._percent + "%"), color: "#f98c1e", opacity:1},
-          {offset: (me._percent + "%"), color: me._textcolorCode, opacity:1},
+          {offset: "0%", color: me._progressColorCode, opacity:1},
+          {offset: (me._size + "%"), color: me._progressColorCode, opacity:1},
+          {offset: (me._size + "%"), color: me._textcolorCode, opacity:1},
           {offset: "100%", color: me._textcolorCode, opacity:1} 
         ])
         .enter().append("stop")
@@ -265,7 +282,7 @@ sap.designstudio.sdk.Component.subclass("com.sap.sample.scngauge.textFiller", fu
 		
 		// clipping path
         svgText.append("clipPath")
-        .attr("id","clip-clip")
+        .attr("id","clip-clip"+ me._ID)
         .append("text")
         .text(me._text)
         .attr("x", 5)
@@ -278,8 +295,8 @@ sap.designstudio.sdk.Component.subclass("com.sap.sample.scngauge.textFiller", fu
         .attr("y",0)
         .attr("height","100%")
         .attr("width", "100%")
-        .attr("fill", "url(#gradientGradient)")
-        .attr("clip-path","url(#clip-clip)")
+        .attr("fill", "url(#gradientGradient"+ me._ID +")")
+        .attr("clip-path","url(#clip-clip"+ me._ID +")")
         ;
 // 		Alternatief van de gradient (Nico)      
 //      svgText.append("clipPath")
@@ -319,18 +336,49 @@ sap.designstudio.sdk.Component.subclass("com.sap.sample.scngauge.textFiller", fu
 //      .attr("fill", "white")
 //      .attr("clip-path","url(#clip-clip)")
 //      ;
-
-
-		
 	
 		
 	};
 	
+	
+	// After update
+	me.afterUpdate = function()
+	{
+		
+		console.log("afterUpdate method","log");
+		
+		// syntax "== null" is different from "=== null"
+		// "== null" actually checks both for null and undefined
+		if (me._percent === null || me._percent === "") 
+		{
+			me._text = "Cubis";
+			me.redraw();
+		}
+		else 
+		{	
+			console.log("me._percentage = " + me._percent);
+			
+			me._tuple = me._percent.tuples[0];
+			me._text = me._meta_data.dimensions[1].members[me._tuple[0]].text;
+			me.redraw();
+		}
+	};
+	
+
+	// Getters & Setters
 	me.text = function(value)
 	{
-		me._text = value;
-		me.redraw();
-		return me;
+		 console.log("component.js --- update text valtue with: " + value);
+		 if (value === undefined)
+		  {
+			  return me._text;
+		  } 
+		  else
+		  {
+			  me._text = value;
+			  me.redraw();
+			  return me;
+		  }
 	};
 	
 	// Colorcode
@@ -347,6 +395,22 @@ sap.designstudio.sdk.Component.subclass("com.sap.sample.scngauge.textFiller", fu
 		  return me;
 	  }
 	};
+	
+	// ProgressColorcode
+	me.progressColorCode = function(value) 
+	{
+	  if (value === undefined)
+	  {
+		  return me._progressColorCode;
+	  } 
+	  else
+	  {
+		  me._progressColorCode = value;
+		  me.redraw();
+		  return me;
+	  }
+	};
+	
 	me.score = function(value)
 	{
 		if(value === undefined)
@@ -359,20 +423,34 @@ sap.designstudio.sdk.Component.subclass("com.sap.sample.scngauge.textFiller", fu
 			me.redraw();
 			return me;
 			}
-	}
-	me.percent = function(value)
-	{
-		if(value === undefined)
-			{
-			return me._percent;
+	};
+	
+	// map percent value to bindable object
+	me.percent = function(value) {
+		
+		console.log("percentage method");
+		
+	    if (value === undefined) {
+	    	return me._percent;
+	    } else {
+	    	me._percent = value;
+	    	//me.redraw();
+	    	return me;
+	    }
+	  };
+	  
+	  me.metadata = function(value) {
+			
+			console.log("metadata method");
+			
+			if (value === undefined) {
+				return me._meta_data;
+			} else {
+				me._meta_data = value;
+		    	//me.redraw();
+				return me;
 			}
-		else
-			{
-			me._percent = value;
-			me.redraw();
-			return me;
-			}
-	}
+		};
 	
 });
 

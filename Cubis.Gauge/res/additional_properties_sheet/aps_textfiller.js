@@ -7,12 +7,14 @@ function()
 	
 	me.init = function()
 	{
+		eclipse_logJavaScriptMessage("aps_text --- init function","warn");
 		$("#form").submit(function()
 		{
+			eclipse_logJavaScriptMessage("aps_text --- fire init function","warn");
 			//me._width = $("#aps_text").length() * 10;
-			strlen = $("#aps_text").val().length;
-			me._width = (strlen * 26);
-			me.firePropertiesChanged(["text","WIDTH"]);
+			//strlen = $("#aps_text").val().length;
+			//me._width = (strlen * 26);
+			me.firePropertiesChanged(["text"]);
 			return false;
 		});
 	};
@@ -28,6 +30,7 @@ function()
 			  $("#aps_text").val(text(textvalue));
 			  return me;
 		  }
+		 eclipse_logJavaScriptMessage("aps_text --- exit text","error");
 	};
 	
 	// setter width

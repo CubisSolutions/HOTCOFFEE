@@ -88,10 +88,10 @@
   </component>
 
 <component
-      databound="false"
+      databound="true"
       group="CubisComponents"
       handlerType="div"
-      icon="res/gauge.png"
+      icon="res/progressindicator.png"
       id="textFiller"
       propertySheetPath="res/additional_properties_sheet/aps_textfiller.html"
       title="Text filler"
@@ -108,11 +108,16 @@
 		id="text"
 		title="Text"
 		type="Text"
-		visible="false"/>
+		visible="true"/>
 	
 	<property
         id="textcolorCode"
-        title="Color"
+        title="Text Color"
+        type="Color"/>
+    
+    <property
+        id="progressColorCode"
+        title="Progress Color"
         type="Color"/>
     
     <property
@@ -121,19 +126,20 @@
 		type="int"/>
 	
 	<property
-		id="score"
-		title="Score %"
-		type="int"/>
-	<property
-		id="percent"
-		title="Percentage"
-		type="int"/>
+    	id="percent"
+    	title = "percentage"
+    	type="ResultCell"
+    	group="DataBinding">
+    	<option name="includeFormattedData" value="true"/>
+		<option name="includeData" value="true"/>
+	</property>
 	
 	<initialization>
 		<defaultValue property="WIDTH">100</defaultValue>
 		<defaultValue property="HEIGHT">80</defaultValue>
 		<defaultValue property="Text">Type your text</defaultValue>
 		<defaultValue property="textcolorCode">black</defaultValue>
+		<defaultValue property="progressColorCode">orange</defaultValue>
 		<defaultValue property="score">25</defaultValue>
 		<defaultValue property="percent">50</defaultValue>
 	</initialization>
