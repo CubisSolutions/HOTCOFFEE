@@ -26,6 +26,7 @@ sap.designstudio.sdk.Component.subclass("com.sap.sample.scngauge.gauge",function
 		me.init = function() 
 		{
 		    me.redraw();
+		    console.log("redraw init");
 		};
 		
 		me.redraw = function() 
