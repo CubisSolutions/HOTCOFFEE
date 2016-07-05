@@ -119,6 +119,11 @@
         id="progressColorCode"
         title="Progress Color"
         type="Color"/>
+
+    <property
+        id="progressFillColorCode"
+        title="Progress fill Color"
+        type="Color"/>
 	
 	<property
     	id="percent"
@@ -134,7 +139,8 @@
 		<defaultValue property="HEIGHT">55</defaultValue>
 		<defaultValue property="Text">Cubis</defaultValue>
 		<defaultValue property="textcolorCode">black</defaultValue>
-		<defaultValue property="progressColorCode">orange</defaultValue>
+		<defaultValue property="progressColorCode">#004080</defaultValue>
+		<defaultValue property="progressFillColorCode">#C0C0C0</defaultValue>
 		<defaultValue property="percent">50</defaultValue>
 	</initialization>
 </component>

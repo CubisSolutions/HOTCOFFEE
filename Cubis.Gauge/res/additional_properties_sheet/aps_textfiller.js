@@ -2,12 +2,10 @@ sap.designstudio.sdk.PropertyPage.subclass("com.sap.sample.scngauge.SCNGaugeProp
 function() 
 {
 	var me = this;
-	var strlen = 0;
-	me._width = 20;
 	
 	me.init = function()
 	{
-		eclipse_logJavaScriptMessage("aps_text --- init function","warn");
+		me.openPropertyDialog("color");
 		$("#form").submit(function()
 		{
 			eclipse_logJavaScriptMessage("aps_text --- fire init function","warn");
@@ -19,8 +17,9 @@ function()
 		});
 	};
 	
-	me.text = function(textvalue)
+	this.text = function(textvalue)
 	{
+		eclipse_logJavaScriptMessage("aps_text --- " + textvalue );
 		 if (textvalue === undefined) 
 		  {
 			 return $("#aps_text").val();			 
@@ -28,9 +27,9 @@ function()
 		  else
 		  {
 			  $("#aps_text").val(text(textvalue));
-			  return me;
+			  return this;
 		  }
-		 eclipse_logJavaScriptMessage("aps_text --- exit text","error");
+		 eclipse_logJavaScriptMessage("aps_text --- exit text","warn");
 	};
 });
 

@@ -24,11 +24,27 @@
 			<legend>Path Properties</legend>
 			<table>
 				<tr>
+					<td>Type</td>
+					<td>
+						<input id="aps_type" type="radio" name="type" value="manual" checked>Manual</input><br/>
+						<input id="aps_type" type="radio" name="type" value="datasource">Datasource</input>
+					</td>
+				</tr>
+				<tr>
 					<td>Text</td><td><input id="aps_text" type="text" name="text" size="40" maxlength="40"></input></td>
+				</tr>
+				<tr>
+					<td>Label position</td>
+					<td>
+						<input id="aps_labelpos" type="radio" name="Labelpos" value="lefttop" checked>Left top</input><br/>
+						<input id="aps_labelpos" type="radio" name="Labelpos" value="Righttop" >Right top</input><br/>
+						<input id="aps_labelpos" type="radio" name="Labelpos" value="Leftbot" >Left bottom</input><br/>
+						<input id="aps_labelpos" type="radio" name="Labelpos" value="Rightbot" >Right bottom</input><br/>
+					</td> 
 				</tr>
 			</table>
 			
-			<input name="submit"  type="submit" value="Update"/>
+			<input name="submit"  type="submit" value="Save"/>
 		</fieldset>
 		</form>
 	</div>

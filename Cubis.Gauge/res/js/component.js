@@ -224,9 +224,7 @@ sap.designstudio.sdk.Component.subclass("com.sap.sample.scngauge.textFiller", fu
 	var me = this;
 	 
 	//Properties
-	me._text = "Type your text";
-	me._textcolorCode = "black";
-	me._progressColorCode = "orange";
+	me._text = "Cubis";
 	me._percent = null;
 	me._ID = counter;
 	me._size = 50;
@@ -234,31 +232,48 @@ sap.designstudio.sdk.Component.subclass("com.sap.sample.scngauge.textFiller", fu
 	
 	me.init = function() 
 	{
-		console.log("Start init Text filler", "log");
+//		console.log("Start init Text filler", "log");
 		me.redraw();
 	    
 	};
 	
 	me.redraw = function() 
 	{
+		console.log("Enter REDRAW function", "log");
+		
 		var my2Div = me.$()[0];
 		
-		// Clear any existing gauges.  We'll redraw from scratch
+		// Clear any existing svg's.  We'll redraw from scratch
 		d3.select(my2Div).selectAll("*").remove();
+		
+		// test - find a way to test if datascource is empty...
+		if(me.DATASOURCE === "none" || me.DATASOURCE === null)
+		{
+			console.log("datasource is empty");
+		}
 		
 		if (me._percent === null || me._percent === "") 
 		{
-			me._size = "50";
+			console.log("percent check error = " + me._percent + "!","warn");
+			console.log("text check error = " + me._text + "!","warn");
+			me._size = "20";
+			me._text = "Cubis";
 		}
-		else 
-		{
-			me._size = me._percent.formattedData[0];
-		}
+//		else 
+//		{
+//			console.log("percent check: value", "warn")
+//			console.log("me._percentage = " + me._percent);
+//			
+//			me._tuple = me._percent.tuples[0];
+//			me._text = me._meta_data.dimensions[1].members[me._tuple[0]].text;
+//			me._size = me._percent.formattedData[0];
+//		}
 		
 		var svgText = d3.select(my2Div)
 		  .append("svg:svg")
 		  .attr("width", "100%")
 		  .attr("height", "100%");
+		
 		
 		// Gradient for masking.
 		svgText.append("linearGradient")
@@ -280,6 +295,24 @@ sap.designstudio.sdk.Component.subclass("com.sap.sample.scngauge.textFiller", fu
         .attr("stop-color", function(d) {return d.color})
         .attr("stop-opacity", function(d){return d.opacity});
 		
+		
+		// fill background
+        svgText.append("rect")
+        .attr("x",0)
+        .attr("y",0)
+        .attr("height","100%")
+        .attr("width", me._size + "%")
+        .attr("fill", me._progressFillColorCode);
+        console.log("fill background", "log");
+        
+        svgText.append("text")
+        .style("fill", me._progressColorCode)
+        .attr("x", 10)
+        .attr("y", 10)
+        .text( me._size + "%" )
+        .style("font-size" , ".8em");
+        
+        
 		// clipping path
         svgText.append("clipPath")
         .attr("id","clip-clip"+ me._ID)
@@ -287,7 +320,7 @@ sap.designstudio.sdk.Component.subclass("com.sap.sample.scngauge.textFiller", fu
         .text(me._text)
         .attr("x", 5)
         .attr("y", 40)
-        .style("font-size", "24px");
+        .style("font-size", "3em");        
         
         // masking frame
         svgText.append("rect")
@@ -296,8 +329,17 @@ sap.designstudio.sdk.Component.subclass("com.sap.sample.scngauge.textFiller", fu
         .attr("height","100%")
         .attr("width", "100%")
         .attr("fill", "url(#gradientGradient"+ me._ID +")")
-        .attr("clip-path","url(#clip-clip"+ me._ID +")")
-        ;
+        .attr("clip-path","url(#clip-clip"+ me._ID +")");
+        
+        // Draw rectangle around the box.
+        svgText.append("rect")
+		.attr("x", 0)
+		.attr("y", 0)
+		.attr("height", "100%")
+		.attr("width" , "100%")
+		.style("stroke", "black")
+		.style("fill", "none");
+        
 // 		Alternatief van de gradient (Nico)      
 //      svgText.append("clipPath")
 //      .attr("id","clip-clip")
@@ -345,30 +387,19 @@ sap.designstudio.sdk.Component.subclass("com.sap.sample.scngauge.textFiller", fu
 	me.afterUpdate = function()
 	{
 		
-		console.log("afterUpdate method","log");
+//		console.log("afterUpdate method","warn");
+		me.redraw();
 		
 		// syntax "== null" is different from "=== null"
 		// "== null" actually checks both for null and undefined
-		if (me._percent === null || me._percent === "") 
-		{
-			me._text = "Cubis";
-			me.redraw();
-		}
-		else 
-		{	
-			console.log("me._percentage = " + me._percent);
-			
-			me._tuple = me._percent.tuples[0];
-			me._text = me._meta_data.dimensions[1].members[me._tuple[0]].text;
-			me.redraw();
-		}
+		
 	};
 	
 
-	// Getters & Setters
+//	Getters & Setters
 	me.text = function(value)
 	{
-		 console.log("component.js --- update text valtue with: " + value);
+		 //console.log("component.js --- update text valtue with: " + value);
 		 if (value === undefined)
 		  {
 			  return me._text;
@@ -376,7 +407,7 @@ sap.designstudio.sdk.Component.subclass("com.sap.sample.scngauge.textFiller", fu
 		  else
 		  {
 			  me._text = value;
-			  me.redraw();
+			  //me.redraw();
 			  return me;
 		  }
 	};
@@ -384,6 +415,7 @@ sap.designstudio.sdk.Component.subclass("com.sap.sample.scngauge.textFiller", fu
 	// Colorcode
 	me.textcolorCode = function(value) 
 	{
+		//console.log("textcolor method");
 	  if (value === undefined)
 	  {
 		  return me._textcolorCode;
@@ -391,7 +423,7 @@ sap.designstudio.sdk.Component.subclass("com.sap.sample.scngauge.textFiller", fu
 	  else
 	  {
 		  me._textcolorCode = value;
-		  me.redraw();
+		  //me.redraw();
 		  return me;
 	  }
 	};
@@ -406,7 +438,22 @@ sap.designstudio.sdk.Component.subclass("com.sap.sample.scngauge.textFiller", fu
 	  else
 	  {
 		  me._progressColorCode = value;
-		  me.redraw();
+		  //me.redraw();
+		  return me;
+	  }
+	};
+	
+	// ProgressColorcode
+	me.progressFillColorCode = function(value) 
+	{
+	  if (value === undefined)
+	  {
+		  return me._progressFillColorCode;
+	  } 
+	  else
+	  {
+		  me._progressFillColorCode = value;
+		  //me.redraw();
 		  return me;
 	  }
 	};
@@ -415,30 +462,35 @@ sap.designstudio.sdk.Component.subclass("com.sap.sample.scngauge.textFiller", fu
 	me.percent = function(value) 
 	{
 		
-		console.log("percentage method");
+		//console.log("percent method");
 		
-	    if (value === undefined) {
+	    if (value === undefined) 
+	    {
 	    	return me._percent;
-	    } else {
+	    } 
+	    else
+	    {
 	    	me._percent = value;
 	    	//me.redraw();
 	    	return me;
 	    }
 	  };
 	  
-	  me.metadata = function(value) {
+	  me.metadata = function(value) 
+	  {			
+			//console.log("metadata method");
 			
-			console.log("metadata method");
-			
-			if (value === undefined) {
+			if (value === undefined) 
+			{
 				return me._meta_data;
-			} else {
+			}
+			else
+			{
 				me._meta_data = value;
 		    	//me.redraw();
 				return me;
 			}
 		};
-	
 });
 
 //sap.designstudio.sdk.Component.subclass("com.sap.sample.scngauge.logoFiller", function() 
@@ -525,7 +577,8 @@ sap.designstudio.sdk.Component.subclass("com.sap.sample.scngauge.textBlockFiller
             // Clear any existing gauges.  We'll redraw from scratch
             d3.select(my2Div).selectAll("*").remove();
             
-            if (me._percentage === null || me._percentage === "") {
+            if (me._percentage === null || me._percentage === "") 
+            {
                   me._size = "50";
                   me._text = "Cubis";
                   
