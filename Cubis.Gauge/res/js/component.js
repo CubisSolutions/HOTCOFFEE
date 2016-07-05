@@ -11,6 +11,7 @@ sap.designstudio.sdk.Component.subclass("com.sap.sample.scngauge.gauge",function
 		var me = this;
 		 
 		//Properties
+		me._gukke = 'Gukke';
 		me._colorCode = 'red';
 		me._innerRad = 0.0;
 		me._outerRad = 0.0;
