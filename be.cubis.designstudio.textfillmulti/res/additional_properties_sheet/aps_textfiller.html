@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  <title>Extra properties</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.6/d3.min.js" charset="utf-8"></script>
+  <script src="/aad/zen.rt.components.sdk/resources/js/sdk_propertysheets_handler.js"></script>
+  <script src="aps_textfiller.js"></script>
+</head>
+
+<body class='sapUiBody'>
+	
+	<script>
+		new be.cubis.designstudio.textfillmulti.textFillMultiPropertyPage();
+	</script>
+	
+	<div>
+		<a href="http://www.cubis.be">Get help</a><br/>
+		<h3>This is the property page for Text filler</h3>
+	</div>	
+	<div>
+		<form id="form">
+		<fieldset>
+			<legend>Path Properties</legend>
+			<table>
+				<tr>
+					<td>Type</td>
+					<td>
+						<input id="aps_type" type="radio" name="type" value="manual" checked>Manual</input><br/>
+						<input id="aps_type" type="radio" name="type" value="datasource">Datasource</input>
+					</td>
+				</tr>
+				<tr>
+					<td>Text</td><td><input id="aps_text" type="text" name="text" size="40" maxlength="40"></input></td>
+				</tr>
+				<tr>
+					<td>Label position</td>
+					<td>
+						<input id="aps_labelpos" type="radio" name="Labelpos" value="lefttop" checked>Left top</input><br/>
+						<input id="aps_labelpos" type="radio" name="Labelpos" value="Righttop" >Right top</input><br/>
+						<input id="aps_labelpos" type="radio" name="Labelpos" value="Leftbot" >Left bottom</input><br/>
+						<input id="aps_labelpos" type="radio" name="Labelpos" value="Rightbot" >Right bottom</input><br/>
+					</td> 
+				</tr>
+			</table>
+			
+			<input name="submit"  type="submit" value="Save"/>
+		</fieldset>
+		</form>
+	</div>
+
+
+</body>
+
+</html>
