@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sdkExtension
+	id="be.cubis.designstudio.textfillsingle"
+	title="Text Filler (Single)"
+	version="1.0"
+	vendor="Cubis Solutions"  
+	xmlns="http://www.sap.com/bi/zen/sdk"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://www.sap.com/bi/zen/sdk http://www.sap.com/bi/zen/sdk ">
+	  <license>license</license>
+  
+  <group id="CubisComponents" title="Cubis - Custom Components" />
+
+<component
+      databound="true"
+      group="CubisComponents"
+      handlerType="div"
+      icon="res/progressindicator.png"
+      id="textFiller"
+      propertySheetPath="res/additional_properties_sheet/aps_textfiller.html"
+      title="Text filler"
+      tooltip="Cubis Text filler"
+      visible="true"
+      >
+      
+      <stdInclude kind="d3"/>
+<jsInclude>res/js/component.js</jsInclude>
+<cssInclude>res/css/component.css</cssInclude>
+<!-- 	<requireJs modes="commons m">res/js/component</requireJs> -->
+    
+    <property
+		id="text"
+		title="Text"
+		type="Text"
+		visible="true"/>
+	
+	<property
+        id="textcolorCode"
+        title="Text Color"
+        type="Color"/>
+    
+    <property
+        id="progressColorCode"
+        title="Progress Color"
+        type="Color"/>
+
+    <property
+        id="progressFillColorCode"
+        title="Progress fill Color"
+        type="Color"/>
+	
+	<property
+    	id="percent"
+    	title = "percentage"
+    	type="ResultCell"
+    	group="DataBinding">
+    	<option name="includeFormattedData" value="true"/>
+		<option name="includeData" value="true"/>
+	</property>
+	
+	<initialization>
+		<defaultValue property="WIDTH">75</defaultValue>
+		<defaultValue property="HEIGHT">55</defaultValue>
+		<defaultValue property="Text">Cubis</defaultValue>
+		<defaultValue property="textcolorCode">black</defaultValue>
+		<defaultValue property="progressColorCode">#004080</defaultValue>
+		<defaultValue property="progressFillColorCode">#C0C0C0</defaultValue>
+		<defaultValue property="percent">50</defaultValue>
+	</initialization>
+</component>
+
+</sdkExtension>
