@@ -224,7 +224,7 @@ sap.designstudio.sdk.Component.subclass("com.sap.sample.scngauge.textFiller", fu
 	var me = this;
 	 
 	//Properties
-	me._text = "Cubis";
+	me._text = "Cubis test";
 	me._percent = null;
 	me._ID = counter;
 	me._size = 50;
