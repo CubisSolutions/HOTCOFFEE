@@ -58,6 +58,11 @@
 		<option name="includeData" value="true"/>
 	</property>
 	
+	<property
+        id="textsize"
+        title="Text size in px"
+        type="int"/>
+	
 	<initialization>
 		<defaultValue property="WIDTH">75</defaultValue>
 		<defaultValue property="HEIGHT">55</defaultValue>
@@ -66,6 +71,7 @@
 		<defaultValue property="progressColorCode">#004080</defaultValue>
 		<defaultValue property="progressFillColorCode">#C0C0C0</defaultValue>
 		<defaultValue property="percent">50</defaultValue>
+		<defaultValue property="textsize">18</defaultValue>
 	</initialization>
 </component>
 
@@ -101,6 +107,11 @@
         id="progressColorCode"
         title="Progress Color"
         type="Color"/>
+
+    <property
+        id="progressFillColorCode"
+        title="Progress fill Color"
+        type="Color"/>
 	
 	<property
     	id="percentage"
@@ -109,8 +120,12 @@
     	group="DataBinding">
     	<option name="includeFormattedData" value="true"/>
 		<option name="includeData" value="true"/>
-	</property>
+	</property>	
 	
+	<property
+        id="textsize"
+        title="Text size in px"
+        type="int"/>	
 	
 	<initialization>
 		<defaultValue property="WIDTH">75</defaultValue>
@@ -118,7 +133,9 @@
 		<defaultValue property="Text">Cubis</defaultValue>
 		<defaultValue property="textcolorCode">black</defaultValue>
 		<defaultValue property="progressColorCode">orange</defaultValue>
+		<defaultValue property="progressFillColorCode">#C0C0C0</defaultValue>
 		<defaultValue property="percentage">50</defaultValue>
+		<defaultValue property="textsize">18</defaultValue>
 	</initialization>
 </component>
 
