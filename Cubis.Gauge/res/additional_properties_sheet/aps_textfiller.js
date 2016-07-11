@@ -2,34 +2,39 @@ sap.designstudio.sdk.PropertyPage.subclass("com.sap.sample.scngauge.SCNGaugeProp
 function() 
 {
 	var me = this;
+	me._text = "";
 	
 	me.init = function()
-	{
-		me.openPropertyDialog("color");
+	{		
+		eclipse_logJavaScriptMessage("aps_text --- fire init function");
+		
 		$("#form").submit(function()
 		{
-			eclipse_logJavaScriptMessage("aps_text --- fire init function","warn");
-			//me._width = $("#aps_text").length() * 10;
-			//strlen = $("#aps_text").val().length;
-			//me._width = (strlen * 26);
+			eclipse_logJavaScriptMessage("aps_text --- Form submit function");
+
+			me._text = $("aps_text").val();
 			me.firePropertiesChanged(["text"]);
 			return false;
 		});
 	};
 	
+	
+	// Getters & Setters
 	this.text = function(textvalue)
 	{
-		eclipse_logJavaScriptMessage("aps_text --- " + textvalue );
+		eclipse_logJavaScriptMessage("aps_text --- fire text setter/getter");
+		eclipse_logJavaScriptMessage("aps_text --- Value : " + textvalue + " --- ");
 		 if (textvalue === undefined) 
 		  {
-			 return $("#aps_text").val();			 
+			 return me._text;		 
 		  }
 		  else
 		  {
-			  $("#aps_text").val(text(textvalue));
-			  return this;
+			  me._text = textvalue;
+			  return me;
 		  }
-		 eclipse_logJavaScriptMessage("aps_text --- exit text","warn");
 	};
+	
+
 });
 
