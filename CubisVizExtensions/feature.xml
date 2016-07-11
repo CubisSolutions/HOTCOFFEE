@@ -1,27 +1,40 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <feature
-      id="CubisVizExtensions"
-      label="CubisVizExtensions"
+      id="BE.CUBIS.DESIGNSTUDIO.TEXTFILLER"
+      label="Text Filler"
       version="1.0.0.qualifier"
       provider-name="Cubis Solutions">
 
-   <description url="http://www.example.com/description">
-      [Enter Feature Description here.]
+   <description url="http://www.cubis.be/textfiller/description">
+      The Cubis Text Filler visualizes a percentage by filling a chosen
+text up to this percentage with a fill-color. Both the percentage
+and the text can be set manually or retrieved via a datasource.
+There are 2 components in this feature, one to visualize a single
+percentage, and one to visualize a list of pecentages.
    </description>
 
-   <copyright url="http://www.example.com/copyright">
-      [Enter Copyright Description here.]
+   <copyright url="http://www.cubis.be/textfiller/copyright">
+      ©2016 Cubis Solutions
    </copyright>
 
-   <license url="http://www.example.com/license">
-      [Enter License Description here.]
+   <license url="http://www.cubis.be/textfiller/license">
+      .
    </license>
 
+   <url>
+      <update label="Cubis Solutions - Company Website" url="http://www.cubis.be"/>
+   </url>
+
    <plugin
-         id="com.sap.sample.scngauge"
+         id="be.cubis.designstudio.textfillsingle"
          download-size="0"
          install-size="0"
-         version="0.0.0"
-         unpack="false"/>
+         version="0.0.0"/>
+
+   <plugin
+         id="be.cubis.designstudio.textfillmulti"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"/>
 
 </feature>

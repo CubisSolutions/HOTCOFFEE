@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <site>
-   <feature url="features/CubisVizExtensions_1.0.0.qualifier.jar" id="CubisVizExtensions" version="1.0.0.qualifier">
+   <feature url="features/BE.CUBIS.DESIGN.STUDIO.TEXTFILLER_1.0.0.qualifier.jar" id="BE.CUBIS.DESIGN.STUDIO.TEXTFILLER" version="1.0.0.qualifier">
       <category name="com.sap.ip.bi.zen.sdk"/>
    </feature>
    <category-def name="com.sap.ip.bi.zen.sdk" label="SAP Design Studio Extensions"/>

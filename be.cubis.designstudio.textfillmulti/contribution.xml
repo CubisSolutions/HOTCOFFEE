@@ -9,7 +9,7 @@
   xsi:schemaLocation="http://www.sap.com/bi/zen/sdk http://www.sap.com/bi/zen/sdk ">
 	  <license>license</license>
   
-  <group id="CubisComponents" title="Cubis - Custom Components" />
+  <group id="CubisComponents" title="Cubis Components" />
 
 <component
       databound="true"

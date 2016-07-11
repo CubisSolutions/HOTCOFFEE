@@ -9,17 +9,17 @@
   xsi:schemaLocation="http://www.sap.com/bi/zen/sdk http://www.sap.com/bi/zen/sdk ">
 	  <license>license</license>
   
-  <group id="CubisComponents" title="Cubis - Custom Components" />
+  <group id="CubisComponents" title="Cubis Components" />
 
 <component
       databound="true"
       group="CubisComponents"
       handlerType="div"
       icon="res/progressindicator.png"
-      id="textFiller"
+      id="textFillSingle"
       propertySheetPath="res/additional_properties_sheet/aps_textfiller.html"
-      title="Text filler"
-      tooltip="Cubis Text filler"
+      title="Text Filler (Single)"
+      tooltip="Text Filler (Single)"
       visible="true"
       >
       
