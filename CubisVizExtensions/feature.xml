@@ -29,12 +29,14 @@ percentage, and one to visualize a list of pecentages.
          id="be.cubis.designstudio.textfillsingle"
          download-size="0"
          install-size="0"
-         version="0.0.0"/>
+         version="0.0.0"
+         unpack="false"/>
 
    <plugin
          id="be.cubis.designstudio.textfillmulti"
          download-size="0"
          install-size="0"
-         version="0.0.0"/>
+         version="0.0.0"
+         unpack="false"/>
 
 </feature>
