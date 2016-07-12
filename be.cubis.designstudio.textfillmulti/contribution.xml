@@ -28,11 +28,11 @@
 <cssInclude>res/css/component.css</cssInclude>
 <!-- 	<requireJs modes="commons m">res/js/component</requireJs> -->
     
-    <property
-		id="text"
-		title="Text"
-		type="Text"
-		visible="true"/>
+<!--     <property -->
+<!-- 		id="text" -->
+<!-- 		title="Text" -->
+<!-- 		type="Text" -->
+<!-- 		visible="true"/> -->
 	
 	<property
         id="textcolorCode"
@@ -43,10 +43,15 @@
         id="progressColorCode"
         title="Progress Color"
         type="Color"/>
+        
+    <property
+        id="progressFillColorCode"
+        title="Progress fill Color"
+        type="Color"/>
 	
 	<property
     	id="percentage"
-    	title = "percentage"
+    	title = "Percentage"
     	type="ResultCellList"
     	group="DataBinding">
     	<option name="includeFormattedData" value="true"/>
@@ -55,12 +60,11 @@
 	
 	
 	<initialization>
-		<defaultValue property="WIDTH">75</defaultValue>
-		<defaultValue property="HEIGHT">55</defaultValue>
-		<defaultValue property="Text">Cubis</defaultValue>
+		<defaultValue property="WIDTH">100</defaultValue>
+		<defaultValue property="HEIGHT">140</defaultValue>
 		<defaultValue property="textcolorCode">black</defaultValue>
-		<defaultValue property="progressColorCode">orange</defaultValue>
-		<defaultValue property="percentage">50</defaultValue>
+		<defaultValue property="progressColorCode">#004080</defaultValue>
+		<defaultValue property="progressFillColorCode">#C0C0C0</defaultValue>
 	</initialization>
 </component>
 

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  <title>Extra properties</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.6/d3.min.js" charset="utf-8"></script>
+  <script src="/aad/zen.rt.components.sdk/resources/js/sdk_propertysheets_handler.js"></script>
+  <script src="aps_blocktextfiller.js"></script>
+  
+<script type="text/javascript">
+$(document).ready(function(){
+    $('input[type="radio"]').click(function(){
+        if($(this).attr("value")=="no"){
+            $(".box").not(".yes").hide();
+            $(".yes").show();
+        }
+        if($(this).attr("value")=="yes"){
+            $(".box").not(".no").hide();
+        }
+    });
+});
+</script>
+</head>
+
+<body class='sapUiBody'>
+	
+	<script>
+		new com.sap.sample.scngauge.SCNGaugePropertyPage();
+	</script>
+	
+	<div>
+		<a href="http://www.cubis.be">Get help</a><br/>
+		<h3>This is the property page for Block text filler</h3>
+	</div>	
+	<div>
+		<form id="form">
+		<fieldset>
+			<h1>Add static text:</h1>
+    			<div>
+        			<label><input type="radio" id="aps_datasource" name="datasource" value="no" checked>Yes</label>
+       				<label><input type="radio" id="aps_datasource" name="datasource" value="yes">No</label>
+    			</div>
+			<div class="yes box">
+				<legend>Static text</legend>
+				<input id="aps_text" type="text" name="text" size="40" maxlength="40"></input>
+				<input type="submit" value ="Commit">
+			</div>
+
+		</fieldset>
+		</form>
+	</div>
+
+
+</body>
+
+</html>

@@ -1,17 +1,17 @@
 // counter voor id van objecten.
 var counter = 1;
 
-
 sap.designstudio.sdk.Component.subclass("be.cubis.designstudio.textfillsingle.textFillSingle", function() 
 {
 	var me = this;
+	var fontSize = 16;
 	 
 	//Properties
 	me._text = "Cubis test";
-	me._percent = null;
+	me._percentage = null;
 	me._ID = counter;
-	me._size = 50;
 	counter = counter + 1 ;
+	me._size = 20;
 	
 	me.init = function() 
 	{
@@ -25,25 +25,25 @@ sap.designstudio.sdk.Component.subclass("be.cubis.designstudio.textfillsingle.te
 		console.log("Enter REDRAW function", "log");
 		
 		var my2Div = me.$()[0];
+		fontSize = me.getHeight()/3;
 		
 		// Clear any existing svg's.  We'll redraw from scratch
 		d3.select(my2Div).selectAll("*").remove();
 		
-		if (me._percent === null || me._percent === "") 
+		if (me._percentage === null || me._percentage === "") 
 		{
 			console.log("percent check error = " + me._percent + "!","warn");
 			console.log("text check error = " + me._text + "!","warn");
-			me._size = "20";
 			me._text = "Cubis";
 		}
 		else 
 		{
 			console.log("percent check: value", "warn")
-			console.log("me._percentage = " + me._percent);
+			console.log("me._percentage = " + me._percentage);
 			
-			me._tuple = me._percent.tuples[0];
+			me._tuple = me._percentage.tuples[0];
 			me._text = me._meta_data.dimensions[1].members[me._tuple[0]].text;
-			me._size = me._percent.formattedData[0];
+			me._size = me._percentage.formattedData[0];
 		};
 		
 		var svgText = d3.select(my2Div)
@@ -89,7 +89,6 @@ sap.designstudio.sdk.Component.subclass("be.cubis.designstudio.textfillsingle.te
         .text( me._size + "%" )
         .style("font-size" , ".8em");
         
-        
 		// clipping path
         svgText.append("clipPath")
         .attr("id","clip-clip"+ me._ID)
@@ -97,7 +96,7 @@ sap.designstudio.sdk.Component.subclass("be.cubis.designstudio.textfillsingle.te
         .text(me._text)
         .attr("x", 5)
         .attr("y", 40)
-        .style("font-size", "3em");        
+        .style("font-size", fontSize + "px");        
         
         // masking frame
         svgText.append("rect")
@@ -236,18 +235,18 @@ sap.designstudio.sdk.Component.subclass("be.cubis.designstudio.textfillsingle.te
 	};
 	
 	// map percent value to bindable object
-	me.percent = function(value) 
+	me.percentage = function(value) 
 	{
 		
 		//console.log("percent method");
 		
 	    if (value === undefined) 
 	    {
-	    	return me._percent;
+	    	return me._percentage;
 	    } 
 	    else
 	    {
-	    	me._percent = value;
+	    	me._percentage = value;
 	    	//me.redraw();
 	    	return me;
 	    }
@@ -267,6 +266,15 @@ sap.designstudio.sdk.Component.subclass("be.cubis.designstudio.textfillsingle.te
 		    	//me.redraw();
 				return me;
 			}
+		};
+		
+		// Getters for the height and width of the component
+		me.getWidth = function(){
+			return me.$().width();
+		};
+
+		me.getHeight = function(){
+			return me.$().height();
 		};
 });
 
