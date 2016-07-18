@@ -7,8 +7,9 @@ sap.designstudio.sdk.Component.subclass("be.cubis.designstudio.textfillsingle.te
 	var fontSize = 16;
 	 
 	//Properties
-	me._text = "Cubis test";
+	me._text = "Cubis";
 	me._percentage = null;
+	me._dtype = "manual";
 	me._ID = counter;
 	counter = counter + 1 ;
 	me._size = 20;
@@ -22,7 +23,7 @@ sap.designstudio.sdk.Component.subclass("be.cubis.designstudio.textfillsingle.te
 	
 	me.redraw = function() 
 	{
-		console.log("Enter REDRAW function", "log");
+		//console.log("Enter REDRAW function", "log");
 		
 		var my2Div = me.$()[0];
 		fontSize = me.getHeight()/3;
@@ -30,21 +31,49 @@ sap.designstudio.sdk.Component.subclass("be.cubis.designstudio.textfillsingle.te
 		// Clear any existing svg's.  We'll redraw from scratch
 		d3.select(my2Div).selectAll("*").remove();
 		
-		if (me._percentage === null || me._percentage === "") 
+//		if (me._percentage === null || me._percentage === "")
+//		{
+//			//console.log("percent check error = " + me._percent + "!","warn");
+//			//console.log("text check error = " + me._text + "!","warn");
+//			//me._text = "Cubis";
+//		}
+//		else
+//
+//		{
+//			//console.log("percent check: value", "warn")
+//			//console.log("me._percentage = " + me._percentage);
+//			
+//			me._tuple = me._percentage.tuples[0];
+//			me._text = me._meta_data.dimensions[1].members[me._tuple[0]].text;
+//			me._size = me._percentage.formattedData[0];
+//		};
+		
+		if(me._dtype === "datasource")
 		{
-			console.log("percent check error = " + me._percent + "!","warn");
-			console.log("text check error = " + me._text + "!","warn");
-			me._text = "Cubis";
+			if (me._percentage === null || me._percentage === "")
+			{
+				alert("Bind percent value to use this function.");
+			}
+			else
+			{
+				me._tuple = me._percentage.tuples[0];
+				me._text = me._meta_data.dimensions[1].members[me._tuple[0]].text;
+				me._size = me._percentage.formattedData[0];
+			}
+
 		}
-		else 
+		else
 		{
-			console.log("percent check: value", "warn")
-			console.log("me._percentage = " + me._percentage);
-			
-			me._tuple = me._percentage.tuples[0];
-			me._text = me._meta_data.dimensions[1].members[me._tuple[0]].text;
-			me._size = me._percentage.formattedData[0];
-		};
+			if (me._percentage === null || me._percentage === "")
+			{
+				alert("Bind percent value to update percent value.");
+			}
+			else
+			{
+				me._tuple = me._percentage.tuples[0];
+				me._size = me._percentage.formattedData[0];
+			}
+		}
 		
 		var svgText = d3.select(my2Div)
 		  .append("svg:svg")
@@ -115,46 +144,6 @@ sap.designstudio.sdk.Component.subclass("be.cubis.designstudio.textfillsingle.te
 		.attr("width" , "100%")
 		.style("stroke", "black")
 		.style("fill", "none");
-        
-// 		Alternatief van de gradient (Nico)      
-//      svgText.append("clipPath")
-//      .attr("id","clip-clip")
-//      .append("text")
-//      .text(me._text)
-//      .attr("x", 5)
-//      .attr("y", 80)
-//      .style("font-size", "90px");
-//      
-//      svgText
-//      .append("rect")
-//      .attr("x",0)
-//      .attr("y",0)
-//      .attr("height", 90)
-//      .attr("width", 140)
-//      .attr("fill", "black")
-//      .attr("clip-path","url(#clip-clip)")
-//      ;
-//      
-//      svgText
-//      .append("rect")
-//      .attr("x",0)
-//      .attr("y",0)
-//      .attr("height", 90)
-//      .attr("width", 70)
-//      .attr("fill", "orange")
-//      .attr("clip-path","url(#clip-clip)")
-//      ;
-//      
-//      svgText
-//      .append("rect")
-//      .attr("x",0)
-//      .attr("y",0)
-//      .attr("height", 90)
-//      .attr("width", 40)
-//      .attr("fill", "white")
-//      .attr("clip-path","url(#clip-clip)")
-//      ;
-	
 		
 	};
 	
@@ -162,20 +151,13 @@ sap.designstudio.sdk.Component.subclass("be.cubis.designstudio.textfillsingle.te
 	// After update
 	me.afterUpdate = function()
 	{
-		
-//		console.log("afterUpdate method","warn");
-		me.redraw();
-		
-		// syntax "== null" is different from "=== null"
-		// "== null" actually checks both for null and undefined
-		
+		me.redraw();		
 	};
 	
 
 //	Getters & Setters
 	me.text = function(value)
 	{
-		 //console.log("component.js --- update text valtue with: " + value);
 		 if (value === undefined)
 		  {
 			  return me._text;
@@ -183,7 +165,20 @@ sap.designstudio.sdk.Component.subclass("be.cubis.designstudio.textfillsingle.te
 		  else
 		  {
 			  me._text = value;
-			  //me.redraw();
+			  me.redraw();
+			  return me;
+		  }
+	};
+	
+	me.dtype = function(value)
+	{
+		 if (value === undefined)
+		  {
+			  return me._dtype;
+		  } 
+		  else
+		  {
+			  me._dtype = value;
 			  return me;
 		  }
 	};
@@ -191,7 +186,6 @@ sap.designstudio.sdk.Component.subclass("be.cubis.designstudio.textfillsingle.te
 	// Colorcode
 	me.textcolorCode = function(value) 
 	{
-		//console.log("textcolor method");
 	  if (value === undefined)
 	  {
 		  return me._textcolorCode;
@@ -199,7 +193,6 @@ sap.designstudio.sdk.Component.subclass("be.cubis.designstudio.textfillsingle.te
 	  else
 	  {
 		  me._textcolorCode = value;
-		  //me.redraw();
 		  return me;
 	  }
 	};
@@ -214,7 +207,6 @@ sap.designstudio.sdk.Component.subclass("be.cubis.designstudio.textfillsingle.te
 	  else
 	  {
 		  me._progressColorCode = value;
-		  //me.redraw();
 		  return me;
 	  }
 	};
@@ -229,7 +221,6 @@ sap.designstudio.sdk.Component.subclass("be.cubis.designstudio.textfillsingle.te
 	  else
 	  {
 		  me._progressFillColorCode = value;
-		  //me.redraw();
 		  return me;
 	  }
 	};
@@ -247,7 +238,6 @@ sap.designstudio.sdk.Component.subclass("be.cubis.designstudio.textfillsingle.te
 	    else
 	    {
 	    	me._percentage = value;
-	    	//me.redraw();
 	    	return me;
 	    }
 	  };
@@ -263,7 +253,6 @@ sap.designstudio.sdk.Component.subclass("be.cubis.designstudio.textfillsingle.te
 			else
 			{
 				me._meta_data = value;
-		    	//me.redraw();
 				return me;
 			}
 		};
@@ -276,6 +265,7 @@ sap.designstudio.sdk.Component.subclass("be.cubis.designstudio.textfillsingle.te
 		me.getHeight = function(){
 			return me.$().height();
 		};
+		
+		
 });
-
 		

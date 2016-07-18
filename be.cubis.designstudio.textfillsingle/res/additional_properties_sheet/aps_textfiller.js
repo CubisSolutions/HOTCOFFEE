@@ -2,34 +2,48 @@ sap.designstudio.sdk.PropertyPage.subclass("be.cubis.designstudio.textfillsingle
 function() 
 {
 	var me = this;
+	me._text = "Cubis";
+	me._dtype = "manual";
 	
 	me.init = function()
-	{
-		me.openPropertyDialog("color");
+	{		
 		$("#form").submit(function()
 		{
-			eclipse_logJavaScriptMessage("aps_text --- fire init function","warn");
-			//me._width = $("#aps_text").length() * 10;
-			//strlen = $("#aps_text").val().length;
-			//me._width = (strlen * 26);
-			me.firePropertiesChanged(["text"]);
+			me._text = $("#aps_text").val();
+			me._dtype = "manual";
+			me._dtype = $("#aps_type:checked").val();
+			me.firePropertiesChanged(["text","dtype"]);
 			return false;
 		});
+		
 	};
 	
-	this.text = function(textvalue)
+	me.text = function(textvalue)
 	{
-		eclipse_logJavaScriptMessage("aps_text --- " + textvalue );
 		 if (textvalue === undefined) 
 		  {
-			 return $("#aps_text").val();			 
+			 return me._text;
+			 
 		  }
 		  else
 		  {
-			  $("#aps_text").val(text(textvalue));
-			  return this;
+			 me._text = textvalue;
+			  return me;
 		  }
-		 eclipse_logJavaScriptMessage("aps_text --- exit text","warn");
 	};
+	
+	me.dtype = function(radiovalue)
+	{
+		if(radiovalue === undefined)
+		{
+			return me._dtype;
+		}
+		else
+		{
+			me._dtype = radiovalue;
+			return me;
+		}
+	};
+	
 });
 

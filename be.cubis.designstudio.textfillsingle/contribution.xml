@@ -28,12 +28,20 @@
 <cssInclude>res/css/component.css</cssInclude>
 <!-- 	<requireJs modes="commons m">res/js/component</requireJs> -->
     
-<!--     <property -->
-<!-- 		id="text" -->
-<!-- 		title="Text" -->
-<!-- 		type="Text" -->
-<!-- 		visible="true"/> -->
-	
+<!-- Extra properties for the APS. Hidden in settings. -->
+    <property
+		id="text"
+		title="Text"
+		type="Text"
+		visible="true"/>
+    <property
+		id="dtype"
+		title="Type"
+		type="Text"
+		visible="true"/>
+<!-- End of extra properties		 -->
+
+
 	<property
         id="textcolorCode"
         title="Text Color"
@@ -64,6 +72,8 @@
 		<defaultValue property="textcolorCode">black</defaultValue>
 		<defaultValue property="progressColorCode">#004080</defaultValue>
 		<defaultValue property="progressFillColorCode">#C0C0C0</defaultValue>
+		<defaultValue property="text">Cubis</defaultValue>
+		<defaultValue property="dtype">manual</defaultValue>
 	</initialization>
 </component>
 
