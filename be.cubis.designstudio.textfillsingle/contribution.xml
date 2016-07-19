@@ -33,12 +33,22 @@
 		id="text"
 		title="Text"
 		type="Text"
-		visible="true"/>
+		visible="false"/>
     <property
 		id="dtype"
 		title="Type"
 		type="Text"
-		visible="true"/>
+		visible="false"/>
+	<property
+		id="labelpos"
+		title="Label position"
+		type="Text"
+		visible="false"/>
+	<property
+		id="textsize"
+		title="Text size"
+		type="Text"
+		visible="false"/>
 <!-- End of extra properties		 -->
 
 
@@ -74,6 +84,8 @@
 		<defaultValue property="progressFillColorCode">#C0C0C0</defaultValue>
 		<defaultValue property="text">Cubis</defaultValue>
 		<defaultValue property="dtype">manual</defaultValue>
+		<defaultValue property="labelpos">lefttop</defaultValue>
+		<defaultValue property="textsize">16</defaultValue>
 	</initialization>
 </component>
 

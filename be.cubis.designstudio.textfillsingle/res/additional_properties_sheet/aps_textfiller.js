@@ -4,15 +4,18 @@ function()
 	var me = this;
 	me._text = "Cubis";
 	me._dtype = "manual";
+	me._labelpos = "lefttop";
+	me._textsize = 16;
 	
 	me.init = function()
 	{		
 		$("#form").submit(function()
 		{
 			me._text = $("#aps_text").val();
-			me._dtype = "manual";
 			me._dtype = $("#aps_type:checked").val();
-			me.firePropertiesChanged(["text","dtype"]);
+			me._labelpos = $("#aps_labelpos:checked").val();
+			me._textsize = $("#aps_textsize").val();
+			me.firePropertiesChanged(["text","dtype","labelpos","textsize"]);
 			return false;
 		});
 		
@@ -45,5 +48,30 @@ function()
 		}
 	};
 	
+	me.labelpos = function(labelvalue)
+	{
+		if(labelvalue === undefined)
+			{
+			return me._labelpos;
+			}
+		else
+			{
+			me._labelpos = labelvalue;
+			return me;
+			}
+	};
+	
+	me.textsize = function(value)
+	{
+		if(value === undefined)
+			{
+			return me._textsize;
+			}
+		else
+			{
+			me._textsize = value;
+			return me;
+			}
+	};
 });
 

@@ -5,14 +5,18 @@ sap.designstudio.sdk.Component.subclass("be.cubis.designstudio.textfillsingle.te
 {
 	var me = this;
 	var fontSize = 16;
+	var labelposx = 10;
+	var labelposy = 10;
 	 
 	//Properties
 	me._text = "Cubis";
 	me._percentage = null;
 	me._dtype = "manual";
+	me._labelpos = "lefttop";
 	me._ID = counter;
 	counter = counter + 1 ;
-	me._size = 20;
+	me._size = 30;
+	me._textsize = 16;
 	
 	me.init = function() 
 	{
@@ -22,32 +26,13 @@ sap.designstudio.sdk.Component.subclass("be.cubis.designstudio.textfillsingle.te
 	};
 	
 	me.redraw = function() 
-	{
-		//console.log("Enter REDRAW function", "log");
-		
+	{		
 		var my2Div = me.$()[0];
-		fontSize = me.getHeight()/3;
 		
-		// Clear any existing svg's.  We'll redraw from scratch
+//		Clear any existing svg's.  We'll redraw from scratch
 		d3.select(my2Div).selectAll("*").remove();
-		
-//		if (me._percentage === null || me._percentage === "")
-//		{
-//			//console.log("percent check error = " + me._percent + "!","warn");
-//			//console.log("text check error = " + me._text + "!","warn");
-//			//me._text = "Cubis";
-//		}
-//		else
-//
-//		{
-//			//console.log("percent check: value", "warn")
-//			//console.log("me._percentage = " + me._percentage);
-//			
-//			me._tuple = me._percentage.tuples[0];
-//			me._text = me._meta_data.dimensions[1].members[me._tuple[0]].text;
-//			me._size = me._percentage.formattedData[0];
-//		};
-		
+
+//		First part: All the calculations		
 		if(me._dtype === "datasource")
 		{
 			if (me._percentage === null || me._percentage === "")
@@ -59,21 +44,47 @@ sap.designstudio.sdk.Component.subclass("be.cubis.designstudio.textfillsingle.te
 				me._tuple = me._percentage.tuples[0];
 				me._text = me._meta_data.dimensions[1].members[me._tuple[0]].text;
 				me._size = me._percentage.formattedData[0];
-			}
+			};
 
 		}
 		else
 		{
 			if (me._percentage === null || me._percentage === "")
 			{
-				alert("Bind percent value to update percent value.");
+				// Do nothing.
 			}
 			else
 			{
 				me._tuple = me._percentage.tuples[0];
 				me._size = me._percentage.formattedData[0];
-			}
+			};
+		};
+		
+		switch(me._labelpos)
+		{
+			case("lefttop"):
+				labelposx = 10;
+				labelposy = 10;
+				break;
+			case("leftbot"):
+				labelposx = 10;
+				labelposy = me.getHeight() - 10;
+				break;
+			case("righttop"):
+				labelposx = me.getWidth() - 25;
+				labelpoxy = 10;
+				break;
+			case("rightbot"):
+				labelposx = me.getWidth() - 25;
+				labelposy = me.getHeight() - 10;
+				break;
+			default:
+				labelposx = 10;
+				labelposy = 10;
 		}
+		
+		
+//		Drawing the items on the canvas
 		
 		var svgText = d3.select(my2Div)
 		  .append("svg:svg")
@@ -113,9 +124,9 @@ sap.designstudio.sdk.Component.subclass("be.cubis.designstudio.textfillsingle.te
         
         svgText.append("text")
         .style("fill", me._progressColorCode)
-        .attr("x", 10)
-        .attr("y", 10)
-        .text( me._size + "%" )
+        .attr("x", labelposx)
+        .attr("y", labelposy)
+        .text( parseInt(me._size) + "%" )
         .style("font-size" , ".8em");
         
 		// clipping path
@@ -124,8 +135,8 @@ sap.designstudio.sdk.Component.subclass("be.cubis.designstudio.textfillsingle.te
         .append("text")
         .text(me._text)
         .attr("x", 5)
-        .attr("y", 40)
-        .style("font-size", fontSize + "px");        
+        .attr("y", parseInt((me.getHeight()/2) + (me._textsize/2)))
+        .style("font-size", me._textsize + "px");        
         
         // masking frame
         svgText.append("rect")
@@ -155,7 +166,7 @@ sap.designstudio.sdk.Component.subclass("be.cubis.designstudio.textfillsingle.te
 	};
 	
 
-//	Getters & Setters
+//	Getters & Setters invisible-objects
 	me.text = function(value)
 	{
 		 if (value === undefined)
@@ -182,7 +193,33 @@ sap.designstudio.sdk.Component.subclass("be.cubis.designstudio.textfillsingle.te
 			  return me;
 		  }
 	};
+	me.labelpos = function(value)
+	{
+		if(value === undefined)
+		{
+			return me._labelpos;
+		}
+		else
+		{
+			me._labelpos = value;
+			return me;
+		}
+	};
 	
+	me.textsize = function(value)
+	{
+		if(value === undefined)
+		{
+			return me._textsize;
+		}
+		else
+		{
+			me._textsize = value;
+			return me;
+		}
+	};
+
+//	Getters & Setters	
 	// Colorcode
 	me.textcolorCode = function(value) 
 	{

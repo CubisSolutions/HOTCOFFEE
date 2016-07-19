@@ -6,6 +6,7 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.6/d3.min.js" charset="utf-8"></script>
   <script src="/aad/zen.rt.components.sdk/resources/js/sdk_propertysheets_handler.js"></script>
   <script src="aps_textfiller.js"></script>
+  <link rel="stylesheet" href="aps_textfiller.css"></link>
 </head>
 
 <body class='sapUiBody'>
@@ -14,33 +15,35 @@
 		new be.cubis.designstudio.textfillsingle.TextFillSinglePropertyPage();
 	</script>
 	
-	<div>
-		<a href="http://www.cubis.be">Get help</a><br/>
-		<h4>This is the property page for Text filler</h4>
-	</div>	
-	<div>
+	<div id="formcontainer">
 		<form id="form">
 		<fieldset>
-			<legend>Path Properties</legend>
+			<legend>Properties</legend>
 			<table>
 				<tr>
-					<td>Type</td>
+					<td>Text source</td>
 					<td>
 						<input id="aps_type" type="radio" name="type" value="manual" checked>Manual</input><br/>
 						<input id="aps_type" type="radio" name="type" value="datasource">Datasource</input>
 					</td>
 				</tr>
 				<tr>
-					<td>Text</td><td><input id="aps_text" type="text" name="text" size="40" maxlength="40"></input></td>
+					<td>Manual text value</td><td><input id="aps_text" type="text" name="text" size="40" maxlength="40"></input></td>
 				</tr>
 				<tr>
 					<td>Label position</td>
 					<td>
 						<input id="aps_labelpos" type="radio" name="Labelpos" value="lefttop" checked>Left top</input><br/>
-						<input id="aps_labelpos" type="radio" name="Labelpos" value="Righttop" >Right top</input><br/>
-						<input id="aps_labelpos" type="radio" name="Labelpos" value="Leftbot" >Left bottom</input><br/>
-						<input id="aps_labelpos" type="radio" name="Labelpos" value="Rightbot" >Right bottom</input><br/>
+						<input id="aps_labelpos" type="radio" name="Labelpos" value="righttop" >Right top</input><br/>
+						<input id="aps_labelpos" type="radio" name="Labelpos" value="leftbot" >Left bottom</input><br/>
+						<input id="aps_labelpos" type="radio" name="Labelpos" value="rightbot" >Right bottom</input><br/>
 					</td> 
+				</tr>
+				<tr>
+				<input id="aps_dswitch" type="radio" ></input>
+				</tr>
+				<tr>
+				<td>Text size</td><td><input id="aps_textsize" type="number" name="Textsize" value="16"></input></td>
 				</tr>
 			</table>
 			
@@ -48,6 +51,11 @@
 		</fieldset>
 		</form>
 	</div>
+	
+		<div>
+		<a href="mailto:info@.cubis.be">Get help from Cubis</a><br/>
+		
+	</div>	
 
 
 </body>
