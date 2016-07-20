@@ -72,7 +72,7 @@ sap.designstudio.sdk.Component.subclass("be.cubis.designstudio.textfillsingle.te
 				break;
 			case("righttop"):
 				labelposx = me.getWidth() - 25;
-				labelpoxy = 10;
+				labelposy = 10;
 				break;
 			case("rightbot"):
 				labelposx = me.getWidth() - 25;
