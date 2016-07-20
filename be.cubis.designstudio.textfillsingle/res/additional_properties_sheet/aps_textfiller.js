@@ -31,7 +31,7 @@ function()
 		  else
 		  {
 			 me._text = textvalue;
-			  return me;
+			 return me;
 		  }
 	};
 	
