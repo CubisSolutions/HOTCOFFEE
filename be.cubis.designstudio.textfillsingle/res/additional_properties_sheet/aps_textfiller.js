@@ -12,13 +12,21 @@ function()
 		$("#form").submit(function()
 		{
 			me._text = $("#aps_text").val();
-			me._dtype = $("#aps_type:checked").val();
-			me._labelpos = $("#aps_labelpos:checked").val();
+			me._dtype = $("input:radio[name=dtype]:checked").val();
+			me._labelpos = $("input:radio[name=labelpos]:checked").val();
 			me._textsize = $("#aps_textsize").val();
 			me.firePropertiesChanged(["text","dtype","labelpos","textsize"]);
 			return false;
 		});
 		
+	};
+	
+	me.redraw = function() 
+	{
+		  $("#aps_text").val(me._text);
+		  $('input:radio[value=' + me._dtype + ']').attr('checked',true);
+		  $('input:radio[value=' + me._labelpos + ']').attr('checked',true);
+		  $("#aps_textsize").val(me._textsize);
 	};
 	
 	me.text = function(textvalue)
@@ -31,6 +39,7 @@ function()
 		  else
 		  {
 			 me._text = textvalue;
+			 me.redraw();
 			 return me;
 		  }
 	};
@@ -44,6 +53,7 @@ function()
 		else
 		{
 			me._dtype = radiovalue;
+			me.redraw();
 			return me;
 		}
 	};
@@ -57,6 +67,7 @@ function()
 		else
 			{
 			me._labelpos = labelvalue;
+			me.redraw();
 			return me;
 			}
 	};
@@ -70,6 +81,7 @@ function()
 		else
 			{
 			me._textsize = value;
+			me.redraw();
 			return me;
 			}
 	};
