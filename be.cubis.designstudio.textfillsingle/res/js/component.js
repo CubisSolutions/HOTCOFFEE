@@ -1,14 +1,16 @@
-// counter voor id van objecten.
+// counter for object id's.
 var counter = 1;
 
 sap.designstudio.sdk.Component.subclass("be.cubis.designstudio.textfillsingle.textFillSingle", function() 
 {
+	// Self
 	var me = this;
+	
 	var fontSize = 16;
 	var labelposx = 10;
 	var labelposy = 10;
 	 
-	//Properties
+	// Properties
 	me._text = "Cubis";
 	me._percentage = null;
 	me._dtype = "manual";
@@ -17,22 +19,22 @@ sap.designstudio.sdk.Component.subclass("be.cubis.designstudio.textfillsingle.te
 	counter = counter + 1 ;
 	me._size = 30;
 	me._textsize = 16;
-	
+
+	// Init
 	me.init = function() 
 	{
-//		console.log("Start init Text filler", "log");
-		me.redraw();
-	    
+		me.redraw();    
 	};
 	
+	// Redraw
 	me.redraw = function() 
 	{		
 		var my2Div = me.$()[0];
 		
-//		Clear any existing svg's.  We'll redraw from scratch
+		// Clear any existing svg's. We'll redraw from scratch
 		d3.select(my2Div).selectAll("*").remove();
 
-//		First part: All the calculations		
+		// First part: All the calculations		
 		if(me._dtype === "datasource")
 		{
 			if (me._percentage === null || me._percentage === "")
@@ -42,7 +44,12 @@ sap.designstudio.sdk.Component.subclass("be.cubis.designstudio.textfillsingle.te
 			else
 			{
 				me._tuple = me._percentage.tuples[0];
-				me._text = me._meta_data.dimensions[1].members[me._tuple[0]].text;
+				me._text = me._meta_data.dimensions[1].members[me._tuple[0]].text;		
+				// server copy of property 'text' needs to be updated too, 
+				// otherwise, when we switch to manual text in the APS, the 
+				// server will still have the same text as the APS, and then 
+				// the server won't trigger an update towards the canvas
+				me.firePropertiesChanged(["text"]);		
 				me._size = me._percentage.formattedData[0];
 			};
 
@@ -84,8 +91,7 @@ sap.designstudio.sdk.Component.subclass("be.cubis.designstudio.textfillsingle.te
 		}
 		
 		
-//		Drawing the items on the canvas
-		
+		// Drawing the items on the canvas		
 		var svgText = d3.select(my2Div)
 		  .append("svg:svg")
 		  .attr("width", "100%")
@@ -169,30 +175,30 @@ sap.designstudio.sdk.Component.subclass("be.cubis.designstudio.textfillsingle.te
 //	Getters & Setters invisible-objects
 	me.text = function(value)
 	{
-		 if (value === undefined)
-		  {
-			  return me._text;
-		  } 
-		  else
-		  {
-			  me._text = value;
-			  me.redraw();
-			  return me;
-		  }
+		if (value === undefined)
+		{
+			return me._text;
+		} 
+		else
+		{
+			me._text = value;		
+			return me;
+		}
 	};
 	
 	me.dtype = function(value)
 	{
-		 if (value === undefined)
-		  {
-			  return me._dtype;
-		  } 
-		  else
-		  {
-			  me._dtype = value;
-			  return me;
-		  }
+		if (value === undefined)
+		{
+			return me._dtype;
+		} 
+		else
+		{
+			me._dtype = value;
+			return me;
+		}
 	};
+	
 	me.labelpos = function(value)
 	{
 		if(value === undefined)
@@ -223,86 +229,81 @@ sap.designstudio.sdk.Component.subclass("be.cubis.designstudio.textfillsingle.te
 	// Colorcode
 	me.textcolorCode = function(value) 
 	{
-	  if (value === undefined)
-	  {
-		  return me._textcolorCode;
-	  } 
-	  else
-	  {
-		  me._textcolorCode = value;
-		  return me;
-	  }
+		if (value === undefined)
+		{
+			return me._textcolorCode;
+		} 
+		else
+		{
+			me._textcolorCode = value;
+			return me;
+		}
 	};
 	
 	// ProgressColorcode
 	me.progressColorCode = function(value) 
 	{
-	  if (value === undefined)
-	  {
-		  return me._progressColorCode;
-	  } 
-	  else
-	  {
-		  me._progressColorCode = value;
-		  return me;
-	  }
+		if (value === undefined)
+		{
+			return me._progressColorCode;
+		} 
+		else
+		{
+			me._progressColorCode = value;
+			return me;
+		}
 	};
 	
-	// ProgressColorcode
+	// ProgressFillColorcode
 	me.progressFillColorCode = function(value) 
 	{
-	  if (value === undefined)
-	  {
-		  return me._progressFillColorCode;
-	  } 
-	  else
-	  {
-		  me._progressFillColorCode = value;
-		  return me;
-	  }
+		if (value === undefined)
+		{
+			return me._progressFillColorCode;
+		} 
+		else
+		{
+			me._progressFillColorCode = value;
+			return me;
+		}
 	};
 	
-	// map percent value to bindable object
+	// Precentage (map percent value to bindable object)
 	me.percentage = function(value) 
-	{
-		
-		//console.log("percent method");
-		
-	    if (value === undefined) 
-	    {
-	    	return me._percentage;
-	    } 
-	    else
-	    {
-	    	me._percentage = value;
-	    	return me;
-	    }
-	  };
-	  
-	  me.metadata = function(value) 
-	  {			
-			//console.log("metadata method");
-			
-			if (value === undefined) 
-			{
-				return me._meta_data;
-			}
-			else
-			{
-				me._meta_data = value;
-				return me;
-			}
-		};
-		
-		// Getters for the height and width of the component
-		me.getWidth = function(){
-			return me.$().width();
-		};
+	{		
+		if (value === undefined) 
+		{
+			return me._percentage;
+		} 
+		else
+		{
+			me._percentage = value;
+			return me;
+		}
+	};
 
-		me.getHeight = function(){
-			return me.$().height();
-		};
+	// Metadata (called when a datasource-related parameter is changed)
+	me.metadata = function(value) 
+	{			
+		if (value === undefined) 
+		{
+			return me._meta_data;
+		}
+		else
+		{
+			me._meta_data = value;
+			return me;
+		}
+	};
 		
-		
+//  Getters for the height and width of the component
+	me.getWidth = function(){
+		return me.$().width();
+	};
+
+	me.getHeight = function(){
+		return me.$().height();
+	};
+			
 });
 		
