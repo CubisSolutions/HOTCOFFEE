@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<site>
+   <description name="Cubis Update Site" url="www.cubis.be">
+      Cubis Update Site
+   </description>
+   <feature url="features/BE.CUBIS.DESIGNSTUDIO.TEXTFILLER_1.0.0.201608041522.jar" id="BE.CUBIS.DESIGNSTUDIO.TEXTFILLER" version="1.0.0.201608041522">
+      <category name="com.sap.ip.bi.zen.sdk"/>
+   </feature>
+   <category-def name="com.sap.ip.bi.zen.sdk" label="SAP Design Studio Extensions">
+      <description>
+         SAP Design Studio Extensions
+      </description>
+   </category-def>
+</site>
