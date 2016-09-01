@@ -16,7 +16,7 @@
 				xmlFile.load("site.xml");
 				stylesheet.load("web/site.xsl");
 			} else {
-				alert("Document could not be loaded by browser.");
+				//alert("Document could not be loaded by browser.");
 			}
 			xmlFile.addEventListener("load", transform, false);
 			stylesheet.addEventListener("load", transform, false);
@@ -54,7 +54,17 @@
 </script>
 </head>
 <body onload="init();">
-<!--[insert static HTML here]-->
-<div id="data"><!-- this is where the transformed data goes --></div>
+
+	<div id="content" align="center">
+	<!-- this is where the actual website content goes-->
+		<h1> Please use this URL (www.cubis.be/features) in the "extension installation wizard" of Design Studio! </h1>
+		<img src="web/ds_install_01.png">
+		<img src="web/ds_install_02.png">
+	</div>
+	
+	<div id="data" hidden=true>
+	<!-- this is where the transformed data goes -->
+	</div>
+	
 </body>
 </html>
