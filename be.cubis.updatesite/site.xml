@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <site>
-   <description name="Cubis Update Site" url="www.cubis.be/update">
+   <description name="Cubis Update Site" url="http://www.cubis.be/update">
       Cubis Update Site
    </description>
    <feature url="features/BE.CUBIS.DESIGNSTUDIO.TEXTFILLER_1.0.0.201609271358.jar" id="BE.CUBIS.DESIGNSTUDIO.TEXTFILLER" version="1.0.0.201609271358">
