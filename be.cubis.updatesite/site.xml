@@ -3,7 +3,7 @@
    <description name="Cubis Update Site" url="http://www.cubis.be/update">
       Cubis Update Site
    </description>
-   <feature url="features/BE.CUBIS.DESIGNSTUDIO.TEXTFILLER_1.0.0.201609271358.jar" id="BE.CUBIS.DESIGNSTUDIO.TEXTFILLER" version="1.0.0.201609271358">
+   <feature url="features/BE.CUBIS.DESIGNSTUDIO.TEXTFILLER_1.0.0.201609271416.jar" id="BE.CUBIS.DESIGNSTUDIO.TEXTFILLER" version="1.0.0.201609271416">
       <category name="com.sap.ip.bi.zen.sdk"/>
    </feature>
    <category-def name="com.sap.ip.bi.zen.sdk" label="SAP Design Studio Extensions">
