@@ -1,8 +1,10 @@
 //counter voor id van objecten.
 var counter = 1;
 
-sap.designstudio.sdk.Component.subclass("be.cubis.designstudio.textfillmulti.textFillMulti", function() 
-		{
+define(["sap/designstudio/sdk/component", "css!../css/component.css"], 
+		function(Component, css) {
+	  Component.subclass("be.cubis.designstudio.textfillmulti.textFillMulti", function() 
+{
 
 	//console.log("initialization of function class");
 
@@ -312,5 +314,5 @@ sap.designstudio.sdk.Component.subclass("be.cubis.designstudio.textfillmulti.tex
 		}
 	};
 
-		});
-
+})
+});

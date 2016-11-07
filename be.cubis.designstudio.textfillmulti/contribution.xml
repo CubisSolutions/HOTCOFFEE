@@ -21,18 +21,10 @@
       title="Text Filler (Multi)"
       tooltip="Text Filler (Multi)"
       visible="true"
+      modes="m"
       >
       
-      <stdInclude kind="d3"/>
-<jsInclude>res/js/component.js</jsInclude>
-<cssInclude>res/css/component.css</cssInclude>
-<!-- 	<requireJs modes="commons m">res/js/component</requireJs> -->
-    
-<!--     <property -->
-<!-- 		id="text" -->
-<!-- 		title="Text" -->
-<!-- 		type="Text" -->
-<!-- 		visible="true"/> -->
+<requireJs modes="commons m">res/js/component</requireJs>
 	
 	<property
         id="textcolorCode"
