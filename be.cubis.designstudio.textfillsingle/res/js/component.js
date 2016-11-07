@@ -1,93 +1,90 @@
 // counter for object id's.
 var counter = 1;
 
-sap.designstudio.sdk.Component.subclass("be.cubis.designstudio.textfillsingle.textFillSingle", function() 
+define(["sap/designstudio/sdk/component", "css!../css/component.css"], 
+		function(Component, css) {
+	  Component.subclass("be.cubis.designstudio.textfillsingle.textFillSingle", function() 
 {
 	// Self
 	var me = this;
-	
-	var fontSize = 16;
 	var labelposx = 10;
-	var labelposy = 10;
-	 
+	var labelposy = 10;	
+	
 	// Properties
-	me._text = "Cubis";
-	me._percentage = null;
-	me._dtype = "manual";
-	me._labelpos = "lefttop";
 	me._ID = counter;
 	counter = counter + 1 ;
-	me._size = 30;
-	me._textsize = 16;
+
 
 	// Init
 	me.init = function() 
 	{
-		me.redraw();    
+		me.redraw();
 	};
-	
+
 	// Redraw
 	me.redraw = function() 
-	{		
+	{
 		var my2Div = me.$()[0];
 		
 		// Clear any existing svg's. We'll redraw from scratch
 		d3.select(my2Div).selectAll("*").remove();
 
-		// First part: All the calculations		
-		if(me._dtype === "datasource")
-		{
-			if (me._percentage === null || me._percentage === "")
-			{
-				alert("Bind percent value to use this function.");
-			}
-			else
-			{
-				me._tuple = me._percentage.tuples[0];
-				me._text = me._meta_data.dimensions[1].members[me._tuple[0]].text;		
-				// server copy of property 'text' needs to be updated too, 
-				// otherwise, when we switch to manual text in the APS, the 
-				// server will still have the same text as the APS, and then 
-				// the server won't trigger an update towards the canvas
-				me.firePropertiesChanged(["text"]);		
-				me._size = me._percentage.formattedData[0];
-			};
-
-		}
-		else
-		{
-			if (me._percentage === null || me._percentage === "")
-			{
-				// Do nothing.
-			}
-			else
-			{
-				me._tuple = me._percentage.tuples[0];
-				me._size = me._percentage.formattedData[0];
-			};
-		};
+//		// First part: All the calculations
+//		if(me._dtype === "datasource")
+//		{
+//			if (me._percentage === null || me._percentage === "")
+//			{
+//				alert("Bind percent value to use this function.");
+//			}
+//			else
+//			{
+//				//me._tuple = me._percentage.tuples[0];
+//				//me._text = me._meta_data.dimensions[1].members[me._tuple[0]].text;		
+//				// server copy of property 'text' needs to be updated too, 
+//				// otherwise, when we switch to manual text in the APS, the 
+//				// server will still have the same text as the APS, and then 
+//				// the server won't trigger an update towards the canvas
+//				//me.firePropertiesChanged(["text"]);
+//				//me._size = me._percentage.formattedData[0];
+//				me._size = me._percentage;
+//			};
+//
+//		}
+//		else
+//		{
+//			if (me._percentage === null || me._percentage === "")
+//			{
+//				// Do nothing.
+//			}
+//			else
+//			{
+//				//me._tuple = me._percentage.tuples[0];
+//				//me._size = me._percentage.formattedData[0];
+//				me._size = me._percentage;
+//			};
+//		};
 		
 		switch(me._labelpos)
 		{
 			case("lefttop"):
 				labelposx = 10;
-				labelposy = 10;
+				labelposy = 15;
 				break;
 			case("leftbot"):
 				labelposx = 10;
 				labelposy = me.getHeight() - 10;
 				break;
 			case("righttop"):
-				labelposx = me.getWidth() - 25;
-				labelposy = 10;
+				labelposx = me.getWidth() - 30;
+				labelposy = 15;
 				break;
 			case("rightbot"):
-				labelposx = me.getWidth() - 25;
+				labelposx = me.getWidth() - 30;
 				labelposy = me.getHeight() - 10;
 				break;
 			default:
 				labelposx = 10;
-				labelposy = 10;
+				labelposy = 15;
 		}
 		
 		
@@ -108,8 +105,8 @@ sap.designstudio.sdk.Component.subclass("be.cubis.designstudio.textfillsingle.te
         .selectAll("stop")
         .data([
           {offset: "0%", color: me._progressColorCode, opacity:1},
-          {offset: (me._size + "%"), color: me._progressColorCode, opacity:1},
-          {offset: (me._size + "%"), color: me._textcolorCode, opacity:1},
+          {offset: (me._percentage + "%"), color: me._progressColorCode, opacity:1},
+          {offset: (me._percentage + "%"), color: me._textcolorCode, opacity:1},
           {offset: "100%", color: me._textcolorCode, opacity:1} 
         ])
         .enter().append("stop")
@@ -119,27 +116,39 @@ sap.designstudio.sdk.Component.subclass("be.cubis.designstudio.textfillsingle.te
         .attr("stop-opacity", function(d){return d.opacity});
 		
 		
-		// fill background
-        svgText.append("rect")
-        .attr("x",0)
-        .attr("y",0)
-        .attr("height","100%")
-        .attr("width", me._size + "%")
-        .attr("fill", me._progressFillColorCode);
-        console.log("fill background", "log");
+		// fill background if APS checkbox is on.
+		if( me._barfill === "yes" )
+    	{
+        	svgText.append("rect")
+            .attr("x",0)
+            .attr("y",0)
+            .attr("height","100%")
+            .attr("width", me._percentage + "%")
+            .attr("fill", me._progressFillColorCode);
+            console.log("fill background", "log");
+    	}
+		else
+		{
+			console.log("fill background : NO");
+		}
         
-        svgText.append("text")
-        .style("fill", me._progressColorCode)
-        .attr("x", labelposx)
-        .attr("y", labelposy)
-        .text( parseInt(me._size) + "%" )
-        .style("font-size" , ".8em");
+		if( me._pcvalue === "yes")
+        {
+			svgText.append("text")
+	        .style("fill", me._progressColorCode)
+	        .attr("x", labelposx)
+	        .attr("y", labelposy)
+	        .text( parseInt(me._percentage) + "%" )
+	        .style("font-size" , ".8em");
+        }
+		
         
 		// clipping path
         svgText.append("clipPath")
         .attr("id","clip-clip"+ me._ID)
         .append("text")
-        .text(me._text)
+        //.text(me._text)
+        .text(me.percentageText())
         .attr("x", 5)
         .attr("y", parseInt((me.getHeight()/2) + (me._textsize/2)))
         .style("font-size", me._textsize + "px");        
@@ -154,13 +163,17 @@ sap.designstudio.sdk.Component.subclass("be.cubis.designstudio.textfillsingle.te
         .attr("clip-path","url(#clip-clip"+ me._ID +")");
         
         // Draw rectangle around the box.
-        svgText.append("rect")
-		.attr("x", 0)
-		.attr("y", 0)
-		.attr("height", "100%")
-		.attr("width" , "100%")
-		.style("stroke", "black")
-		.style("fill", "none");
+        if(me._borderline === "yes")
+        {
+        	svgText.append("rect")
+    		.attr("x", 0)
+    		.attr("y", 0)
+    		.attr("height", "100%")
+    		.attr("width" , "100%")
+    		.style("stroke", "black")
+    		.style("fill", "none");
+        }	
+        
 		
 	};
 	
@@ -168,7 +181,20 @@ sap.designstudio.sdk.Component.subclass("be.cubis.designstudio.textfillsingle.te
 	// After update
 	me.afterUpdate = function()
 	{
-		me.redraw();		
+		
+//		if(me._percentageText.tuples === null || me._percentageText.tuples === undefined)
+//		{
+//			console.log("After update - PercentText object length is NULL or undefined");
+//		}
+//		else
+//		{
+//			// test console length
+//			console.log("After update - PercentText object length = " + me._percentageText.tuples );
+//			// update tuple.
+//			var tuple = me._percentageText.tuples;
+//			
+//		}
+		me.redraw();
 	};
 	
 
@@ -224,6 +250,45 @@ sap.designstudio.sdk.Component.subclass("be.cubis.designstudio.textfillsingle.te
 			return me;
 		}
 	};
+	
+	me.barfill = function(value)
+	{
+		if(value === undefined)
+		{
+			return me._barfill;
+		}
+		else
+		{
+			me._barfill = value;
+			return me;
+		}
+	};
+	
+	me.borderline = function(value)
+	{
+		if(value === undefined)
+		{
+			return me._borderline;
+		}
+		else
+		{
+			me._borderline = value;
+			return me;
+		}
+	};
+	
+	me.pcvalue = function(value)
+	{
+		if(value === undefined)
+		{
+			return me._pcvalue;
+		}
+		else
+		{
+			me._pcvalue = value;
+			return me;
+		}
+	};
 
 //	Getters & Setters	
 	// Colorcode
@@ -270,7 +335,7 @@ sap.designstudio.sdk.Component.subclass("be.cubis.designstudio.textfillsingle.te
 	
 	// Precentage (map percent value to bindable object)
 	me.percentage = function(value) 
-	{		
+	{
 		if (value === undefined) 
 		{
 			return me._percentage;
@@ -281,29 +346,32 @@ sap.designstudio.sdk.Component.subclass("be.cubis.designstudio.textfillsingle.te
 			return me;
 		}
 	};
-
-	// Metadata (called when a datasource-related parameter is changed)
-	me.metadata = function(value) 
-	{			
+	
+	// Percentage Text (bindable object)
+	me.percentageText = function(value) 
+	{
 		if (value === undefined) 
 		{
-			return me._meta_data;
-		}
+			return me._percentageText;
+		} 
 		else
 		{
-			me._meta_data = value;
+			me._percentageText = value;
 			return me;
 		}
 	};
 		
 //  Getters for the height and width of the component
-	me.getWidth = function(){
+	me.getWidth = function()
+	{
 		return me.$().width();
 	};
 
-	me.getHeight = function(){
+	me.getHeight = function()
+	{
 		return me.$().height();
 	};
 			
+});
 });
 		

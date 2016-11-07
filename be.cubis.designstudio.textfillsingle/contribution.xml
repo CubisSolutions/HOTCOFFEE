@@ -12,21 +12,19 @@
   <group id="CubisComponents" title="Cubis Components" />
 
 <component
-      databound="true"
+      databound="false"
       group="CubisComponents"
       handlerType="div"
       icon="res/progressindicator.png"
       id="textFillSingle"
       propertySheetPath="res/additional_properties_sheet/aps_textfiller.html"
-      title="Text Filler (Single)"
-      tooltip="Text Filler (Single)"
+      title="Text Chart (Single)"
+      tooltip="Text Chart (Single)"
       visible="true"
+      modes= "m"
       >
-      
-      <stdInclude kind="d3"/>
-<jsInclude>res/js/component.js</jsInclude>
-<cssInclude>res/css/component.css</cssInclude>
-<!-- 	<requireJs modes="commons m">res/js/component</requireJs> -->
+
+<requireJs modes="commons m">res/js/component</requireJs>
     
 <!-- Extra properties for the APS. Hidden in settings. -->
     <property
@@ -49,6 +47,21 @@
 		title="Text size"
 		type="Text"
 		visible="false"/>
+	<property
+		id="barfill"
+		title="Fill the background"
+		type="Text"
+		visible="false"/>
+	<property
+		id="borderline"
+		title="Fill the background"
+		type="Text"
+		visible="false"/>
+	<property
+		id="pcvalue"
+		title="Display percentage value"
+		type="Text"
+		visible="false"/>
 <!-- End of extra properties		 -->
 
 
@@ -68,24 +81,35 @@
         type="Color"/>
 	
 	<property
+		id="percentageText"
+		title="Percentage text"
+		type="Text"
+		group="Display"
+		bindable="true">
+	</property>	
+	
+	<property
     	id="percentage"
-    	title = "Percentage"
-    	type="ResultCell"
-    	group="DataBinding">
-    	<option name="includeFormattedData" value="true"/>
-		<option name="includeData" value="true"/>
+    	title ="Percentage"
+    	type="int"
+    	group="Display"
+    	bindable="true">
 	</property>
 	
 	<initialization>
-		<defaultValue property="WIDTH">75</defaultValue>
-		<defaultValue property="HEIGHT">50</defaultValue>
+		<defaultValue property="WIDTH">200</defaultValue>
+		<defaultValue property="HEIGHT">100</defaultValue>
 		<defaultValue property="textcolorCode">black</defaultValue>
-		<defaultValue property="progressColorCode">#004080</defaultValue>
-		<defaultValue property="progressFillColorCode">#C0C0C0</defaultValue>
-		<defaultValue property="text">Cubis</defaultValue>
-		<defaultValue property="dtype">manual</defaultValue>
-		<defaultValue property="labelpos">lefttop</defaultValue>
-		<defaultValue property="textsize">16</defaultValue>
+		<defaultValue property="progressColorCode">#FF8000</defaultValue>
+		<defaultValue property="progressFillColorCode">#D3DEE2</defaultValue>
+		<defaultValue property="percentageText">Cubis SDK</defaultValue>
+		<defaultValue property="percentage">40</defaultValue>
+		
+		<defaultValue property="pcvalue">yes</defaultValue>
+		<defaultValue property="labelpos">righttop</defaultValue>
+		<defaultValue property="barfill">no</defaultValue>
+		<defaultValue property="borderline">no</defaultValue>		
+		<defaultValue property="textsize">35</defaultValue>
 	</initialization>
 </component>
 

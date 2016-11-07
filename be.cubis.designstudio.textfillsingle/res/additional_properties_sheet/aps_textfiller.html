@@ -6,6 +6,7 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.6/d3.min.js" charset="utf-8"></script>
   <script src="/aad/zen.rt.components.sdk/resources/js/sdk_propertysheets_handler.js"></script>
   <script src="aps_textfiller.js"></script>
+  <link rel="stylesheet" type="text/css" href="aps_style.css">
 </head>
 
 <body class='sapUiBody'>
@@ -17,8 +18,12 @@
 	<div id="formcontainer">
 		<form id="form">
 		<fieldset>
-			<legend>Properties</legend>
 			<table>
+				<tr>
+					<th>Settings</th>
+					<th>Option</th>
+				</tr>
+				<!-- 
 				<tr>
 					<td>Text source</td>
 					<td>
@@ -27,28 +32,51 @@
 					</td>
 				</tr>
 				<tr>
-					<td>Manual text value</td><td><input id="aps_text" type="text" name="text" size="40" maxlength="40" value="Cubis"></input></td>
+					<td>Manual text value</td><td><input id="aps_text" type="text" name="text" size="20" maxlength="60" value="Cubis"></input></td>
+				</tr>
+				 -->
+				<tr>
+					<td>Display percentage value</td>
+					<td>
+						<input id="aps_pcvalue" type="radio" name="pcvalue" value="yes" checked>Yes</input><br/>
+						<input id="aps_pcvalue" type="radio" name="pcvalue" value="no">No</input><br/>
+					</td>
 				</tr>
 				<tr>
 					<td>Label position</td>
 					<td>
-						<input id="aps_labelpos_lefttop" type="radio" name="labelpos" value="lefttop" checked>Left top</input><br/>
-						<input id="aps_labelpos_righttop" type="radio" name="labelpos" value="righttop" >Right top</input><br/>
+						<input id="aps_labelpos_lefttop" type="radio" name="labelpos" value="lefttop" >Left top</input><br/>
+						<input id="aps_labelpos_righttop" type="radio" name="labelpos" value="righttop" checked>Right top</input><br/>
 						<input id="aps_labelpos_leftbot" type="radio" name="labelpos" value="leftbot" >Left bottom</input><br/>
 						<input id="aps_labelpos_rightbot" type="radio" name="labelpos" value="rightbot" >Right bottom</input><br/>
 					</td> 
 				</tr>
 				<tr>
-				<td>Text size</td><td><input id="aps_textsize" type="number" name="textsize" value="16"></input></td>
+					<td>Fill the background</td>
+					<td>
+						<input id="aps_barfill" type="radio" name="barfill" value="yes">Yes</input><br/>
+						<input id="aps_barfill" type="radio" name="barfill" value="no" checked>No</input><br/>
+					</td>
+				</tr>
+				<tr>
+					<td>Display border</td>
+					<td>
+						<input id="aps_borderline" type="radio" name="borderline" value="yes">Yes</input><br/>
+						<input id="aps_borderline" type="radio" name="borderline" value="no" checked>No</input><br/>
+					</td>
+				</tr>
+				
+				<tr>
+				<td>Text size</td><td><input id="aps_textsize" type="number" name="textsize" value="20" size="5" maxlength="3"></input></td>
 				</tr>
 			</table>
 			
-			<input name="submit"  type="submit" value="Save"/>
+			<input id="submitbtn" name="submit"  type="submit" value="Save properties"/>
 		</fieldset>
 		</form>
 	</div>
 	
-		<div>
+	<div id="gethelp">
 		<a href="mailto:info@cubis.be">Get help from Cubis</a><br/>
 		
 	</div>	

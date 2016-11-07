@@ -2,20 +2,17 @@ sap.designstudio.sdk.PropertyPage.subclass("be.cubis.designstudio.textfillsingle
 function() 
 {
 	var me = this;
-	me._text = "Cubis";
-	me._dtype = "manual";
-	me._labelpos = "lefttop";
-	me._textsize = 16;
 	
 	me.init = function()
 	{		
 		$("#form").submit(function()
 		{
-			me._text = $("#aps_text").val();
-			me._dtype = $("input:radio[name=dtype]:checked").val();
 			me._labelpos = $("input:radio[name=labelpos]:checked").val();
 			me._textsize = $("#aps_textsize").val();
-			me.firePropertiesChanged(["text","dtype","labelpos","textsize"]);
+			me._barfill = $("input:radio[name=barfill]:checked").val();
+			me._borderline = $("input:radio[name=borderline]:checked").val();
+			me._pcvalue = $("input:radio[name=pcvalue]:checked").val();
+			me.firePropertiesChanged(["labelpos","textsize","barfill","borderline","pcvalue"]);
 			return false;
 		});
 		
@@ -23,25 +20,12 @@ function()
 	
 	me.redraw = function() 
 	{
-		  $("#aps_text").val(me._text);
-		  $('input:radio[value=' + me._dtype + ']').attr('checked',true);
-		  $('input:radio[value=' + me._labelpos + ']').attr('checked',true);
-		  $("#aps_textsize").val(me._textsize);
-	};
-	
-	me.text = function(textvalue)
-	{
-		 if (textvalue === undefined) 
-		  {
-			 return me._text;
-			 
-		  }
-		  else
-		  {
-			 me._text = textvalue;
-			 me.redraw();
-			 return me;
-		  }
+		
+		$("#aps_textsize").val(me._textsize);  
+		$('input:radio[name=labelpos][value=' + me._labelpos + ']').attr('checked',true);
+		$('input:radio[name=barfill][value=' + me._barfill + ']').attr('checked',true);
+		$('input:radio[name=borderline][value=' + me._borderline + ']').attr('checked',true);
+		$('input:radio[name=pcvalue][value=' + me._pcvalue + ']').attr('checked',true);
 	};
 	
 	me.dtype = function(radiovalue)
@@ -85,5 +69,48 @@ function()
 			return me;
 			}
 	};
+	
+	me.barfill = function(value)
+	{
+		if(value === undefined)
+			{
+			return me._barfill;
+			}
+		else
+			{
+			me._barfill = value;
+			me.redraw();
+			return me;
+			}
+	};
+	
+	me.borderline = function(value)
+	{
+		if(value === undefined)
+			{
+			return me._borderline;
+			}
+		else
+			{
+			me._borderline = value;
+			me.redraw();
+			return me;
+			}
+	};
+	
+	me.pcvalue = function(value)
+	{
+		if(value === undefined)
+			{
+			return me._pcvalue;
+			}
+		else
+			{
+			me._pcvalue = value;
+			me.redraw();
+			return me;
+			}
+	};
+	
 });
 
