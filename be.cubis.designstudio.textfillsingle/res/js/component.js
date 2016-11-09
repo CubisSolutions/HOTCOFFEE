@@ -7,13 +7,10 @@ define(["sap/designstudio/sdk/component", "css!../css/component.css"],
 {
 	// Self
 	var me = this;
-	var labelposx = 10;
-	var labelposy = 10;	
 	
 	// Properties
 	me._ID = counter;
 	counter = counter + 1 ;
-
 
 	// Init
 	me.init = function() 
@@ -181,50 +178,11 @@ define(["sap/designstudio/sdk/component", "css!../css/component.css"],
 	// After update
 	me.afterUpdate = function()
 	{
-		
-//		if(me._percentageText.tuples === null || me._percentageText.tuples === undefined)
-//		{
-//			console.log("After update - PercentText object length is NULL or undefined");
-//		}
-//		else
-//		{
-//			// test console length
-//			console.log("After update - PercentText object length = " + me._percentageText.tuples );
-//			// update tuple.
-//			var tuple = me._percentageText.tuples;
-//			
-//		}
 		me.redraw();
 	};
 	
 
-//	Getters & Setters invisible-objects
-	me.text = function(value)
-	{
-		if (value === undefined)
-		{
-			return me._text;
-		} 
-		else
-		{
-			me._text = value;		
-			return me;
-		}
-	};
-	
-	me.dtype = function(value)
-	{
-		if (value === undefined)
-		{
-			return me._dtype;
-		} 
-		else
-		{
-			me._dtype = value;
-			return me;
-		}
-	};
-	
+//	Getters & Setters invisible-objects	
 	me.labelpos = function(value)
 	{
 		if(value === undefined)

@@ -12,34 +12,18 @@ function()
 			me._barfill = $("input:radio[name=barfill]:checked").val();
 			me._borderline = $("input:radio[name=borderline]:checked").val();
 			me._pcvalue = $("input:radio[name=pcvalue]:checked").val();
-			me.firePropertiesChanged(["labelpos","textsize","barfill","borderline","pcvalue"]);
+			me.firePropertiesChanged(["textsize","barfill","borderline","pcvalue","labelpos"]);
 			return false;
 		});
-		
 	};
 	
 	me.redraw = function() 
 	{
-		
 		$("#aps_textsize").val(me._textsize);  
 		$('input:radio[name=labelpos][value=' + me._labelpos + ']').attr('checked',true);
 		$('input:radio[name=barfill][value=' + me._barfill + ']').attr('checked',true);
 		$('input:radio[name=borderline][value=' + me._borderline + ']').attr('checked',true);
 		$('input:radio[name=pcvalue][value=' + me._pcvalue + ']').attr('checked',true);
-	};
-	
-	me.dtype = function(radiovalue)
-	{
-		if(radiovalue === undefined)
-		{
-			return me._dtype;
-		}
-		else
-		{
-			me._dtype = radiovalue;
-			me.redraw();
-			return me;
-		}
 	};
 	
 	me.labelpos = function(labelvalue)

@@ -27,16 +27,6 @@
 <requireJs modes="commons m">res/js/component</requireJs>
     
 <!-- Extra properties for the APS. Hidden in settings. -->
-    <property
-		id="text"
-		title="Text"
-		type="Text"
-		visible="false"/>
-    <property
-		id="dtype"
-		title="Type"
-		type="Text"
-		visible="false"/>
 	<property
 		id="labelpos"
 		title="Label position"
@@ -99,9 +89,9 @@
 	<initialization>
 		<defaultValue property="WIDTH">200</defaultValue>
 		<defaultValue property="HEIGHT">100</defaultValue>
-		<defaultValue property="textcolorCode">black</defaultValue>
+		<defaultValue property="textcolorCode">#C0C0C0</defaultValue>
 		<defaultValue property="progressColorCode">#FF8000</defaultValue>
-		<defaultValue property="progressFillColorCode">#D3DEE2</defaultValue>
+		<defaultValue property="progressFillColorCode">#0088B2</defaultValue>
 		<defaultValue property="percentageText">Cubis SDK</defaultValue>
 		<defaultValue property="percentage">40</defaultValue>
 		
