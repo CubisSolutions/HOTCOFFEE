@@ -2,45 +2,98 @@ sap.designstudio.sdk.PropertyPage.subclass("be.cubis.designstudio.textfillmulti.
 function() 
 {
 	var me = this;
-	var dimensions = [];
 	
 	me.init = function()
 	{
 		$("#form").submit(function()
 		{
-			//me._text = $("#aps_text").val();
-			//me._dtype = $("input:radio[name=dtype]:checked").val();
-			//me._labelpos = $("input:radio[name=labelpos]:checked").val();
-//			me._textsize = $("#aps_textsize").val();
-//			me._barfill = $("input:radio[name=barfill]:checked").val();
-//			me._borderline = $("input:radio[name=borderline]:checked").val();
-			
-			// update component.js
-			//me.firePropertiesChanged(["textsize","barfill","borderline"]);
+			me._labelpos = $("input:radio[name=labelpos]:checked").val();
+			me._textsize = $("#aps_textsize").val();
+			me._barfill = $("input:radio[name=barfill]:checked").val();
+			me._borderline = $("input:radio[name=borderline]:checked").val();
+			me._pcvalue = $("input:radio[name=pcvalue]:checked").val();
+			me.firePropertiesChanged(["labelpos","textsize","barfill","borderline","pcvalue"]);
 			return false;
 		});
 	};
 	
 	me.redraw = function() 
 	{
-		  //$("#aps_text").val(me._text);
-		  //$('input:radio[value=' + me._dtype + ']').attr('checked',true);
-		  //$('input:radio[value=' + me._labelpos + ']').attr('checked',true);
-//		  $("#aps_textsize").val(me._textsize);
-//		  $('input:radio[name=barfill][value=' + me._barfill + ']').attr('checked',true);
-//		  $('input:radio[name=borderline][value=' + me._borderline + ']').attr('checked',true);
-		  
-		  // test code - tijdelijk
-////		  var test = "test value uit js"; // test = OK
-////		  eclipse_logJavaScriptMessage("APS test = " + test ,"log");
-//		  
-//		  var test2 = me.callRuntimeHandler("getMetadata");
-//		  
-//		  eclipse_logJavaScriptMessage("APS getMetadata = " + test2 ,"log");
-//		  
-//		  $("#aps_member").val(test2);
-////		  $("#aps_dimension").html("<option value='volvo'>Volvo</option>");
-		  
+		$("#aps_textsize").val(me._textsize);
+		$('input:radio[name=labelpos][value=' + me._labelpos + ']').attr('checked',true);
+		$('input:radio[name=barfill][value=' + me._barfill + ']').attr('checked',true);
+		$('input:radio[name=borderline][value=' + me._borderline + ']').attr('checked',true);
+		$('input:radio[name=pcvalue][value=' + me._pcvalue + ']').attr('checked',true);  
+	};
+	
+	me.textsize = function(value)
+	{
+		if(value === undefined)
+			{
+			return me._textsize;
+			}
+		else
+			{
+			me._textsize = value;
+			me.redraw();
+			return me;
+			}
+	};
+	
+	me.labelpos = function(labelvalue)
+	{
+		if(labelvalue === undefined)
+			{
+			return me._labelpos;
+			}
+		else
+			{
+			me._labelpos = labelvalue;
+			me.redraw();
+			return me;
+			}
+	};	
+	
+	me.barfill = function(value)
+	{
+		if(value === undefined)
+			{
+			return me._barfill;
+			}
+		else
+			{
+			me._barfill = value;
+			me.redraw();
+			return me;
+			}
+	};
+	
+	me.borderline = function(value)
+	{
+		if(value === undefined)
+			{
+			return me._borderline;
+			}
+		else
+			{
+			me._borderline = value;
+			me.redraw();
+			return me;
+			}
+	};
+	
+	me.pcvalue = function(value)
+	{
+		if(value === undefined)
+			{
+			return me._pcvalue;
+			}
+		else
+			{
+			me._pcvalue = value;
+			me.redraw();
+			return me;
+			}
 	};
 
 	

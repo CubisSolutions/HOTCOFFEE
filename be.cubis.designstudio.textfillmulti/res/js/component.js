@@ -39,13 +39,14 @@ define(["sap/designstudio/sdk/component", "css!../css/component.css"],
 
 		if (me._percentage === null || me._percentage === "") 
 		{
+			var nrValues = 3;
 			var initText =["Cubis", "SAP", "Google"];
-			var initValues = [100,80,20];
-			var tuplenrs = (me.getHeight()/3);
-			var spacing = 0.6 * 3;
-			fontSize = (me.getHeight()/(3*3))
+			var initValues = [80,10,50];
+			var tuplenrs = (me.getHeight()/nrValues);
+			var spacing = 0.6 * nrValues;
+			//fontSize = (me.getHeight()/(nrValues*nrValues))
 
-			for(i=0 ; i < 3; i++)
+			for(i=0 ; i < nrValues; i++)
 			{
 				me._ID = counter;                  	  
 				counter = counter + 1 ;
@@ -80,20 +81,51 @@ define(["sap/designstudio/sdk/component", "css!../css/component.css"],
 				
 				
 				// fill background
-		        svgText.append("rect")
-		        .attr("x",0)
-		        .attr("y",0)
-		        .attr("height","100%")
-		        .attr("width", me._size + "%")
-		        .attr("fill", me._progressFillColorCode);
-		        console.log("fill background", "log");
+		        if(me._barfill === "yes")
+				{
+		        	svgText.append("rect")
+			        .attr("x",0)
+			        .attr("y",0)
+			        .attr("height","100%")
+			        .attr("width", me._size + "%")
+			        .attr("fill", me._progressFillColorCode);
+			        console.log("fill background", "log");
+				}
 		        
-		        svgText.append("text")
-		        .style("fill", me._progressColorCode)
-		        .attr("x", 10)
-		        .attr("y", 10)
-		        .text( me._size + "%" )
-		        .style("font-size" , ".8em");
+		        if(me._pcvalue === "yes")
+		        {
+		        	// Calculate position
+		    		switch(me._labelpos)
+		    		{
+		    			case("lefttop"):
+		    				labelposx = 10;
+		    				labelposy = 15;
+		    				break;
+		    			case("leftbot"):
+		    				labelposx = 10;
+		    				labelposy = tuplenrs-spacing - 10;
+		    				break;
+		    			case("righttop"):
+		    				labelposx = me.getWidth() - 30;
+		    				labelposy = 15;
+		    				break;
+		    			case("rightbot"):
+		    				labelposx = me.getWidth() - 30;
+		    				labelposy = tuplenrs-spacing - 10;
+		    				break;
+		    			default:
+		    				labelposx = 10;
+		    				labelposy = 15;
+		    		}
+		        	// Place label on SVG.
+		        	svgText.append("text")
+			        .style("fill", me._progressColorCode)
+			        .attr("x", labelposx)
+			        .attr("y", labelposy)
+			        .text( me._size + "%" )
+			        .style("font-size" , ".8em");
+		        }
+		        
 		        
 				// clipping path
 		        svgText.append("clipPath")
@@ -101,8 +133,8 @@ define(["sap/designstudio/sdk/component", "css!../css/component.css"],
 		        .append("text")
 		        .text(me._text)
 		        .attr("x", 5)
-		        .attr("y", (tuplenrs-10))
-		        .style("font-size", fontSize + "px");        
+		        .attr("y", (tuplenrs-25))
+		        .style("font-size", me._textsize + "px");        
 		        
 		        // masking frame
 		        svgText.append("rect")
@@ -114,13 +146,17 @@ define(["sap/designstudio/sdk/component", "css!../css/component.css"],
 		        .attr("clip-path","url(#clip-clip"+ me._ID +")");
 		        
 		        // Draw rectangle around the box.
-		        svgText.append("rect")
-				.attr("x", 0)
-				.attr("y", 0)
-				.attr("height", tuplenrs-spacing)
-				.attr("width" , "100%")
-				.style("stroke", "black")
-				.style("fill", "none");
+		        if(me._borderline === "yes")
+		        {
+		        	svgText.append("rect")
+					.attr("x", 0)
+					.attr("y", 0)
+					.attr("height", tuplenrs-spacing)
+					.attr("width" , "100%")
+					.style("stroke", "black")
+					.style("fill", "none");
+		        }
+		        
 				
 			}
 
@@ -164,20 +200,26 @@ define(["sap/designstudio/sdk/component", "css!../css/component.css"],
 					.attr("height", tuplenrs-spacing);
 
 					// Fill background
-					svgText.append("rect")
-					.attr("x",0)
-					.attr("y",0)
-					.attr("height","100%")
-					.attr("width", relativeSize + "%")
-					.attr("fill", me._progressFillColorCode);
-					console.log("fill background", "log");
-
-					svgText.append("text")
-					.style("fill", me._progressColorCode)
-					.attr("x", 10)
-					.attr("y", 10)
-					.text( me._size + "%" )
-					.style("font-size" , ".8em");
+					if(me._barfill === "yes")
+					{
+						svgText.append("rect")
+						.attr("x",0)
+						.attr("y",0)
+						.attr("height","100%")
+						.attr("width", relativeSize + "%")
+						.attr("fill", me._progressFillColorCode);
+						console.log("fill background", "log");
+					}
+					
+					if(me._pcvalue === "yes")
+			        {
+						svgText.append("text")
+						.style("fill", me._progressColorCode)
+						.attr("x", 10)
+						.attr("y", 10)
+						.text( me._size + "%" )
+						.style("font-size" , ".8em");
+			        }
 
 					// Gradient for masking.
 					svgText.append("linearGradient")
@@ -218,13 +260,17 @@ define(["sap/designstudio/sdk/component", "css!../css/component.css"],
 					.attr("clip-path","url(#clip-clip"+ me._ID +")");
 
 					// Draw rectangle around the box.
-					svgText.append("rect")
-					.attr("x", 0)
-					.attr("y", 0)
-					.attr("height", tuplenrs-spacing)
-					.attr("width" , "100%")
-					.style("stroke", "black")
-					.style("fill", "none");	
+					if(me._borderline === "yes")
+					{
+						svgText.append("rect")
+						.attr("x", 0)
+						.attr("y", 0)
+						.attr("height", tuplenrs-spacing)
+						.attr("width" , "100%")
+						.style("stroke", "black")
+						.style("fill", "none");
+					}
+					
 				}
 			}
 		}
@@ -310,6 +356,73 @@ define(["sap/designstudio/sdk/component", "css!../css/component.css"],
 		{
 			me._progressFillColorCode = value;
 			//me.redraw();
+			return me;
+		}
+	};
+	
+	
+	// APS Setters & Getters
+	me.textsize = function(value)
+	{
+		if(value === undefined)
+		{
+			return me._textsize;
+		}
+		else
+		{
+			me._textsize = value;
+			return me;
+		}
+	};
+	
+	me.labelpos = function(value)
+	{
+		if(value === undefined)
+		{
+			return me._labelpos;
+		}
+		else
+		{
+			me._labelpos = value;
+			return me;
+		}
+	};	
+	
+	me.barfill = function(value)
+	{
+		if(value === undefined)
+		{
+			return me._barfill;
+		}
+		else
+		{
+			me._barfill = value;
+			return me;
+		}
+	};
+	
+	me.borderline = function(value)
+	{
+		if(value === undefined)
+		{
+			return me._borderline;
+		}
+		else
+		{
+			me._borderline = value;
+			return me;
+		}
+	};
+	
+	me.pcvalue = function(value)
+	{
+		if(value === undefined)
+		{
+			return me._pcvalue;
+		}
+		else
+		{
+			me._pcvalue = value;
 			return me;
 		}
 	};

@@ -5,14 +5,14 @@
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
   <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.6/d3.min.js" charset="utf-8"></script>
   <script src="/aad/zen.rt.components.sdk/resources/js/sdk_propertysheets_handler.js"></script>
-  
+  <script src="aps_textfiller.js"></script>
   <link rel="stylesheet" type="text/css" href="aps_style.css">
 </head>
-<!-- link effe breaken: <script src="aps_textfiller.js"></script> -->
+
 <body class='sapUiBody'>
 	
 	<script>
-		new be.cubis.designstudio.textfillsingle.TextFillSinglePropertyPage();
+		new be.cubis.designstudio.textfillmulti.TextFillMultiPropertyPage();
 	</script>
 	
 	<div id="formcontainer">
@@ -20,29 +20,43 @@
 		<fieldset>
 			<table>
 				<tr>
-					<th>Propery</th>
-					<th>Value</th>
+					<th>Settings</th>
+					<th>Option</th>
 				</tr>
 
 				<tr>
+					<td>Display percentage value</td>
+					<td>
+						<input id="aps_pcvalue" type="radio" name="pcvalue" value="yes" checked>Yes</input><br/>
+						<input id="aps_pcvalue" type="radio" name="pcvalue" value="no">No</input><br/>
+					</td>
+				</tr>
+				<tr>
+					<td>Label position</td>
+					<td>
+						<input id="aps_labelpos_lefttop" type="radio" name="labelpos" value="lefttop" >Left top</input><br/>
+						<input id="aps_labelpos_righttop" type="radio" name="labelpos" value="righttop" checked>Right top</input><br/>
+						<input id="aps_labelpos_leftbot" type="radio" name="labelpos" value="leftbot" >Left bottom</input><br/>
+						<input id="aps_labelpos_rightbot" type="radio" name="labelpos" value="rightbot" >Right bottom</input><br/>
+					</td> 
+				</tr>
+				<tr>
 					<td>Fill the background</td>
 					<td>
-						<input id="aps_barfill" type="radio" name="barfill" value="yes" checked>Yes</input><br/>
-						<input id="aps_barfill" type="radio" name="barfill" value="no" >No</input><br/>
+						<input id="aps_barfill" type="radio" name="barfill" value="yes">Yes</input><br/>
+						<input id="aps_barfill" type="radio" name="barfill" value="no" checked>No</input><br/>
 					</td>
 				</tr>
 				<tr>
-					<td>Show border line</td>
+					<td>Display border</td>
 					<td>
-						<input id="aps_border" type="radio" name="borderline" value="yes" checked>Yes</input><br/>
-						<input id="aps_border" type="radio" name="borderline" value="no" >No</input><br/>
+						<input id="aps_borderline" type="radio" name="borderline" value="yes">Yes</input><br/>
+						<input id="aps_borderline" type="radio" name="borderline" value="no" checked>No</input><br/>
 					</td>
 				</tr>
+				
 				<tr>
-					<td>Text size</td>
-					<td>
-						<input id="aps_textsize" type="number" name="textsize" value="16" size="5"></input>
-					</td>
+				<td>Text size</td><td><input id="aps_textsize" type="number" name="textsize" value="20" size="5" maxlength="3"></input></td>
 				</tr>
 			</table>
 			

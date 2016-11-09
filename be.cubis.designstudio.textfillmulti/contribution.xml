@@ -26,6 +26,35 @@
       
 <requireJs modes="commons m">res/js/component</requireJs>
 	
+	<!-- Extra properties for the APS. Hidden in settings. -->
+	<property
+		id="textsize"
+		title="Text size"
+		type="Text"
+		visible="false"/>
+	<property
+		id="barfill"
+		title="Fill the background"
+		type="Text"
+		visible="false"/>
+	<property
+		id="borderline"
+		title="Fill the background"
+		type="Text"
+		visible="false"/>
+	<property
+		id="pcvalue"
+		title="Display percentage value"
+		type="Text"
+		visible="false"/>
+	<property
+		id="labelpos"
+		title="Label position"
+		type="Text"
+		visible="false"/>
+<!-- End of extra properties		 -->
+
+	
 	<property
         id="textcolorCode"
         title="Text Color"
@@ -52,11 +81,17 @@
 	
 	
 	<initialization>
-		<defaultValue property="WIDTH">100</defaultValue>
-		<defaultValue property="HEIGHT">140</defaultValue>
-		<defaultValue property="textcolorCode">black</defaultValue>
-		<defaultValue property="progressColorCode">#004080</defaultValue>
-		<defaultValue property="progressFillColorCode">#C0C0C0</defaultValue>
+		<defaultValue property="WIDTH">200</defaultValue>
+		<defaultValue property="HEIGHT">200</defaultValue>
+		<defaultValue property="textcolorCode">#C0C0C0</defaultValue>
+		<defaultValue property="progressColorCode">#FF8000</defaultValue>
+		<defaultValue property="progressFillColorCode">#0088B2</defaultValue>
+		
+		<defaultValue property="pcvalue">yes</defaultValue>
+		<defaultValue property="labelpos">righttop</defaultValue>
+		<defaultValue property="barfill">no</defaultValue>
+		<defaultValue property="borderline">yes</defaultValue>		
+		<defaultValue property="textsize">35</defaultValue>
 	</initialization>
 </component>
 
