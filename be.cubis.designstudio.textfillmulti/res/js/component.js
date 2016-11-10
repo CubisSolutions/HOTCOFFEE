@@ -262,7 +262,9 @@ define(["sap/designstudio/sdk/component", "css!../css/component.css"],
 				        .text( size )
 				        .style("font-size" , ".8em");
 			        }
-
+					
+					console.log("Masking gradient me._size: " + me._size + "%");
+					console.log("Masking gradient relsize: " + relativeSize + "%");
 					// Gradient for masking.
 					svgText.append("linearGradient")
 					.attr("id","gradientGradient" + me._ID)
@@ -273,8 +275,8 @@ define(["sap/designstudio/sdk/component", "css!../css/component.css"],
 					.selectAll("stop")
 					.data([
 					       {offset: "0%", color: me._progressColorCode, opacity:1},
-					       {offset: (me._size + "%"), color: me._progressColorCode, opacity:1},
-					       {offset: (me._size + "%"), color: me._textcolorCode, opacity:1},
+					       {offset: (relativeSize + "%"), color: me._progressColorCode, opacity:1},
+					       {offset: (relativeSize + "%"), color: me._textcolorCode, opacity:1},
 					       {offset: "100%", color: me._textcolorCode , opacity:1} 
 					       ])
 					       .enter().append("stop")
