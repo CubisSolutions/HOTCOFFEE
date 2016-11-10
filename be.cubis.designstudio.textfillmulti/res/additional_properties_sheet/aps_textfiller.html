@@ -50,14 +50,24 @@
 				<tr>
 					<td>Display border</td>
 					<td>
-						<input id="aps_borderline" type="radio" name="borderline" value="yes">Yes</input><br/>
-						<input id="aps_borderline" type="radio" name="borderline" value="no" checked>No</input><br/>
+						<input id="aps_borderline" type="radio" name="borderline" value="yes" checked>Yes</input><br/>
+						<input id="aps_borderline" type="radio" name="borderline" value="no" >No</input><br/>
 					</td>
 				</tr>
-				
 				<tr>
-				<td>Text size</td><td><input id="aps_textsize" type="number" name="textsize" value="20" size="5" maxlength="3"></input></td>
+					<td>Max value type</td>
+					<td>
+					<select id="aps_maxvalue" name="maxvalue">
+						<option value="highvalue">High value</option>
+						<option value="percentage">Percentage</option>
+					</select>
+					</td>
 				</tr>
+				<tr>
+					<td>Text size</td>
+					<td><input id="aps_textsize" type="number" name="textsize" value="35" size="5" maxlength="3"></input></td>
+				</tr>
+
 			</table>
 			
 			<input id="submitbtn" name="submit"  type="submit" value="Save properties"/>

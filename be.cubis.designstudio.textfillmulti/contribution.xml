@@ -52,6 +52,13 @@
 		title="Label position"
 		type="Text"
 		visible="false"/>
+
+	<property
+		id="maxvalue"
+		title="Max value type"
+		type="Text"
+		visible="false"/>
+
 <!-- End of extra properties		 -->
 
 	
@@ -92,6 +99,8 @@
 		<defaultValue property="barfill">no</defaultValue>
 		<defaultValue property="borderline">yes</defaultValue>		
 		<defaultValue property="textsize">35</defaultValue>
+		
+		<defaultValue property="maxvalue">highvalue</defaultValue>	
 	</initialization>
 </component>
 

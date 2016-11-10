@@ -174,13 +174,25 @@ define(["sap/designstudio/sdk/component", "css!../css/component.css"],
 			fontSize = (me.getHeight()/((me._percentage.tuples.length-1)*3));
 			console.log("Tuplenrs = " + tuplenrs);
 			
-			for(i=0 ; i < me._percentage.tuples.length; i++)
+			if(me._maxvalue === "highvalue")
 			{
-				if(valueHigh < me._percentage.data[i] && me._meta_data.dimensions[1].members[tuple[i][1]].type !== "RESULT")
-					{
-						valueHigh = me._percentage.data[i];
-					}
+				// determine max value from the delivered dataset
+				console.log("maxvalue = " + me._maxvalue)
+				for(i=0 ; i < me._percentage.tuples.length; i++)
+				{
+					if(valueHigh < me._percentage.data[i] && me._meta_data.dimensions[1].members[tuple[i][1]].type !== "RESULT")
+						{
+							valueHigh = me._percentage.data[i];
+						}
+				}
 			}
+			else
+			{
+				console.log("maxvalue = " + me._maxvalue)
+				// fixed valuehigh as percentage = 100% maximum.
+				valueHigh = 100;
+			}
+			
 
 			for(i=0 ; i < me._percentage.tuples.length; i++)
 			{
@@ -193,7 +205,12 @@ define(["sap/designstudio/sdk/component", "css!../css/component.css"],
 				if(me._meta_data.dimensions[1].members[tuple[i][1]].type !== "RESULT")
 				{
 					relativeSize = (size/valueHigh)*100;
-					console.log("relativeSize " + relativeSize + " size " + size + " highValue " + valueHigh);
+					console.log("relativeSize: " + relativeSize + ", size: " + size + ", highValue: " + valueHigh);
+					console.log("format size: " +me._size);
+					if(me._maxvalue === "percentage" && relativeSize > 100)
+					{
+						relativeSize = 100;
+					}
 					var svgText = d3.select(my2Div)
 					.append("svg:svg")
 					.attr("width", "100%")
@@ -213,12 +230,37 @@ define(["sap/designstudio/sdk/component", "css!../css/component.css"],
 					
 					if(me._pcvalue === "yes")
 			        {
-						svgText.append("text")
-						.style("fill", me._progressColorCode)
-						.attr("x", 10)
-						.attr("y", 10)
-						.text( me._size + "%" )
-						.style("font-size" , ".8em");
+			        	// Calculate position
+			    		switch(me._labelpos)
+			    		{
+			    			case("lefttop"):
+			    				labelposx = 10;
+			    				labelposy = 15;
+			    				break;
+			    			case("leftbot"):
+			    				labelposx = 10;
+			    				labelposy = tuplenrs-spacing - 10;
+			    				break;
+			    			case("righttop"):
+			    				labelposx = me.getWidth() - 30;
+			    				labelposy = 15;
+			    				break;
+			    			case("rightbot"):
+			    				labelposx = me.getWidth() - 30;
+			    				labelposy = tuplenrs-spacing - 10;
+			    				break;
+			    			default:
+			    				labelposx = 10;
+			    				labelposy = 15;
+			    		}
+			        	// Place label on SVG.
+			        	svgText.append("text")
+				        .style("fill", me._progressColorCode)
+				        .attr("x", labelposx)
+				        .attr("y", labelposy)
+//				        .text( me._size + "%" )
+				        .text( size )
+				        .style("font-size" , ".8em");
 			        }
 
 					// Gradient for masking.
@@ -248,7 +290,8 @@ define(["sap/designstudio/sdk/component", "css!../css/component.css"],
 					.text(me._text)
 					.attr("x", 5)
 					.attr("y", (tuplenrs-10))
-					.style("font-size", fontSize + "px");
+//					.style("font-size", fontSize + "px");
+					.style("font-size", me._textsize + "px");
 
 					// Masking frame
 					svgText.append("rect")
@@ -423,6 +466,19 @@ define(["sap/designstudio/sdk/component", "css!../css/component.css"],
 		else
 		{
 			me._pcvalue = value;
+			return me;
+		}
+	};
+	
+	me.maxvalue = function(value)
+	{
+		if(value === undefined)
+		{
+			return me._maxvalue;
+		}
+		else
+		{
+			me._maxvalue = value;
 			return me;
 		}
 	};
