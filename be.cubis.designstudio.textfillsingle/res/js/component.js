@@ -1,8 +1,8 @@
 // counter for object id's.
 var counter = 1;
 
-define(["sap/designstudio/sdk/component", "css!../css/component.css"], 
-		function(Component, css) {
+define(["d3", "sap/designstudio/sdk/component", "css!../css/component.css"], 
+		function(d3, Component, css) {
 	  Component.subclass("be.cubis.designstudio.textfillsingle.textFillSingle", function() 
 {
 	// Self

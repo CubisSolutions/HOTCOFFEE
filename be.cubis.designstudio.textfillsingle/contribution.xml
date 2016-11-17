@@ -24,7 +24,7 @@
       modes= "m"
       >
 
-<requireJs modes="commons m">res/js/component</requireJs>
+<requireJs modes="m">res/js/component</requireJs>
     
 <!-- Extra properties for the APS. Hidden in settings. -->
 	<property
