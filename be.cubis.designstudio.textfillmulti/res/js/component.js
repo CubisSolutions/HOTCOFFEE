@@ -259,7 +259,7 @@ define(["d3", "sap/designstudio/sdk/component", "css!../css/component.css"],
 				        .attr("x", labelposx)
 				        .attr("y", labelposy)
 //				        .text( me._size + "%" )
-				        .text( size )
+				        .text( me._size )
 				        .style("font-size" , ".8em");
 			        }
 					
