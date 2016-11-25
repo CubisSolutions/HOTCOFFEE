@@ -21,16 +21,16 @@
       title="Text Filler (Multi)"
       tooltip="Text Filler (Multi)"
       visible="true"
-      modes="m"
+      modes="commons m"
       >
       
-<requireJs modes="m">res/js/component</requireJs>
+<requireJs modes="commons m">res/js/component</requireJs>
 	
 	<!-- Extra properties for the APS. Hidden in settings. -->
 	<property
 		id="textsize"
 		title="Text size"
-		type="Text"
+		type="int"
 		visible="false"/>
 	<property
 		id="barfill"
@@ -57,6 +57,12 @@
 		id="maxvalue"
 		title="Max value type"
 		type="Text"
+		visible="false"/>
+
+	<property
+		id="mvo"
+		title="User value"
+		type="int"
 		visible="false"/>
 
 <!-- End of extra properties		 -->
@@ -100,7 +106,8 @@
 		<defaultValue property="borderline">yes</defaultValue>		
 		<defaultValue property="textsize">35</defaultValue>
 		
-		<defaultValue property="maxvalue">highvalue</defaultValue>	
+		<defaultValue property="maxvalue">2</defaultValue>
+		<defaultValue property="mvo">300</defaultValue>	
 	</initialization>
 </component>
 

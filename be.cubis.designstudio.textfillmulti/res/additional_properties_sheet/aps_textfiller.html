@@ -22,6 +22,7 @@
 				<tr>
 					<th>Settings</th>
 					<th>Option</th>
+					<th></th>
 				</tr>
 
 				<tr>
@@ -30,6 +31,7 @@
 						<input id="aps_pcvalue" type="radio" name="pcvalue" value="yes" checked>Yes</input><br/>
 						<input id="aps_pcvalue" type="radio" name="pcvalue" value="no">No</input><br/>
 					</td>
+					<td></td>
 				</tr>
 				<tr>
 					<td>Label position</td>
@@ -38,7 +40,8 @@
 						<input id="aps_labelpos_righttop" type="radio" name="labelpos" value="righttop" checked>Right top</input><br/>
 						<input id="aps_labelpos_leftbot" type="radio" name="labelpos" value="leftbot" >Left bottom</input><br/>
 						<input id="aps_labelpos_rightbot" type="radio" name="labelpos" value="rightbot" >Right bottom</input><br/>
-					</td> 
+					</td>
+					<td></td>
 				</tr>
 				<tr>
 					<td>Fill the background</td>
@@ -46,6 +49,7 @@
 						<input id="aps_barfill" type="radio" name="barfill" value="yes">Yes</input><br/>
 						<input id="aps_barfill" type="radio" name="barfill" value="no" checked>No</input><br/>
 					</td>
+					<td></td>
 				</tr>
 				<tr>
 					<td>Display border</td>
@@ -53,19 +57,44 @@
 						<input id="aps_borderline" type="radio" name="borderline" value="yes" checked>Yes</input><br/>
 						<input id="aps_borderline" type="radio" name="borderline" value="no" >No</input><br/>
 					</td>
+					<td></td>
 				</tr>
 				<tr>
 					<td>Max value type</td>
 					<td>
-					<select id="aps_maxvalue" name="maxvalue">
-						<option value="highvalue">High value</option>
-						<option value="percentage">Percentage</option>
-					</select>
+						<select id="aps_maxvalue" name="maxvalue">
+							<option value="1">100 (% based)</option>
+							<option value="2">High value</option>
+							<option value="3">Sum</option>
+							<option value="4">Other</option>
+						</select>
+					</td>
+					<td>
+						<div class="tooltip">Info
+							<span class="tooltiptext">
+								<ul style="list-style-type:square">
+								<li>Number ‘100’ as 100%</li>
+								<li>Highest data-value as 100%</li>
+								<li>Sum of data-values as 100%</li>
+								<li>Other: 100% is user-defined value</li>
+								</ul>
+							</span>
+						</div>
 					</td>
 				</tr>
+				
+				<tr id="aps_maxvalueother">
+					<td>Other value</td>
+					<td>
+						<input id="aps_mvo" type="number" name="mvo" value="300" size="5" maxlength="9"></input></td>
+					<td></td>
+				</tr>
+				
 				<tr>
 					<td>Text size</td>
-					<td><input id="aps_textsize" type="number" name="textsize" value="35" size="5" maxlength="3"></input></td>
+					<td>
+						<input id="aps_textsize" type="number" name="textsize" value="35" size="5" maxlength="3"></input></td>
+					<td></td>
 				</tr>
 
 			</table>
@@ -78,7 +107,8 @@
 	<div id="gethelp">
 		<a href="mailto:info@cubis.be">Get help from Cubis</a><br/>
 		
-	</div>	
+	</div>
+	
 
 
 </body>

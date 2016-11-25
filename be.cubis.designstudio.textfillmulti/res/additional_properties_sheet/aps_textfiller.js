@@ -14,20 +14,24 @@ function()
 			me._pcvalue = $("input:radio[name=pcvalue]:checked").val();
 			
 			me._maxvalue = $("#aps_maxvalue").val();
+			me._mvo = $("#aps_mvo").val();
 			
-			me.firePropertiesChanged(["labelpos","textsize","barfill","borderline","pcvalue","maxvalue"]);
+			me.firePropertiesChanged(["labelpos","textsize","barfill","borderline","pcvalue"]);
+			// new fireproperties for maximum value.
+			me.firePropertiesChanged(["maxvalue","mvo"]);
 			return false;
 		});
 	};
 	
-	me.redraw = function() 
+	me.redraw = function()
 	{
 		$("#aps_textsize").val(me._textsize);
 		$('input:radio[name=labelpos][value=' + me._labelpos + ']').attr('checked',true);
 		$('input:radio[name=barfill][value=' + me._barfill + ']').attr('checked',true);
 		$('input:radio[name=borderline][value=' + me._borderline + ']').attr('checked',true);
 		$('input:radio[name=pcvalue][value=' + me._pcvalue + ']').attr('checked',true);
-		$("#aps_maxvalue").val(me._maxvalue); 
+		$("#aps_maxvalue").val(me._maxvalue);
+		$("#aps_mvo").val(me._mvo);
 	};
 	
 	me.textsize = function(value)
@@ -88,7 +92,7 @@ function()
 	
 	me.pcvalue = function(value)
 	{
-//		eclipse_logJavaScriptMessage("just a test from pcvalue","warn");
+//		eclipse_logJavaScriptMessage("PC value= "+value,"warn");
 		if(value === undefined)
 			{
 			return me._pcvalue;
@@ -103,19 +107,35 @@ function()
 
 	me.maxvalue = function(value)
 	{
-		//eclipse_logJavaScriptMessag("Max value has been used:" + value , "warn");
+//		eclipse_logJavaScriptMessage("Drop down selection:" + value , "warn");
 		if(value === undefined)
 			{
 			return me._maxvalue;
 			}
 		else
-			{
+		{
 			me._maxvalue = value;
 			me.redraw();
 			return me;
-			}
+		}
 	};	
-	
+
+	me.mvo = function(value)
+	{
+		eclipse_logJavaScriptMessage("Maxvalue other set: " + value , "warn");
+		if(value === undefined)
+		{
+			return me._mvo;
+			eclipse_logJavaScriptMessage("mvo autofill: " + me._mvo , "error");
+		}
+		else
+		{
+			eclipse_logJavaScriptMessage("mvo javafill: " + value , "warn");
+			me._mvo = value;
+			me.redraw();
+			return me;
+		}
+	};
 	
 });
 

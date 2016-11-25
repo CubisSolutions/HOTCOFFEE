@@ -6,7 +6,7 @@ define(["d3","sap/designstudio/sdk/component", "css!../css/component.css"],
 	  Component.subclass("be.cubis.designstudio.textfillmulti.textFillMulti", function() 
 {
 
-	//console.log("initialization of function class");
+//	console.log("initialization of function class");
 
 	var me = this;
 	var fontSize = 16;
@@ -20,11 +20,10 @@ define(["d3","sap/designstudio/sdk/component", "css!../css/component.css"],
 	me._tuple = null;
 	me._size = "20";
 
-
 	//Methods
 	me.init = function() 
 	{
-		console.log("init method");
+//		console.log("init method");
 		me.redraw();
 	};
 
@@ -33,6 +32,8 @@ define(["d3","sap/designstudio/sdk/component", "css!../css/component.css"],
 	{
 		console.log("redraw method");
 		var my2Div = me.$()[0];
+		valueHigh = 0; // reset
+		relativeSize = 0; // reset
 
 		// Clear any existing gauges. We'll redraw from scratch.
 		d3.select(my2Div).selectAll("*").remove();
@@ -89,7 +90,7 @@ define(["d3","sap/designstudio/sdk/component", "css!../css/component.css"],
 			        .attr("height","100%")
 			        .attr("width", me._size + "%")
 			        .attr("fill", me._progressFillColorCode);
-			        console.log("fill background", "log");
+//			        console.log("fill background", "log");
 				}
 		        
 		        if(me._pcvalue === "yes")
@@ -156,28 +157,44 @@ define(["d3","sap/designstudio/sdk/component", "css!../css/component.css"],
 					.style("stroke", "black")
 					.style("fill", "none");
 		        }
-		        
-				
 			}
-
-
 		}
 		else 
 		{
-			//console.log(me._percentage.tuples.length+"");
+//			console.log(me._percentage.tuples.length+"");
 			var tuple = me._percentage.tuples;
 
-			// Calculate height for a single line. Devide height by number of lines in result set.
-			// Remove one, for result line, and floor the value to an integer.
-			var tuplenrs = (me.getHeight()/(me._percentage.tuples.length-1));
-			var spacing = 0.6 * (me._percentage.tuples.length -1)
-			fontSize = (me.getHeight()/((me._percentage.tuples.length-1)*3));
-			console.log("Tuplenrs = " + tuplenrs);
-			
-			if(me._maxvalue === "highvalue")
+			// Check if result line is available in DS.
+			// if so, update number result_correction
+			// to be used in number of row-calculation below.
+			var result_correction = 0;
+			var ds_length = me._percentage.tuples.length - 1;
+			if(me._meta_data.dimensions[1].members[tuple[ds_length][1]].type !== "RESULT")
 			{
+				result_correction = 0;
+			}
+			else
+			{
+				result_correction = 1;
+			}
+			// Calculate height for a single line. Devide height by number of lines in result set.
+			// Remove 1/0 (depending on result line) and floor the value to an integer.
+			var tuplenrs = (me.getHeight()/(me._percentage.tuples.length - result_correction));
+			var spacing = 0.6 * (me._percentage.tuples.length - result_correction)
+//			fontSize = (me.getHeight()/((me._percentage.tuples.length-result_correction)*3));
+//			console.log("Tuplenrs = " + tuplenrs);
+			
+			switch (me._maxvalue) 
+			{
+			case "1":
+//				console.log("maxvalue = " + me._maxvalue)
+				// fixed valuehigh as percentage = 100% maximum.
+				valueHigh = 100;
+				break;
+			
+			case "2":
 				// determine max value from the delivered dataset
-				console.log("maxvalue = " + me._maxvalue)
+//				console.log("maxvalue = " + me._maxvalue)
 				for(i=0 ; i < me._percentage.tuples.length; i++)
 				{
 					if(valueHigh < me._percentage.data[i] && me._meta_data.dimensions[1].members[tuple[i][1]].type !== "RESULT")
@@ -185,14 +202,42 @@ define(["d3","sap/designstudio/sdk/component", "css!../css/component.css"],
 							valueHigh = me._percentage.data[i];
 						}
 				}
-			}
-			else
-			{
-				console.log("maxvalue = " + me._maxvalue)
-				// fixed valuehigh as percentage = 100% maximum.
-				valueHigh = 100;
-			}
+				break;
 			
+			case "3":
+				// result line
+				for(i=0 ; i < me._percentage.tuples.length; i++)
+				{
+					if(me._meta_data.dimensions[1].members[tuple[i][1]].type === "RESULT")
+					{
+						valueHigh = me._percentage.data[i];
+					}
+				}
+				if(valueHigh === 0)
+				{
+					alert("No result line found, please check your datasource. \nMax value set to 100.")
+					valueHigh = 100;
+				}
+				console.log("maxvalue 3 , sum is set to : " + valueHigh);
+				break;
+			
+			case "4":
+				// other value defined by user.
+				console.log("maxvalue 4 , user value set to : " + me._mvo);
+				if(me._mvo !== null && me._mvo !== undefined)
+				{
+					valueHigh = me._mvo;
+				}
+				else
+				{
+					console.log("nog user value set, max value set to 100.");
+					valueHigh = 100;
+				}
+				break;
+			
+			default:
+				break;
+			}
 
 			for(i=0 ; i < me._percentage.tuples.length; i++)
 			{
@@ -205,9 +250,9 @@ define(["d3","sap/designstudio/sdk/component", "css!../css/component.css"],
 				if(me._meta_data.dimensions[1].members[tuple[i][1]].type !== "RESULT")
 				{
 					relativeSize = (size/valueHigh)*100;
-					console.log("relativeSize: " + relativeSize + ", size: " + size + ", highValue: " + valueHigh);
-					console.log("format size: " +me._size);
-					if(me._maxvalue === "percentage" && relativeSize > 100)
+					//console.log("relativeSize: " + relativeSize + ", size: " + size + ", highValue: " + valueHigh);
+					//console.log("format size: " +me._size);
+					if(relativeSize > 100)
 					{
 						relativeSize = 100;
 					}
@@ -225,7 +270,7 @@ define(["d3","sap/designstudio/sdk/component", "css!../css/component.css"],
 						.attr("height","100%")
 						.attr("width", relativeSize + "%")
 						.attr("fill", me._progressFillColorCode);
-						console.log("fill background", "log");
+						//console.log("fill background", "log");
 					}
 					
 					if(me._pcvalue === "yes")
@@ -263,8 +308,8 @@ define(["d3","sap/designstudio/sdk/component", "css!../css/component.css"],
 				        .style("font-size" , ".8em");
 			        }
 					
-					console.log("Masking gradient me._size: " + me._size + "%");
-					console.log("Masking gradient relsize: " + relativeSize + "%");
+					//console.log("Masking gradient me._size: " + me._size + "%");
+					//console.log("Masking gradient relsize: " + relativeSize + "%");
 					// Gradient for masking.
 					svgText.append("linearGradient")
 					.attr("id","gradientGradient" + me._ID)
@@ -409,6 +454,7 @@ define(["d3","sap/designstudio/sdk/component", "css!../css/component.css"],
 	// APS Setters & Getters
 	me.textsize = function(value)
 	{
+		console.log("textsize set= " + value);
 		if(value === undefined)
 		{
 			return me._textsize;
@@ -461,6 +507,7 @@ define(["d3","sap/designstudio/sdk/component", "css!../css/component.css"],
 	
 	me.pcvalue = function(value)
 	{
+		console.log("pc value = "+value);
 		if(value === undefined)
 		{
 			return me._pcvalue;
@@ -474,6 +521,7 @@ define(["d3","sap/designstudio/sdk/component", "css!../css/component.css"],
 	
 	me.maxvalue = function(value)
 	{
+		console.log("max value dpd set: "+value);
 		if(value === undefined)
 		{
 			return me._maxvalue;
@@ -484,6 +532,28 @@ define(["d3","sap/designstudio/sdk/component", "css!../css/component.css"],
 			return me;
 		}
 	};
+	
+	me.mvo = function(value)
+	{
+		console.log("mvo value set: " + value);
+		if(value === undefined)
+		{
+			return me._mvo;
+		}
+		else
+		{
+			me._mvo = value;
+			return me;
+		}
+	};
+
+	// meta data test.
+	me.getMetadataAsString = function()
+	{
+		console.log("meta data test= " + me._meta_data.dimensions);
+		var initText =["Cubis", "SAP", "Google"];
+		return me._meta_data.dimensions;
+	}
 
 })
 });
