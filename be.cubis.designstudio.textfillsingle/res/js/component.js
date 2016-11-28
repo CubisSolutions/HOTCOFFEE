@@ -169,9 +169,7 @@ define(["d3","sap/designstudio/sdk/component", "css!../css/component.css"],
     		.attr("width" , "100%")
     		.style("stroke", "black")
     		.style("fill", "none");
-        }	
-        
-		
+        }
 	};
 	
 	
@@ -329,6 +327,14 @@ define(["d3","sap/designstudio/sdk/component", "css!../css/component.css"],
 	{
 		return me.$().height();
 	};
+	
+	
+	// meta data test.
+	me.getMetadataAsString = function()
+	{
+		var initText =["Cubis", "SAP", "Google"];
+		return initText;
+	}
 			
 });
 });

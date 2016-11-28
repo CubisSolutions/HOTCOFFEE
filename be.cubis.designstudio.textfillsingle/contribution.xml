@@ -21,7 +21,7 @@
       title="Text Chart (Single)"
       tooltip="Text Chart (Single)"
       visible="true"
-      modes= "m"
+      modes= "commons m"
       >
 
 <requireJs modes="commons m">res/js/component</requireJs>

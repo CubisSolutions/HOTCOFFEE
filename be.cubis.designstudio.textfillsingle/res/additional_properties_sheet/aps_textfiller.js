@@ -24,6 +24,17 @@ function()
 		$('input:radio[name=barfill][value=' + me._barfill + ']').attr('checked',true);
 		$('input:radio[name=borderline][value=' + me._borderline + ']').attr('checked',true);
 		$('input:radio[name=pcvalue][value=' + me._pcvalue + ']').attr('checked',true);
+		
+		// test component > aps.
+		var text = me.callRuntimeHandler("getMetadataAsString");
+		$('#aps_metanr').val(text[1]);
+		$('#aps_select').empty();
+		
+		for(i = 0 ; i < text.length ; i++)
+		{
+			$('#aps_select').append("<option>"+ text[i] +"</option>");
+		}
+		//$('#aps_select').append("<option>"+ text[1] +"</option>");
 	};
 	
 	me.labelpos = function(labelvalue)
@@ -95,6 +106,8 @@ function()
 			return me;
 			}
 	};
+	
+
 	
 });
 
