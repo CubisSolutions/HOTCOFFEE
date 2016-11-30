@@ -1,12 +1,12 @@
 //counter voor id van objecten.
 var counter = 1;
 
-define(["d3","sap/designstudio/sdk/component", "css!../css/component.css"], 
+define(["d3", "sap/designstudio/sdk/component", "css!../css/component.css"], 
 		function(d3, Component, css) {
 	  Component.subclass("be.cubis.designstudio.textfillmulti.textFillMulti", function() 
 {
 
-//	console.log("initialization of function class");
+//		  console.log("initialization of function class");
 
 	var me = this;
 	var fontSize = 16;
@@ -21,14 +21,14 @@ define(["d3","sap/designstudio/sdk/component", "css!../css/component.css"],
 	me._size = "20";
 
 	//Methods
-	me.init = function() 
+	me.init = function()
 	{
 //		console.log("init method");
 		me.redraw();
 	};
 
 	// redraw
-	me.redraw = function() 
+	me.redraw = function()
 	{
 		console.log("redraw method");
 		var my2Div = me.$()[0];
