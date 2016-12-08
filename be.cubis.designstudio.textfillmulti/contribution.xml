@@ -18,8 +18,8 @@
       icon="res/progressindicator.png"
       id="textFillMulti"
       propertySheetPath="res/additional_properties_sheet/aps_textfiller.html"
-      title="Text Filler (Multi)"
-      tooltip="Text Filler (Multi)"
+      title="Text Chart (Multi)"
+      tooltip="Text Chart (Multi)"
       visible="true"
       modes="commons m"
       >
@@ -34,12 +34,12 @@
 		visible="false"/>
 	<property
 		id="barfill"
-		title="Fill the background"
+		title="Bar background"
 		type="Text"
 		visible="false"/>
 	<property
 		id="borderline"
-		title="Fill the background"
+		title="Borderline"
 		type="Text"
 		visible="false"/>
 	<property
@@ -66,21 +66,18 @@
 		visible="false"/>
 
 <!-- End of extra properties		 -->
-
-	
-	<property
-        id="textcolorCode"
-        title="Text Color"
-        type="Color"/>
-    
-    <property
-        id="progressColorCode"
-        title="Progress Color"
-        type="Color"/>
-        
+     
     <property
         id="progressFillColorCode"
-        title="Progress fill Color"
+        title="Bar color"
+        type="Color"/>
+    <property
+        id="progressColorCode"
+        title="Filled text Color"
+        type="Color"/>
+	<property
+        id="textcolorCode"
+        title="Text color"
         type="Color"/>
 	
 	<property

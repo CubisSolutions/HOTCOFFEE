@@ -40,20 +40,63 @@ define(["d3", "sap/designstudio/sdk/component", "css!../css/component.css"],
 
 		if (me._percentage === null || me._percentage === "") 
 		{
+			
+			
 			var nrValues = 3;
 			var initText =["Cubis", "SAP", "Google"];
 			var initValues = [80,10,50];
 			var tuplenrs = (me.getHeight()/nrValues);
 			var spacing = 0.6 * nrValues;
 			//fontSize = (me.getHeight()/(nrValues*nrValues))
-
+			
+			switch (me._maxvalue) 
+			{
+			case "1":
+//				console.log("maxvalue = " + me._maxvalue)
+				// fixed valuehigh as percentage = 100% maximum.
+				valueHigh = 100;
+				break;
+			
+			case "2":
+				// determine max value from the delivered dataset
+				valueHigh = 80;
+				break;
+			
+			case "3":
+				// result line
+				valueHigh = 140;
+				break;
+			
+			case "4":
+				// other value defined by user.
+				console.log("maxvalue 4 , user value set to : " + me._mvo);
+				if(me._mvo !== null && me._mvo !== undefined)
+				{
+					valueHigh = me._mvo;
+				}
+				else
+				{
+					console.log("nog user value set, max value set to 100.");
+					valueHigh = 100;
+				}
+				break;
+			
+			default:
+				break;
+			}
+			
 			for(i=0 ; i < nrValues; i++)
 			{
 				me._ID = counter;                  	  
 				counter = counter + 1 ;
 				me._size = initValues[i];
 				me._text = initText[i];
-
+				relativeSize = me._size / valueHigh * 100;
+				if(relativeSize > 100)
+	        	{
+	        		relativeSize = 100;
+	        	}
+				
 				var svgText = d3.select(my2Div)
 				  .append("svg:svg")
 				  .attr("width", "100%")
@@ -70,8 +113,8 @@ define(["d3", "sap/designstudio/sdk/component", "css!../css/component.css"],
 		        .selectAll("stop")
 		        .data([
 		          {offset: "0%", color: me._progressColorCode, opacity:1},
-		          {offset: (me._size + "%"), color: me._progressColorCode, opacity:1},
-		          {offset: (me._size + "%"), color: me._textcolorCode, opacity:1},
+		          {offset: (relativeSize + "%"), color: me._progressColorCode, opacity:1},
+		          {offset: (relativeSize + "%"), color: me._textcolorCode, opacity:1},
 		          {offset: "100%", color: me._textcolorCode, opacity:1} 
 		        ])
 		        .enter().append("stop")
@@ -84,11 +127,12 @@ define(["d3", "sap/designstudio/sdk/component", "css!../css/component.css"],
 				// fill background
 		        if(me._barfill === "yes")
 				{
+		        	
 		        	svgText.append("rect")
 			        .attr("x",0)
 			        .attr("y",0)
 			        .attr("height","100%")
-			        .attr("width", me._size + "%")
+			        .attr("width", relativeSize + "%")
 			        .attr("fill", me._progressFillColorCode);
 //			        console.log("fill background", "log");
 				}

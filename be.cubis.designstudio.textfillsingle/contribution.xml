@@ -54,20 +54,18 @@
 		visible="false"/>
 <!-- End of extra properties		 -->
 
-
-	<property
-        id="textcolorCode"
-        title="Text Color"
-        type="Color"/>
-    
-    <property
-        id="progressColorCode"
-        title="Progress Color"
-        type="Color"/>
-
+     
     <property
         id="progressFillColorCode"
-        title="Progress fill Color"
+        title="Bar color"
+        type="Color"/>
+    <property
+        id="progressColorCode"
+        title="Filled text Color"
+        type="Color"/>
+	<property
+        id="textcolorCode"
+        title="Text color"
         type="Color"/>
 	
 	<property
