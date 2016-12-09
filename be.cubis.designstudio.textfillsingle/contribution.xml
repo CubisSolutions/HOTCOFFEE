@@ -57,15 +57,15 @@
      
     <property
         id="progressFillColorCode"
-        title="Bar color"
+        title="Char color"
         type="Color"/>
     <property
         id="progressColorCode"
-        title="Filled text Color"
+        title="Filled text color"
         type="Color"/>
 	<property
         id="textcolorCode"
-        title="Text color"
+        title="Pext color"
         type="Color"/>
 	
 	<property
