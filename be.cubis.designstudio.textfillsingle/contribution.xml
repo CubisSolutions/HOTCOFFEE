@@ -61,7 +61,7 @@
         type="Color"/>
     <property
         id="progressColorCode"
-        title="Filled text Color"
+        title="Filled Text Color"
         type="Color"/>
 	<property
         id="textcolorCode"
