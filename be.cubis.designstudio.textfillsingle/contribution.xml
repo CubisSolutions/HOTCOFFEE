@@ -57,7 +57,7 @@
      
     <property
         id="progressFillColorCode"
-        title="Bar color"
+        title="Bar Color"
         type="Color"/>
     <property
         id="progressColorCode"
@@ -65,7 +65,7 @@
         type="Color"/>
 	<property
         id="textcolorCode"
-        title="Text color"
+        title="Text Color"
         type="Color"/>
 	
 	<property
