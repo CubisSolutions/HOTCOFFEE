@@ -21,7 +21,7 @@
       title="Text Chart (Single)"
       tooltip="Text Chart (Single)"
       visible="true"
-      modes= "m"
+      modes= "commons m"
       >
 
 <requireJs modes="m">res/js/component</requireJs>
@@ -88,8 +88,8 @@
 		<defaultValue property="WIDTH">200</defaultValue>
 		<defaultValue property="HEIGHT">100</defaultValue>
 		<defaultValue property="textcolorCode">#C0C0C0</defaultValue>
-		<defaultValue property="progressColorCode">#FF8000</defaultValue>
-		<defaultValue property="progressFillColorCode">#0088B2</defaultValue>
+		<defaultValue property="progressColorCode">#FF8800</defaultValue>
+		<defaultValue property="progressFillColorCode">#00aedb</defaultValue>
 		<defaultValue property="percentageText">Cubis SDK</defaultValue>
 		<defaultValue property="percentage">40</defaultValue>
 		

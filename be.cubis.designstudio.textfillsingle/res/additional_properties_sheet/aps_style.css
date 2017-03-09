@@ -73,6 +73,7 @@ fieldset
 {
 	margin-top: 20px;
 }
+
 #gethelp a
 {
 	margin-top: 20px;
@@ -80,4 +81,52 @@ fieldset
 	color:#ffffff;
 	text-decoration:none;
 	padding: 10px 22px;
+}
+
+#colbox input
+{
+  display: none;
+}
+
+#colbox input:checked + label 
+{
+  	color: #ffffff;
+	background-color: #ff8533;
+	font-weight:bold;
+}
+#colbox label
+{
+  background-color: #e6e6e6;
+  border-radius: 7px 7px 7px 7px;
+  color: #000000;
+  font-weight:normal;
+  padding: 5px 5px;
+  width: 150px;
+}
+.cubis_header
+{
+	color:#ffffff;
+	background-color: #5bc0de;
+	padding: 5px 20px;
+	Margin-bottom: 10px;
+	font-size: 16px;
+	font-weight: bold;
+	border-bottom: 1px solid #46b8da;
+}
+
+/* Bootstrap stuff */
+.border
+{
+	border: 1px solid black;
+}
+
+.btn-primary:active, .btn-primary.active , .btn-primary:hover, .btn-primary:visited
+{
+	background-color: #ff8533;
+}
+
+.btn-cubis , .btn-cubis:hover
+{
+	background-color: #ff8533;
+	color:#ffffff;
 }

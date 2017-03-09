@@ -1,12 +1,26 @@
 <!DOCTYPE html>
 <html>
-  <head>
-  <title>Extra properties</title>
-  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.6/d3.min.js" charset="utf-8"></script>
-  <script src="/aad/zen.rt.components.sdk/resources/js/sdk_propertysheets_handler.js"></script>
-  <script src="aps_textfiller.js"></script>
-  <link rel="stylesheet" type="text/css" href="aps_style.css">
+	<head>
+	<title>Extra properties</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.6/d3.min.js" charset="utf-8"></script>
+	<script src="/aad/zen.rt.components.sdk/resources/js/sdk_propertysheets_handler.js"></script>
+	
+	
+	
+	<!--  Bootstrap & jquery -->
+	<script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet">
+	  
+	<!-- Bootstrap toggle -->
+	<link href="bootstrap-toggle.css" rel="stylesheet">
+	<script src="bootstrap-toggle.js"></script>
+	
+	<script src="aps_textfiller.js"></script>
+	<link rel="stylesheet" type="text/css" href="aps_style.css">
+	
 </head>
 
 <body class='sapUiBody'>
@@ -15,61 +29,81 @@
 		new be.cubis.designstudio.textfillsingle.TextFillSinglePropertyPage();
 	</script>
 	
-	<div id="formcontainer">
-		<form id="form">
-		<fieldset>
-			<table>
-				<tr>
-					<th>Setting</th>
-					<th>Options</th>
-				</tr>
-				<tr class="noline">
-					<td>Show label</td>
-					<td>
-						<input id="aps_pcvalue" type="radio" name="pcvalue" value="yes" checked>Yes</input><br/>
-						<input id="aps_pcvalue" type="radio" name="pcvalue" value="no">No</input><br/>
-					</td>
-				</tr>
-				<tr>
-					<td>Label position</td>
-					<td>
-						<input id="aps_labelpos_lefttop" type="radio" name="labelpos" value="lefttop" >Left top</input><br/>
-						<input id="aps_labelpos_righttop" type="radio" name="labelpos" value="righttop" checked>Right top</input><br/>
-						<input id="aps_labelpos_leftbot" type="radio" name="labelpos" value="leftbot" >Left bottom</input><br/>
-						<input id="aps_labelpos_rightbot" type="radio" name="labelpos" value="rightbot" >Right bottom</input><br/>
-					</td> 
-				</tr>
-				<tr>
-					<td>Show background</td>
-					<td>
-						<input id="aps_barfill" type="radio" name="barfill" value="yes">Yes</input><br/>
-						<input id="aps_barfill" type="radio" name="barfill" value="no" checked>No</input><br/>
-					</td>
-				</tr>
-				<tr>
-					<td>Show border</td>
-					<td>
-						<input id="aps_borderline" type="radio" name="borderline" value="yes">Yes</input><br/>
-						<input id="aps_borderline" type="radio" name="borderline" value="no" checked>No</input><br/>
-					</td>
-				</tr>
-				
-				<tr>
-					<td>Text size</td>
-					<td><input id="aps_textsize" type="number" name="textsize" value="20" size="5" maxlength="3"></input></td>
-				</tr>			
-			</table>
-			
-			<input id="submitbtn" name="submit"  type="submit" value="Save properties"/>
-		</fieldset>
-		</form>
+	<div class="col-xs-4 cubis_header">
+		Setting
+	</div>
+	<div class="col-xs-8 cubis_header">
+		Options
 	</div>
 	
-	<div id="gethelp">
-		<a href="mailto:info@cubis.be">Get help from Cubis</a><br/>
-		
-	</div>	
+	<form id="form" class="form-horizontal">
+	  
+	  <div class="form-group">
+	    <label for="aps_pcvalue" class="col-xs-4 control-label">Show label</label>
+	    <div class="col-xs-8">
+	      <input id="aps_pcvalue" name="pcvalue" type="checkbox" data-toggle="toggle" data-onstyle="cubis" data-width="150" data-on="Show label" data-off="Hide label" onchange="toggle_label()">
+	    </div>
+	  </div>
+	  
+	  <div id="lbl_position" class="form-group collapse">
+	    <label for="colbox" class="col-xs-4 control-label">Label position</label>
+	    <div class="col-xs-8">
+			 <span id="colbox">
+			 	<input id="aps_labelpos_lefttop" type="radio" name="labelpos" value="lefttop" data-width="100">
+					<label for="aps_labelpos_lefttop">Left top</label>
+				<input id="aps_labelpos_righttop" type="radio" name="labelpos" value="righttop" data-width="100">
+					<label for="aps_labelpos_righttop" class="text-right">Right top</label><br/>
+				<input id="aps_labelpos_leftbot" type="radio" name="labelpos" value="leftbot" data-width="100" >
+					<label for="aps_labelpos_leftbot">Left bottom</label>
+				<input id="aps_labelpos_rightbot" type="radio" name="labelpos" value="rightbot" data-width="100" checked >
+					<label for="aps_labelpos_rightbot" class="text-right">Right bottom</label>			 
+			 </span>
+			 
+	    </div>
+	  </div>
+	  
+	  <div class="form-group">
+	    <label for="aps_barfill" class="col-xs-4 control-label">Show background</label>
+	    <div class="col-xs-8">
+	      <input id="aps_barfill" name="barfill" type="checkbox" data-toggle="toggle" data-onstyle="cubis" data-width="150" data-on="Show background" data-off="Hide background" onchange="toggle_background()">
+	    </div>
+	  </div>
+	  
+	  <div id="barfrill_color" class="form-group collapse">
+	    <label for="aps_barfillcolor" class="col-xs-4 control-label">Background color</label>
+	    <div class="col-xs-8">
+	      <button id="aps_barfillcolor" type="button" class="btn btn-default" data-width="150">Pick color</button>
+	    </div>
+	  </div>
+	  
 
+	  <div class="form-group">
+	    <label for="aps_borderline" class="col-xs-4 control-label">Show border</label>
+	    <div class="col-xs-8">
+	    	<input id="aps_borderline" name="borderline" type="checkbox" data-toggle="toggle" data-onstyle="cubis" data-width="150" data-on="Show border" data-off="Hide border" onchange="toggle_borderline()">
+	    </div>
+	  </div>
+	  
+	  <div class="form-group">
+	    <label for="aps_textsize" class="col-xs-4 control-label">Text size</label>
+	    <div class="col-xs-8">
+	    	<input id="aps_textsize"  type="number" name="textsize" value="35" size="4" maxlength="3">
+	    </div>
+	  </div>
+	  
+	 
+	  <div class="form-group">
+	    <div class="col-xs-offset-4 col-xs-8">
+	      <button type="submit" class="btn btn-info">
+	      	<span class="glyphicon glyphicon-floppy-disk"></span> Save properties</button>
+	    </div>
+	  </div>
+	</form>
+	
+	<a type="button" class="btn btn-default" href="mailto:info@cubis.be">
+  		<span class="glyphicon glyphicon-question-sign" aria-hidden="true"></span> Get help from Cubis
+	</a>
+	
 
 </body>
 
