@@ -1,0 +1,14 @@
+class be.cubis.designstudio.commentbox.CommentBox extends Component {	
+	/* Set the filter value when it changes. */
+	boolean setFilter(/* Index of the filter */ int filterIndex, /* Selected filter value */ String filterValue) {*
+		this.indexFilter = filterIndex;
+		this.selectedFilter = filterValue;
+		return this.checkFilter;
+	*}
+
+	/* Set the initial filter value to fetch data on startup. */
+	void initFilter(/* Index of the filter */ int filterIndex, /* Selected filter value */ String filterValue) {*
+		this.indexFilter = filterIndex;
+		this.firstFilter += filterValue+",";
+	*}
+}

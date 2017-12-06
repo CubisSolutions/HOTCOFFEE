@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sdkExtension xmlns="http://www.sap.com/bi/zen/sdk" id="be.cubis.designstudio.commentbox"
+	title="CommentBox" version="16.5" vendor="Cubis">
+
+	<group id="CubisComponentsGroup" title="Cubis Components" />
+	<group id="toolbarSettings" title="Toolbar Settings" />
+	<group id="server" title="Server" />
+
+	<component id="CommentBox" title="CommentBox" group="CubisComponentsGroup"
+		icon="res/icon.png" handlerType="div" modes="commons m" databound="true"
+		propertySheetPath="res/additional_properties_sheet/additional_properties_sheet.html">
+		<requireJs modes="commons m">res/js/component</requireJs>
+		<cssInclude>res/js/ckeditor/skins/moono-lisa/editor.css</cssInclude>
+		<cssInclude>res/js/ckeditor/contents.css</cssInclude>
+
+		<property id="commentPathWrite" title="CommentPath" type="String"
+			group="server" bindable="true" />
+		<property id="serviceParameter" title="ServiceParameter"
+			type="String" group="server" bindable="true" />
+		<property id="indexFilter" title="IndexFilter" type="int"
+			visible="false" />
+		<property id="checkFilter" title="IndexFilter" type="boolean"
+			visible="false" />
+		<property id="firstFilter" title="FirstFilter" type="String"
+			visible="false" />
+		<property id="selectedFilter" title="SelectedFilter" type="String"
+			visible="false" />
+		<property id="btnMarginR" type="int" title="Button margin right" />
+		<property id="btnMarginB" type="int" title="Button margin bottom" />
+		<property id="btnRadius" type="int" title="Button radius" />
+		<property id="colorSave" type="Color" title="Color save button" />
+		<property id="colorEdit" type="Color" title="Color edit button" />
+		<property id="colorDel" type="Color" title="Color delete button" />
+		<property id="onclick" type="ScriptText" title="On Click"
+			group="Events" />
+		<initialization>
+			<defaultValue property="LEFT_MARGIN">0</defaultValue>
+			<defaultValue property="TOP_MARGIN">0</defaultValue>
+			<defaultValue property="WIDTH">300</defaultValue>
+			<defaultValue property="HEIGHT">250</defaultValue>
+			<defaultValue property="commentpathWrite">http://server:portnumber/host/service</defaultValue>
+			<defaultValue property="serviceParameter">filter</defaultValue>
+			<defaultValue property="btnMarginR">10</defaultValue>
+			<defaultValue property="btnMarginB">10</defaultValue>
+			<defaultValue property="btnRadius">20</defaultValue>
+			<defaultValue property="colorSave">#27ae60</defaultValue>
+			<defaultValue property="colorEdit">#3498db</defaultValue>
+			<defaultValue property="colorDel">#e74c3c</defaultValue>
+		</initialization>
+	</component>
+</sdkExtension>
