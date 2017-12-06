@@ -6,7 +6,7 @@
    <feature url="features/BE.CUBIS.DESIGNSTUDIO.TEXTFILLER_1.0.0.201712061507.jar" id="BE.CUBIS.DESIGNSTUDIO.TEXTFILLER" version="1.0.0.201712061507">
       <category name="com.sap.ip.bi.zen.sdk"/>
    </feature>
-   <feature url="features/BE.CUBIS.DESIGNSTUDIO.COMMENTBOX_1.0.0.201712061507.jar" id="BE.CUBIS.DESIGNSTUDIO.COMMENTBOX" version="1.0.0.201712061507">
+   <feature url="features/BE.CUBIS.DESIGNSTUDIO.COMMENTBOX_1.0.0.201712061521.jar" id="BE.CUBIS.DESIGNSTUDIO.COMMENTBOX" version="1.0.0.201712061521">
       <category name="com.sap.ip.bi.zen.sdk"/>
    </feature>
    <category-def name="com.sap.ip.bi.zen.sdk" label="SAP Design Studio Extensions">
