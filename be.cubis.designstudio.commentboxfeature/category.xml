@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <site>
-   <feature url="features/be.cubis.designstudio.commentboxfeature_1.0.0.qualifier.jar" id="be.cubis.designstudio.commentboxfeature" version="1.0.0.qualifier">
+   <feature url="features/BE.CUBIS.DESIGNSTUDIO.COMMENTBOX_1.0.0.qualifier.jar" id="BE.CUBIS.DESIGNSTUDIO.COMMENTBOX" version="1.0.0.qualifier">
       <category name="com.sap.ip.bi.zen.sdk"/>
    </feature>
    <category-def name="com.sap.ip.bi.zen.sdk" label="Cubis CommentBox"/>
