@@ -6,6 +6,9 @@
    <feature url="features/BE.CUBIS.DESIGNSTUDIO.TEXTFILLER_1.0.0.201702230939.jar" id="BE.CUBIS.DESIGNSTUDIO.TEXTFILLER" version="1.0.0.201702230939">
       <category name="com.sap.ip.bi.zen.sdk"/>
    </feature>
+   <feature url="features/BE.CUBIS.DESIGNSTUDIO.COMMENTBOX_16.5.0.201711101429.jar" id="BE.CUBIS.DESIGNSTUDIO.COMMENTBOX" version="16.5.0.201711101429">
+      <category name="com.sap.ip.bi.zen.sdk"/>
+   </feature>
    <category-def name="com.sap.ip.bi.zen.sdk" label="SAP Design Studio Extensions">
       <description>
          SAP Design Studio Extensions
