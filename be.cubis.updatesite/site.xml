@@ -3,7 +3,7 @@
    <description name="Cubis Update Site" url="http://www.cubis.be/features">
       Cubis Update Site
    </description>
-   <feature url="features/BE.CUBIS.DESIGNSTUDIO.COMMENTBOX_1.0.0.201712111055.jar" id="BE.CUBIS.DESIGNSTUDIO.COMMENTBOX" version="1.0.0.201712111055">
+   <feature url="features/BE.CUBIS.DESIGNSTUDIO.COMMENTBOX_1.0.0.201712111110.jar" id="BE.CUBIS.DESIGNSTUDIO.COMMENTBOX" version="1.0.0.201712111110">
       <category name="com.sap.ip.bi.zen.sdk"/>
    </feature>
    <category-def name="com.sap.ip.bi.zen.sdk" label="SAP Design Studio Extensions">
