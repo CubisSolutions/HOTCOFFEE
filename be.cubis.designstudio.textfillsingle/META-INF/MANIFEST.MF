@@ -4,4 +4,4 @@ Bundle-Name: Text Filler (Single)
 Bundle-SymbolicName: be.cubis.designstudio.textfillsingle;singleton:=true
 Bundle-Version: 1.0.0.qualifier
 Require-Bundle: com.sap.ip.bi.zen.rt.components.sdk.eclipse
-Bundle-Vendor: Cubis Solutions
+Bundle-Vendor: Cubis

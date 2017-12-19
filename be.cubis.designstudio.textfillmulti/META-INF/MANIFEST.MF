@@ -4,4 +4,4 @@ Bundle-Name: Text Filler (Multi)
 Bundle-SymbolicName: be.cubis.designstudio.textfillmulti;singleton:=true
 Bundle-Version: 1.0.0.qualifier
 Require-Bundle: com.sap.ip.bi.zen.rt.components.sdk.eclipse
-Bundle-Vendor: Cubis Solutions
+Bundle-Vendor: Cubis
