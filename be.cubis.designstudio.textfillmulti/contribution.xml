@@ -3,7 +3,7 @@
 	id="be.cubis.designstudio.textfillmulti"
 	title="Text Filler (Multi)"
 	version="1.0"
-	vendor="Cubis Solutions"  
+	vendor="Cubis"  
 	xmlns="http://www.sap.com/bi/zen/sdk"
   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
   xsi:schemaLocation="http://www.sap.com/bi/zen/sdk http://www.sap.com/bi/zen/sdk ">
