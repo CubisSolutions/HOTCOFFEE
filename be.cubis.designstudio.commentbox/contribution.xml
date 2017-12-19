@@ -2,11 +2,11 @@
 <sdkExtension xmlns="http://www.sap.com/bi/zen/sdk" id="be.cubis.designstudio.commentbox"
 	title="CommentBox" version="16.5" vendor="Cubis">
 
-	<group id="CubisComponentsGroup" title="Cubis Components" />
+	<group id="CubisTools" title="Cubis Tools" />
 	<group id="toolbarSettings" title="Toolbar Settings" />
 	<group id="server" title="Server" />
 
-	<component id="CommentBox" title="CommentBox" group="CubisComponentsGroup"
+	<component id="CommentBox" title="CommentBox" group="CubisTools"
 		icon="res/icon.png" handlerType="div" modes="commons m" databound="true"
 		propertySheetPath="res/additional_properties_sheet/additional_properties_sheet.html">
 		<requireJs modes="commons m">res/js/component</requireJs>
