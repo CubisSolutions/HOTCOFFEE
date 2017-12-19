@@ -6,8 +6,12 @@
       provider-name="Cubis Solutions">
 
    <description url="http://www.cubis.be/applications">
-      The Cubis CommentBox is a component to allow commenting based on your data and filter configurations. With the integrated rich text editor you can apply formatting to your comments. The component takes your web service URL as a parameter. The CommentBox can
-be customized by changing the size, position and color of the buttons.
+      The Cubis CommentBox is a component to allow commenting based
+on your data and filter configurations. With the integrated rich
+text editor you can apply formatting to your comments. The component
+takes your web service URL as a parameter. The CommentBox can
+be customized by changing the size, position and color of the
+buttons.
    </description>
 
    <copyright url="http://www.cubis.be/applications">
