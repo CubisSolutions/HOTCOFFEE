@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sdkExtension
+	id="be.cubis.designstudio.broadcaster"
+	title="Broadcaster"
+	version="16.5"
+	vendor="Cubis Solutions"  
+	xmlns="http://www.sap.com/bi/zen/sdk"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.sap.com/bi/zen/sdk http://www.sap.com/bi/zen/sdk ">
+	<license>license</license>
+	
+	<group id="CubisTools" title="Cubis Tools" />
+
+	<component
+		databound="false"
+		group="CubisTools"
+		handlerType="div"
+		icon="res/broadcast.png"
+		id="broadcaster"
+		propertySheetPath="res/additional_properties_sheet/aps.html"
+		title="Broadcaster"
+		tooltip="Broadcaster"
+		visible="true"
+		modes= "commons m">
+      
+		<requireJs modes="commons m">res/js/component</requireJs>
+						
+		<property
+			id="senrec"
+			title="Sender/Receiver?"
+			type="String">
+			<possibleValue>Sender</possibleValue>
+			<possibleValue>Receiver</possibleValue>
+		</property>
+		
+		<property
+			id="stringArray"
+			type="Array"
+			title="Strings">
+			<property
+				id="stringObject"
+				type="Object"
+				title="String Object">
+				<property
+					id="key"
+					type="String"
+					title="Key" />
+				<property
+					id="value"
+					type="String"
+					title="Value" />
+			</property>
+		</property>
+			
+		<property
+			id="boolArray"
+			type="Array"
+			title="Booleans">
+			<property
+				id="boolObject"
+				type="Object"
+				title="Boolean Object">
+				<property
+					id="key"
+					type="String"
+					title="Key" />
+				<property
+					id="value"
+					type="boolean"
+					title="Value" />
+			</property>
+		</property>
+		
+		<property
+			id="listArray"
+			type="Array"
+			title="Lists">
+			<property
+				id="listObject"
+				type="Object"
+				title="List Object">
+				<property
+					id="key"
+					type="String"
+					title="Key" />
+				<property
+					id="value"
+					type="String"
+					title="Value" />
+			</property>
+		</property>
+			
+		<property
+			id="storageInput"
+			type="String"
+			title="Storage Array Input"
+			visible="false"
+			bindable="false"/>
+			
+		<property
+			id="getStorageItem"
+			type="String"
+			title="Storage Item"
+			visible="false"
+			bindable="false"/>
+			
+		<property
+			id="storageInit"
+			type="String"
+			title="Storage Initialization"
+			visible="false"
+			bindable="false"/>
+			
+		<initialization>
+			<defaultValue property="stringArray"></defaultValue>
+			<defaultValue property="boolArray"></defaultValue>
+			<defaultValue property="listArray"></defaultValue>
+		</initialization>
+				
+	</component>
+
+</sdkExtension>

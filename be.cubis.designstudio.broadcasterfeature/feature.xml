@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feature
+      id="be.cubis.designstudio.broadcaster"
+      label="Broadcaster"
+      version="1.0.0.qualifier"
+      provider-name="Cubis Solutions">
+
+   <description url="http://www.cubis.be/applications">
+      The Cubis Broadcaster is an extension to allow communication between different dashboards, much like the SAP Digital Boardroom. It is a single component which can act both as a sender and a receiver. It works by storing key-value pairs in the locaclStorage of you web browser. Use the Broadcaster as a sender to store values, and use it as a receiver to retrieve the saved values.
+   </description>
+
+   <copyright url="http://www.cubis.be/broadcaster/copyright">
+      ©2018 Cubis Solutions
+   </copyright>
+
+   <license url="http://www.cubis.be/broadcaster/license">
+      .
+   </license>
+
+   <url>
+      <update label="Cubis Solutions - Company Website" url="http://www.cubis.be/features"/>
+   </url>
+
+   <plugin
+         id="be.cubis.designstudio.broadcaster"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+</feature>

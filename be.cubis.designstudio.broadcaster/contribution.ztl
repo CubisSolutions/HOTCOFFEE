@@ -1,0 +1,207 @@
+class be.cubis.designstudio.broadcaster.broadcaster extends Component {
+	
+	/** 
+		Adds a string value to the localStorage.<br>
+		The localStorage saves data as key-value pairs.
+	*/
+	void addToStorage_String(	/* A unique key to identify the string to be saved. */ 
+									String key, 
+								/* A string value to save in localStorage. */ 
+									String value)
+	{*
+		var keyvalue 		= key + "~" + value;
+		this.storageInput 	= keyvalue;
+	*}	
+	
+	/** 
+		Adds a boolean value to the localStorage.<br>
+		The localStorage saves data as key-value pairs.
+	*/
+	void addToStorage_Boolean(	/* A unique key to identify the boolean to be saved. */
+									String key, 
+								/* A boolean value to save in localStorage. */ 
+									boolean bool)
+	{*
+		var value 			= bool ? "true" : "false";
+		var keyvalue 		= key + "~" + value;
+		this.storageInput 	= keyvalue;
+	*}
+	
+	/** 
+		Adds an array of string values to the localStorage.<br>
+		The localStorage saves data as key-value pairs.
+	*/
+	void addToStorage_List(		/* A non-unique key to identify the list of strings to be saved. */	
+									String key, 
+								/* An array of string values to save in localStorage. */ 
+									Array array)
+	{*
+		var k				= key + "|list";
+		var v				= "";
+		var length			= array.length;
+		
+		for (i = 0; i < length; i++)
+		{
+			v = v + array[i];
+			if (i < length-1)
+			{
+				v = v + "|";
+			}
+		}
+		
+		var keyvalue 		= k + "~" + v;
+		this.storageInput 	= keyvalue;
+	*}	
+	
+	/** 
+		Returns an array containing all string key-value pairs in the localStorage.
+	*/
+	be.cubis.designstudio.broadcaster.stringArray getStringArray()
+	{*
+		return this.stringArray;
+	*}
+	
+	/** 
+		Returns the string value that has been saved to localStorage with a specific key.
+	*/
+	String getString(/* A unique key to identify the string to be returned. */ String key)
+	{*
+		var array 		= this.stringArray;
+		var length 		= array.length;
+		var selection 	= "String not found.";
+		
+		for (i = 0; i < length; i++)
+		{
+			if (array[i].key === key)
+			{
+				selection = array[i].value;
+			}
+		}
+				
+		return selection;
+	*}
+	
+	/** 
+		Returns an array containing all boolean key-value pairs in the localStorage.
+	*/
+	be.cubis.designstudio.broadcaster.boolArray getBooleanArray()
+	{*
+		return this.boolArray;
+	*}
+	
+	/** 
+		Returns the boolean value that has been saved to localStorage with a specific key.
+	*/
+	Boolean getBoolean(/* A unique key to identify the boolean to be returned. */ String key)
+	{*
+		var array 		= this.boolArray;
+		var length 		= array.length;
+		var selection 	= true;
+		
+		for (i = 0; i < length; i++)
+		{
+			if (array[i].key === key)
+			{
+				selection = array[i].value;
+			}
+		}
+				
+		return selection;
+	*}
+	
+	/** 
+		Returns an array containing all string lists of key-value pairs in the localStorage.
+	*/
+	be.cubis.designstudio.broadcaster.listArray getListArray()
+	{*
+		var array 		= this.listArray;
+		var length 		= array.length;
+		var selection 	= [];
+		
+		for (i = 0; i < length; i++)
+		{
+			var values 	= array[i].value.split("|");
+			for (j = 0; j < values.length; j++)
+			{
+				var obj		= {};
+				obj.key 	= array[i].key;
+				obj.value 	= values[j];
+				
+				selection.push(obj);
+			}
+		}
+				
+		return selection;
+	*}
+	
+	/** 
+		Returns the array of strings that has been saved to localStorage with a specific key.
+	*/
+	Array getList(/* A non-unique key to identify the list of strings to be returned. */ String key)
+	{*
+		var array 		= this.listArray;
+		var length 		= array.length;
+		var selection 	= [];
+		
+		for (i = 0; i < length; i++)
+		{
+			if (array[i].key === key)
+			{
+				selection = array[i].value.split("|");
+			}
+		}
+				
+		return selection;
+	*}
+}
+
+/** 
+	A key-value pair string-object containing a unique key and a string.
+*/
+class be.cubis.designstudio.broadcaster.stringObject {
+	/* A unique key to identify a specific string in the localStorage. */
+	String key;
+	/* A specific string in the localStorage. */
+	String value;
+}
+
+/** 
+	Class for stringArray.
+*/
+class be.cubis.designstudio.broadcaster.stringArray extends Array {
+	be.cubis.designstudio.broadcaster.stringArray(be.cubis.designstudio.broadcaster.stringObject c);
+}
+
+/** 
+	A key-value pair boolean-object containing a unique key and a boolean.
+*/
+class be.cubis.designstudio.broadcaster.boolObject {
+	/* A unique key to identify a specific boolean in the localStorage. */
+	String key;
+	/* A specific boolean in the localStorage. */
+	boolean value;
+}
+
+/** 
+	Class for boolArray.
+*/
+class be.cubis.designstudio.broadcaster.boolArray extends Array {
+	be.cubis.designstudio.broadcaster.boolArray(be.cubis.designstudio.broadcaster.boolObject c);
+}
+
+/** 
+	A key-value pair list-object containing a non-unique key and a string.
+*/
+class be.cubis.designstudio.broadcaster.listObject {
+	/* A non-unique key to identify a string in the localStorage. */
+	String key;
+	/* A string in the localStorage. */
+	String value;
+}
+
+/** 
+	Class for listArray.
+*/
+class be.cubis.designstudio.broadcaster.listArray extends Array {
+	be.cubis.designstudio.broadcaster.listArray(be.cubis.designstudio.broadcaster.listObject c);
+}
