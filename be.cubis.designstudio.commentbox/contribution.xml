@@ -7,7 +7,7 @@
 	<group id="server" title="Server" />
 
 	<component id="CommentBox" title="CommentBox" group="CubisTools"
-		icon="res/icon.png" handlerType="div" modes="commons m" databound="true"
+		icon="res/commentbox.png" handlerType="div" modes="commons m" databound="true"
 		propertySheetPath="res/additional_properties_sheet/additional_properties_sheet.html">
 		<requireJs modes="commons m">res/js/component</requireJs>
 		<cssInclude>res/js/ckeditor/skins/moono-lisa/editor.css</cssInclude>
