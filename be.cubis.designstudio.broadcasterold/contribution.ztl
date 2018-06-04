@@ -1,0 +1,23 @@
+class be.cubis.designstudio.broadcasterold.broadcaster extends Component {
+
+	void doWithStorageAction(/* Add action (set/remove) */ String action, /* Add value if applicable */ String values){*
+		this.storageAction = action;
+		this.storageValues = values;	
+	*}
+	
+	void setFilterRemote(/* Add key */ Integer key, /* Add dimension */ String dimension, /* Add value(s) */ String values){*
+		this.storageKey = key;
+		this.storageAction = "set";
+		this.storageDimension = dimension;
+		this.storageValues = values;
+		
+		var jsonString = {"action": "set", "dimension": dimension, "values": values };
+		
+		this.handleFilterRemote = JSON.stringify(jsonString);
+	*}
+	
+	String getStorageValue(){*
+		APPLICATION.alert("Calling from ZTL: " + this.storageAction + " " + this.storageDimension + " - " + this.storageValues);
+		return this.handleFilterRemote;
+	*}
+}

@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sdkExtension
+	id="be.cubis.designstudio.broadcasterold"
+	title="broadcaster"
+	version="16.5"
+	vendor="Cubis Solutions"  
+	xmlns="http://www.sap.com/bi/zen/sdk"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.sap.com/bi/zen/sdk http://www.sap.com/bi/zen/sdk ">
+	<license>license</license>
+	
+	<group id="CubisComponents" title="Cubis Components" />
+
+	<component
+	      databound="false"
+	      group="CubisComponents"
+	      handlerType="div"
+	      icon="res/progressindicator.png"
+	      id="broadcaster"
+	      propertySheetPath="res/additional_properties_sheet/aps.html"
+	      title="Broadcaster"
+	      tooltip="Broadcaster"
+	      visible="true"
+	      modes= "commons m"
+	      >
+      
+		<requireJs modes="commons m">res/js/component</requireJs>
+			
+		<property
+			id="storageDirection"
+			title="Direction"
+			type="String"
+			visible="true"
+			bindable="false">
+			<possibleValue>Sender</possibleValue>
+			<possibleValue>Receiver</possibleValue>
+		</property>
+		
+		<property
+			id="storageKey"
+			title="Key"
+			type="int"
+			visible="false"
+			bindable="false"/>
+		
+		<property
+			id="storageAction"
+			title="Action"
+			type="String"
+			visible="false"
+			bindable="false"/>
+		
+		<property
+			id="storageDimension"
+			title="Dimension"
+			type="String"
+			visible="false"
+			bindable="false"/>
+		
+		<property
+			id="storageValues"
+			title="storageValues"
+			type="String"
+			visible="false"
+			bindable="false"/>
+			
+		<property
+			id="storageScript"
+			title="On Receive"
+			type="ScriptText"
+			visible="true"
+			bindable="false"/>
+		
+		<property
+			id="handleFilterRemote"
+			title="handleFilterRemote"
+			type="String"
+			visible="false"
+			bindable="false"/>
+
+ <initialization>
+ 		<defaultValue property="WIDTH">1</defaultValue>
+		<defaultValue property="HEIGHT">1</defaultValue>
+		<defaultValue property="TOPMARGIN">0</defaultValue>
+		<defaultValue property="LEFTMARGIN">0</defaultValue>
+    </initialization>
+	</component>
+
+</sdkExtension>
