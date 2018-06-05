@@ -6,7 +6,7 @@ function(d3, Component, css)
 		// Self
 		var me = this;
 		me._storageDirection = "Sender";
-		me._storageKey = 1;
+		me._storageKey = "";
 		me._storageValues = "test";
 		me._storageDimension = "test";
 		me._storageAction = "test";
@@ -25,21 +25,29 @@ function(d3, Component, css)
 	        });*/
 			
 			window.addEventListener("storage", function (e) {
-				console.log("Event happened");
-				if(localStorage.getItem(1) !== null){
-					me._filterRemote = localStorage.getItem(1);
-					var handleFilterRemote = JSON.parse(me._filterRemote);
-					me._storageAction = handleFilterRemote.action;
-					me._storageDimension = handleFilterRemote.dimension;
-					me._storageValues = handleFilterRemote.values;
-					me.firePropertiesChangedAndEvent(["handleFilterRemote","storageAction", "storageDimension","storageValues"], "storageScript");
-				}			
-	        });
+				if(me._storageDirection == "Receiver"){
+					if(localStorage.getItem("DesignStudioPassedParameter") !== null){
+						
+						me._filterRemote = localStorage.getItem("DesignStudioPassedParameter");
+						console.log(localStorage.getItem("DesignStudioPassedParameter"));
+						localStorage.removeItem("DesignStudioPassedParameter");
+						console.log(localStorage.getItem("DesignStudioPassedParameter"));
+						var handleFilterRemote = JSON.parse(me._filterRemote);
+						me._storageAction = handleFilterRemote.action;
+						me._storageDimension = handleFilterRemote.dimension;
+						me._storageValues = handleFilterRemote.values;
+						me.firePropertiesChangedAndEvent(["handleFilterRemote","storageAction", "storageDimension","storageValues"], "storageScript");
+						
+					}			
+		        }
+				});
+				
 		}
 		
-		me.doWithStorage = function(){
+		me.doWithStoragePut = function(){
 			var jsonObj = me._filterRemote;
-			localStorage.setItem(me._storageKey, jsonObj);		
+			console.log(me._storageKey);
+			localStorage.setItem(me._storageKey, jsonObj);
 		}
 		
 		me.storageDirection = function(direction){
@@ -103,7 +111,7 @@ function(d3, Component, css)
 			
 			else{
 				this._filterRemote = filterRemote;
-				me.doWithStorage();
+				me.doWithStoragePut();
 				return this;
 			}
 

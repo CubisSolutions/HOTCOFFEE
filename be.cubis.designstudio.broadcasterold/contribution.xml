@@ -39,7 +39,7 @@
 		<property
 			id="storageKey"
 			title="Key"
-			type="int"
+			type="String"
 			visible="false"
 			bindable="false"/>
 		
